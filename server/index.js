@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const { MONGO_URL, port, ROOT_URL } = require('./config')
 const routesApi = require('./routes')
-const googleAuth = require('./auth/google');
+const auth = require('./auth');
 const logger = require('./logs');
 
 
@@ -30,10 +30,11 @@ const logger = require('./logs');
         process.exit(1);
     }
 })()
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-googleAuth({ app, ROOT_URL });
+auth({ app, ROOT_URL });
 routesApi(app);
 
 server.listen(port, (err) => {
