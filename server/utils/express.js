@@ -1,5 +1,6 @@
 const logger = require('../logs');
 const User = require('../models/User');
+const { RoleList } = require('../utils/user')
 
 /**
  * Creates a middleware that tries to execute a function
@@ -68,12 +69,17 @@ const consumeSignUpInfos = handleErrors(async (req, res, next) => {
     next();
 });
 
-const authCheck = handleErrors((req, res, next) => {
-    if (!req.user) {
-        res.status(401).json({
-            authenticated: false,
-            message: "User has not been authenticated"
-        });
+const authCheck = (role) => handleErrors((req, res, next) => {
+    let authenticated = false,
+        user, message = null;
+
+    if (!req.session || !req.session.passport || !(user = req.session.passport.user))
+        message = "User has not been authenticated";
+    else if (!role || (!RoleList.includes(role) || user.role !== role))
+        message = 'Wrong role';
+
+    if (message) {
+        res.status(401).json({ authenticated, message });
     } else {
         next();
     }

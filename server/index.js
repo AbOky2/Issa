@@ -3,6 +3,7 @@ const session = require('express-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const app = express();
 const server = require('http').createServer(app);
 const mongoSessionStore = require('connect-mongo');
@@ -34,6 +35,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors({
+    origin: ['http://localhost:3000'],
+    optionsSuccessStatus: 200,
+    methods: ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
+    preflightContinue: false,
+    credentials: true
+}));
+app.use(session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}));
 auth({ app, ROOT_URL });
 routesApi(app);
 

@@ -1,9 +1,8 @@
 const express = require('express');
-const { handleErrors, listCollection, authCheck } = require('../utils/express');
 const router = express.Router();
 
-router.get('/', authCheck, (async (req, res) => {
-    res.send('User Api route');
+router.get('/', (async (req, res) => {
+    res.send('Admin Api route');
 }));
 
 module.exports = router;

@@ -12,10 +12,10 @@ const App = () => {
         <a href='/#'>Kit le nid</a>
       </header>
       <button onClick={() => login({
-        email: 'tata@tata.tata',
-        password: 'tata',
-        lastName: 'tata',
-      }, () => console.log('send'))}>test</button>
+        email: 'toto@toto.toto',
+        password: 'sdfsdfdsf',
+        // lastName: 'tata',
+      }, (p, user) => console.log(p, user))}>test</button>
     </div>
   );
 }
