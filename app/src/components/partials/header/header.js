@@ -1,17 +1,20 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, useHistory, useLocation } from "react-router-dom";
+import { getUser } from '../../../utils/storage'
+import { logout } from '../../../services/authService'
+import Login from '../../public/login'
+import Dashboard from '../../private/'
 import './header.css'
 
 
-export default function AuthExample() {
+export default function AuthExample({ user }) {
     return (
         <Router>
             <header>
                 <Grid container direction="row" justify="space-between" alignItems="center">
                     <Grid item>logo</Grid>
                     <Grid item>
-                        <AuthButton />
                         <ul>
                             <li>
                                 <Link to="/public">Public Page</Link>
@@ -19,6 +22,7 @@ export default function AuthExample() {
                             <li>
                                 <Link to="/protected">Protected Page</Link>
                             </li>
+                            <li><AuthButton user={user} /></li>
                         </ul>
                     </Grid>
                 </Grid>
@@ -28,7 +32,10 @@ export default function AuthExample() {
                         <PublicPage />
                     </Route>
                     <Route path="/login">
-                        <LoginPage />
+                        <Login />
+                    </Route>
+                    <Route path="/dashboard">
+                        <Dashboard />
                     </Route>
                     <PrivateRoute path="/protected">
                         <ProtectedPage />
@@ -52,32 +59,34 @@ const fakeAuth = {
 };
 
 const AuthButton = () => {
-    let history = useHistory();
+    const user = getUser();
 
-    return fakeAuth.isAuthenticated ? (
+    return user && user.role ? (
         <p>
             Welcome!{" "}
             <button
                 onClick={() => {
-                    fakeAuth.signout(() => history.push("/"));
+                    logout();
                 }}
             >
-                Sign out
+                Déconnecter
       </button>
         </p>
     ) : (
-            <p>You are not logged in.</p>
+            <Link to='/login'>Se connecter.</Link>
         );
 }
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
 const PrivateRoute = ({ children, ...rest }) => {
+    const user = getUser();
+
     return (
         <Route
             {...rest}
             render={({ location }) =>
-                fakeAuth.isAuthenticated ? (
+                user && user.role ? (
                     children
                 ) : (
                         <Redirect
@@ -91,6 +100,22 @@ const PrivateRoute = ({ children, ...rest }) => {
         />
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const PublicPage = () => {
     return <h3>Public</h3>;

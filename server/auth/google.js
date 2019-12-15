@@ -6,6 +6,8 @@ const User = require('../models/User');
 const { Student } = require('../utils/user')
 // const { redirecAfterAuth } = require('./index');
 const { consumeSignUpInfos } = require('../utils/express');
+const { jwtTokenize } = require('../utils/jwt')
+const { notFound } = require('../utils/message')
 
 function auth({ ROOT_URL, app }) {
     const verify = async (accessToken, refreshToken, profile, verified) => {
@@ -37,7 +39,7 @@ function auth({ ROOT_URL, app }) {
                 socialUserId: profile.id,
                 role: Student,
                 email,
-                token: { accessToken, refreshToken },
+                token: accessToken,
                 firstName,
                 lastName,
                 avatarUrl,
@@ -81,13 +83,11 @@ function auth({ ROOT_URL, app }) {
         consumeSignUpInfos,
         (req, res, next) => {
             if (req.user) {
-                res.json({
-                    success: true,
-                    message: "user has successfully authenticated",
-                    user: req.user,
-                    cookies: req.cookies
-                });
+                const user = req.user;
+                const token = jwtTokenize(user);
+                return res.redirect(`http://localhost:3000/login?token=${token}&user=${user}`)
             }
+            return res.status(401).json({ authenticate: false, message: notFound('user') });
         },
     );
 }

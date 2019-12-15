@@ -2,18 +2,16 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const app = express();
 const server = require('http').createServer(app);
-const mongoSessionStore = require('connect-mongo');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const { MONGO_URL, port, ROOT_URL } = require('./config')
 const routesApi = require('./routes')
 const auth = require('./auth');
 const logger = require('./logs');
-
+const { jwtMiddleware } = require('./utils/jwt');
 
 (async () => {
     const options = {
@@ -27,6 +25,7 @@ const logger = require('./logs');
         await mongoose.connect(MONGO_URL, options)
 
     } catch (err) {
+        console.log("nooooo", err)
         logger.error(err.message);
         process.exit(1);
     }
@@ -53,6 +52,7 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24
     }
 }));
+app.use(jwtMiddleware);
 auth({ app, ROOT_URL });
 routesApi(app);
 

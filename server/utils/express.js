@@ -1,7 +1,7 @@
 const logger = require('../logs');
 const User = require('../models/User');
 const { RoleList } = require('../utils/user')
-
+const { wrongInfo, notAuthorized } = require('../utils/message')
 /**
  * Creates a middleware that tries to execute a function
  * and catch eventual errors to send them as a json response
@@ -71,12 +71,15 @@ const consumeSignUpInfos = handleErrors(async (req, res, next) => {
 
 const authCheck = (role) => handleErrors((req, res, next) => {
     let authenticated = false,
-        user, message = null;
+        user = req.user,
+        message = null;
 
-    if (!req.session || !req.session.passport || !(user = req.session.passport.user))
-        message = "User has not been authenticated";
-    else if (!role || (!RoleList.includes(role) || user.role !== role))
-        message = 'Wrong role';
+    if (!user)
+        message = notAuthorized;
+    else if (role === '*' && !RoleList.includes(user.role))
+        message = wrongInfo('role');
+    else if (!role || (role !== '*' && (!RoleList.includes(role) || user.role !== role)))
+        message = wrongInfo('role');
 
     if (message) {
         res.status(401).json({ authenticated, message });

@@ -3,6 +3,12 @@ const Admin = 'admin';
 const Student = 'student';
 const RoleList = [Admin, Student];
 
+
+// Roles
+const Roomer = 'roomer';
+const Buyer = 'buyer';
+const studentRoleList = [Roomer, Buyer];
+
 const Active = 'active';
 const Inactive = 'inactive';
 const StatusList = [Active, Inactive];
@@ -44,6 +50,7 @@ module.exports = {
 
     RoleList,
     StatusList,
+    studentRoleList,
 
 
     // Methods

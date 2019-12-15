@@ -1,0 +1,116 @@
+/* general */
+ul, li {
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+ul li ul li {
+  margin: 5px 5px 5px 0;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: #475f7b;
+}
+a:hover, a.active .link-title {
+  color: #475f7b;
+}
+.link-title {
+  color: #475f7b;
+}
+a.active {
+  border-top-right-radius: 16.5px;
+  border-bottom-right-radius: 16.5px;
+  background-color: rgba(71, 95, 123, 0.1);
+}
+h2, h3 {
+  margin: 0;
+  text-align: left;
+  padding-left: 27px;
+}
+h2 {
+  margin-top: 35px;
+}
+/* elem */
+.logo_container {
+  text-align: left;
+  padding-left: 27px;
+}
+.logo_container img {
+  height: 27px;
+}
+.logo_container p {
+  width: 48px;
+  height: 18px;
+  font-family: Rubik;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #c6ccd2;
+  margin-bottom: 0;
+}
+#sidebar {
+  padding-top: 20px;
+  padding-right: 10px;
+  border-right: solid 0.5px #c7cfd6;
+}
+h2 {
+  width: 97px;
+  height: 14px;
+  font-family: Rubik;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  color: #bac0c7;
+}
+h3 {
+  cursor: pointer;
+  position: relative;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
+  font-family: Rubik;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #475f7b;
+}
+h3 svg, h3 img {
+  width: 20px;
+  margin-right: 17px;
+}
+.active .svgClass{
+  fill: #09795f;
+}
+.svgClass {
+  fill: #475F7B;
+}
+.info {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  color: #00c89a;
+  background-color: rgba(0, 200, 154, 0.17);
+}
+.active .info {
+  color: #09795f;
+  background-color: rgba(9, 121, 95, 0.17);
+}
+
+.export > span, h3 > span, h3 > svg {
+  vertical-align: middle;
+}

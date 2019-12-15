@@ -2,6 +2,7 @@ const passport = require('passport');
 const { Strategy } = require('passport-local');
 const UserModel = require('../models/User');
 const { Admin } = require('../utils/user')
+const { jwtTokenize } = require('../utils/jwt')
 
 
 const auth = ({ app }) => {
@@ -18,6 +19,7 @@ const auth = ({ app }) => {
                 password,
                 role: Admin,
             });
+
             cb(null, user);
         } catch (err) {
             if (err.message)
@@ -45,7 +47,10 @@ const auth = ({ app }) => {
 
             req.login(user, (err) => {
                 if (err) return next(err);
-                return res.json({ authenticate: true, user: req.user });
+                const user = req.user;
+                const token = jwtTokenize(req.user);
+
+                return res.json({ authenticate: true, user, token });
             });
         })(req, res, next);
     });
@@ -54,7 +59,7 @@ const auth = ({ app }) => {
         req.logout();
         req.session.destroy(function (err) {
             if (err) { return next(err); }
-            return res.send({ authenticated: req.isAuthenticated() });
+            return res.send({ authenticated: false });
         });
     });
 };

@@ -1,0 +1,45 @@
+
+/* general */
+.icon, .tiny-icon {
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.icon {
+  width: 16px;
+  height: 16px;
+}
+.tiny-icon {
+  width: 13px;
+  height: 13px;
+}
+.icon-email {
+  background-image: url('./assets/img/icons/email.png');
+}
+.icon-phone {
+  background-image: url('./assets/img/icons/phone.png');
+}
+.icon-graduate {
+  background-image: url('./assets/img/icons/graduate.png');
+}
+.icon-export {
+  background-image: url('./assets/img/icons/export.png');
+}
+.icon-filter {
+  background-image: url('./assets/img/icons/filter.png');
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.pointer {
+  cursor: pointer;
+}
+
+/* app */
+.App {
+  text-align: center;
+}

@@ -1,0 +1,73 @@
+/* general */
+h1 {
+  font-family: Rubik;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #475f7b;
+  display: inline-block;
+}
+
+/* header */
+
+.header-btn {
+    /* width: 41px; */
+    /* height: 17px; */
+    font-family: Rubik;
+    font-size: 14.4px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #475f7b;
+}
+
+div.header  {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.header-icon {
+  margin-right: 10px;
+}
+
+.admin-container {
+  background-color: #f2f4f4;
+}
+.spacing {
+  padding: 0 24px;
+}
+.filter > span:first-of-type, .export > span:first-of-type {
+  padding-left: 10px;
+}
+.filter > span, .export > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.filter, .export {
+  padding: 8px 14px;
+  border-radius: 4px;
+}
+.export {
+  margin-left: 4px;
+  background-color: rgba(71, 95, 123, 0.08);
+}
+
+/* list */
+.user-list {
+  height: 62px;
+}
+.user-list:nth-child(even) {
+  background-color: #f3f5f8;
+}
+.user-list img {
+  display: block;
+  width: 30px;
+  margin-right: 10px;
+}
+.tiny-icon {
+  margin-right: 10px;
+}

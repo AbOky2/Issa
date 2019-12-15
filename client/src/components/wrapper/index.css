@@ -1,0 +1,7 @@
+.admin-content-container {
+    border-radius: 4px;
+    box-shadow: 0 2px 24px 0 rgba(192, 192, 192, 0.5);
+    background-color:  #fff;
+    width: calc(100% - 100px);
+    margin: auto;
+  }

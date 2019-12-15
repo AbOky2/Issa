@@ -152,6 +152,20 @@ class UserClass {
     }
 
     /**
+     * Get a User by its slug
+     * @param {Object} params
+     * @param {String} params.slug - The slug of the User to get
+     */
+    static async getById(_id) {
+        const userDoc = await this.findOne({ _id })
+            .select(this.publicFields());
+        if (!userDoc) {
+            throw new Error('User not found');
+        }
+        return userDoc.toObject();
+    }
+
+    /**
      * Update a User by its slug
      * @param {Object} params
      * @param {String} params.slug - The slug of the User to get
@@ -220,7 +234,8 @@ class UserClass {
         }
         const isMatch = await bcrypt.compare(password, user.password);
         user = user.toObject();
-        if (isMatch) return _.pick(user, this.publicFields());
+        if (isMatch)
+            return _.pick(user, this.publicFields());
         throw new Error('Invalid password');
     }
 
