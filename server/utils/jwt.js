@@ -12,7 +12,6 @@ const jwtMiddleware = (req, res, next) => {
     if (not_loged_user_acess_page.includes(req.originalUrl))
         return next();
 
-    console.log('oooo', req.originalUrl)
     if (!token)
         return next(); //if no token, continue
 

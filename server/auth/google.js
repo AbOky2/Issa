@@ -5,7 +5,6 @@ const Strategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/User');
 const { Student } = require('../utils/user')
 // const { redirecAfterAuth } = require('./index');
-const { consumeSignUpInfos } = require('../utils/express');
 const { jwtTokenize } = require('../utils/jwt')
 const { notFound } = require('../utils/message')
 
@@ -80,7 +79,6 @@ function auth({ ROOT_URL, app }) {
         passport.authenticate('google', {
             failureRedirect: '/login',
         }),
-        consumeSignUpInfos,
         (req, res, next) => {
             if (req.user) {
                 const user = req.user;

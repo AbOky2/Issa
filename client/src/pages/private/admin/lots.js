@@ -17,7 +17,7 @@ const Dashboard = () => {
                 name: 'OVATION MAGELLAN',
                 slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
                 dimension: '3 à 5 pièces - 62m² à 117m²',
-                location: 'Colombes - 97000',
+                address: 'Colombes - 97000',
                 nb_available_appart: 35,
                 location_date: '2ème trimestre 2021'
             },
@@ -26,7 +26,7 @@ const Dashboard = () => {
                 name: 'OVATION MAGELLAN',
                 slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
                 dimension: '3 à 5 pièces - 62m² à 117m²',
-                location: 'Colombes - 97000',
+                address: 'Colombes - 97000',
                 nb_available_appart: 7,
                 location_date: '2ème trimestre 2021'
             },
@@ -35,7 +35,7 @@ const Dashboard = () => {
                 name: 'OVATION MAGELLAN',
                 slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
                 dimension: '3 à 5 pièces - 62m² à 117m²',
-                location: 'Colombes - 97000',
+                address: 'Colombes - 97000',
                 nb_available_appart: 0,
                 location_date: '2ème trimestre 2021'
             },
@@ -74,7 +74,7 @@ const Dashboard = () => {
                             <Grid item container alignItems='center' className='description'>
                                 <Grid item container alignItems='center'>
                                     <Grid><span className='header-icon'><LotsIcon /></span></Grid>
-                                    <Grid><h3>{elem.location}</h3></Grid>
+                                    <Grid><h3>{elem.address}</h3></Grid>
                                 </Grid>
                                 <Grid item container alignItems='center'>
                                     <Grid><span className='header-icon'><LotsIcon /></span></Grid>

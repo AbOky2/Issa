@@ -30,7 +30,7 @@ const LoginTab = () => {
                     {/* <Face /> */}
                 </Grid>
                 <Grid item md={true} sm={true} xs={true}>
-                    <TextField id="username" label="Username" type="email" value={state.email} fullWidth autoFocus required />
+                    <TextField id="email" label="email" type="email" value={state.email} fullWidth autoFocus required />
                 </Grid>
             </Grid>
             <Grid container spacing={8} alignItems="flex-end">
@@ -38,7 +38,7 @@ const LoginTab = () => {
                     {/* <Fingerprint /> */}
                 </Grid>
                 <Grid item md={true} sm={true} xs={true}>
-                    <TextField id="username" label="Password" type="password" value={state.password} fullWidth required />
+                    <TextField id="password" label="Password" type="password" value={state.password} fullWidth required />
                 </Grid>
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
                     <Button variant="outlined" color="primary" style={{ textTransform: "none" }} onClick={onClick}>Login</Button>

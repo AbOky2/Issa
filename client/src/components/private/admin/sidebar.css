@@ -111,6 +111,10 @@ h3 svg, h3 img {
   background-color: rgba(9, 121, 95, 0.17);
 }
 
-.export > span, h3 > span, h3 > svg {
+.export > span,
+h3 > span,
+h3 > svg,
+h3 > img
+{
   vertical-align: middle;
 }

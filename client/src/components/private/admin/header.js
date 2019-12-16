@@ -24,7 +24,7 @@ const Header = () => {
         setAuthUser(null)
     };
 
-    const childList = [{ value: <Link to='/dashboard/buy'>test</Link> }, { value: 'logout', onClick: logOut }]
+    const childList = [{ value: 'logout', onClick: logOut }]
 
     return (
         <header>

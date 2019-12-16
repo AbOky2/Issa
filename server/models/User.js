@@ -31,9 +31,12 @@ const mongoSchema = new Schema({
         unique: true,
         sparse: true,
     },
+    school: {
+        type: String,
+        required: () => isStudent(this.role)
+    },
     password: {
         type: String,
-        // required: true,
     },
     slug: {
         type: String,
@@ -69,6 +72,7 @@ class UserClass {
             '_id',
             'firstName',
             'lastName',
+            'school',
             'email',
             'slug',
             'role',
@@ -114,7 +118,7 @@ class UserClass {
         return { students };
     }
 
-    static async add({ email, password, firstName, lastName, role, picture }) {
+    static async add({ email, password, firstName, lastName, school, role, picture }) {
         const slug = await generateSlug(this, firstName + lastName);
         const status = Active; // Change to Enum Value
 
@@ -122,6 +126,7 @@ class UserClass {
             email,
             password,
             slug,
+            school,
             firstName,
             lastName,
             status,

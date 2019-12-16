@@ -2,6 +2,8 @@ const logger = require('../logs');
 const User = require('../models/User');
 const { RoleList } = require('../utils/user')
 const { wrongInfo, notAuthorized } = require('../utils/message')
+const propertieSchema = require('../middleware/schema')
+const requestMiddleware = require('../middleware/request')
 /**
  * Creates a middleware that tries to execute a function
  * and catch eventual errors to send them as a json response
@@ -24,50 +26,17 @@ const handleErrors = (fn) => async (req, res, next) => {
  * @param {(req: Request, res: Response) => any} listFn
  */
 const listCollection = (listFn) =>
-    handleErrors(async (req, res) => {
-        let { offset, limit } = req.query;
+    [
+        requestMiddleware(propertieSchema.list, 'query'),
+        handleErrors(async (req, res) => {
+            let { offset, limit } = req.query;
 
-        offset = Number(offset) || undefined;
-        limit = Number(limit) || undefined;
+            offset = Number(offset) || undefined;
+            limit = Number(limit) || undefined;
 
-        res.json(await listFn({ offset, limit }));
-    });
-
-const storeSignUpInfos = handleErrors((req, res, next) => {
-    const { firstName, lastName, birthday, postalCode, centersOfInterest } = req.query;
-    console.log("AAA");
-    if (firstName || lastName || birthday || postalCode || centersOfInterest) {
-        console.log("BBB");
-        req.session.signUpInfos = {
-            firstName,
-            lastName,
-            birthday,
-            postalCode,
-            centersOfInterest: Array.isArray(centersOfInterest) ? centersOfInterest : [centersOfInterest],
-        };
-    }
-    console.log("CCC");
-    next();
-});
-
-const consumeSignUpInfos = handleErrors(async (req, res, next) => {
-    if (req.session.signUpInfos) {
-        const { firstName, lastName, birthday, postalCode, centersOfInterest } = req.session.signUpInfos;
-        // const { user } = await User.updateBySlug({
-        //     slug: req.user.slug,
-        //     firstName, lastName,
-        //     dateOfBirth: birthday,
-        //     postalCode,
-        //     influencer: {
-        //         centersOfInterest
-        //     }
-        // });
-        // req.user = user;
-        // delete req.session.signUpInfos;
-        console.log('Consume Signup')
-    }
-    next();
-});
+            res.json(await listFn({ offset, limit }));
+        })
+    ];
 
 const authCheck = (role) => handleErrors((req, res, next) => {
     let authenticated = false,
@@ -91,7 +60,5 @@ const authCheck = (role) => handleErrors((req, res, next) => {
 module.exports = {
     handleErrors,
     listCollection,
-    storeSignUpInfos,
-    consumeSignUpInfos,
     authCheck,
 };

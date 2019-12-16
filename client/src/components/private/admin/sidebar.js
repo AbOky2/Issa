@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { ReactComponent as HouseIcon } from '../../../assets/img/svg/house.svg'
 import { ReactComponent as HouseKeyIcon } from '../../../assets/img/svg/house-key.svg'
@@ -37,7 +37,7 @@ const Sidebar = () => {
     return (
         <div id='sidebar'>
             <div className='logo_container'>
-                <img src={Logo} alt='Logo' />
+                <Link to='/dashboard'><img src={Logo} alt='Logo' /></Link>
                 <p>Admin</p>
             </div>
             <ul>
