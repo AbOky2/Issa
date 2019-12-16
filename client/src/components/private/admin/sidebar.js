@@ -9,7 +9,7 @@ import Logo from '../../../assets/img/logo.png'
 import TmpNexityIcon from '../../../assets/img/icons/nexity.png'
 import './sidebar.css'
 
-const NexityIcon = () => <img src={TmpNexityIcon} />
+const NexityIcon = () => <img src={TmpNexityIcon} alt='Nexity Icon' />
 const menuList = [
     {
         title: 'UTILISATEURS',
@@ -37,7 +37,7 @@ const Sidebar = () => {
     return (
         <div id='sidebar'>
             <div className='logo_container'>
-                <img src={Logo} />
+                <img src={Logo} alt='Logo' />
                 <p>Admin</p>
             </div>
             <ul>

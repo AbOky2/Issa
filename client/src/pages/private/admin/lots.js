@@ -10,11 +10,35 @@ import { ReactComponent as LotsIcon } from '../../../assets/img/svg/lots.svg'
 
 
 const Dashboard = () => {
-    const [state, setState] = useState({
+    const [state] = useState({
         lots: [
-            { img: Lot, name: 'OVATION MAGELLAN', location: 'Colombes - 97000', nb_available_appart: 35, location_date: '2ème trimestre 2021' },
-            { img: Lot, name: 'OVATION MAGELLAN', location: 'Colombes - 97000', nb_available_appart: 7, location_date: '2ème trimestre 2021' },
-            { img: Lot, name: 'OVATION MAGELLAN', location: 'Colombes - 97000', nb_available_appart: 0, location_date: '2ème trimestre 2021' },
+            {
+                img: Lot,
+                name: 'OVATION MAGELLAN',
+                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
+                dimension: '3 à 5 pièces - 62m² à 117m²',
+                location: 'Colombes - 97000',
+                nb_available_appart: 35,
+                location_date: '2ème trimestre 2021'
+            },
+            {
+                img: Lot,
+                name: 'OVATION MAGELLAN',
+                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
+                dimension: '3 à 5 pièces - 62m² à 117m²',
+                location: 'Colombes - 97000',
+                nb_available_appart: 7,
+                location_date: '2ème trimestre 2021'
+            },
+            {
+                img: Lot,
+                name: 'OVATION MAGELLAN',
+                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
+                dimension: '3 à 5 pièces - 62m² à 117m²',
+                location: 'Colombes - 97000',
+                nb_available_appart: 0,
+                location_date: '2ème trimestre 2021'
+            },
         ]
     })
 
@@ -40,20 +64,32 @@ const Dashboard = () => {
             </Grid>
             <Grid container item className='content-container'>
                 {state.lots.map((elem, index) => (
-                    <Grid container item key={index} xs={4} alignItems="center" justify="center" className='spacing-wrapper'>
-                        <Grid item container alignItems='center' className='content'>
-                            <Grid><img src={elem.img} /></Grid>
-                            <Grid item container alignItems='center'>
-                                <Grid><span className='header-icon'><LotsIcon /></span></Grid>
-                                <Grid><h3>{elem.location}</h3></Grid>
+                    <Grid container item key={index} xs={4} className='spacing-wrapper'>
+                        <Grid item container className='content'>
+                            <Grid><img src={elem.img} alt='Lot' /></Grid>
+                            <Grid item xs={12}><h2>{elem.name}</h2></Grid>
+                            <Grid item xs={12} className='text-left'><p>{elem.slogan}</p></Grid>
+                            <Grid item xs={12} className='text-left dimension'><h3>{elem.dimension}</h3></Grid>
+
+                            <Grid item container alignItems='center' className='description'>
+                                <Grid item container alignItems='center'>
+                                    <Grid><span className='header-icon'><LotsIcon /></span></Grid>
+                                    <Grid><h3>{elem.location}</h3></Grid>
+                                </Grid>
+                                <Grid item container alignItems='center'>
+                                    <Grid><span className='header-icon'><LotsIcon /></span></Grid>
+                                    <Grid><h3>{elem.nb_available_appart} logement disponibles</h3></Grid>
+                                </Grid>
+                                <Grid item container alignItems='center'>
+                                    <Grid><span className='header-icon'><LotsIcon /></span></Grid>
+                                    <Grid><h3>{elem.location_date}</h3></Grid>
+                                </Grid>
                             </Grid>
-                            <Grid item container alignItems='center'>
-                                <Grid><span className='header-icon'><LotsIcon /></span></Grid>
-                                <Grid><h3>{elem.nb_available_appart} logement disponibles</h3></Grid>
-                            </Grid>
-                            <Grid item container alignItems='center'>
-                                <Grid><span className='header-icon'><LotsIcon /></span></Grid>
-                                <Grid><h3>{elem.location_date}</h3></Grid>
+                            <Grid item container xs={12} justify='center' alignItems='center' className='submit-container'>
+                                <Grid item container alignItems='center' justify='center' className='submit'>
+                                    <Grid><span className='header-icon'><LotsIcon /></span></Grid>
+                                    <Grid><p>Modifier</p></Grid>
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Grid>

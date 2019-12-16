@@ -12,19 +12,14 @@ import './header.css'
 const ProfileMenu = ({ Avatar }) => (
     <Grid container alignItems='center' className='dropdownContainer'>
         <Grid><span>Raphael</span></Grid>
-        <Grid><img src={Avatar} /></Grid>
+        <Grid><img src={Avatar} alt='Avatar' /></Grid>
     </Grid>
-    // <div className='dropdownContainer'>
-
-
-    // </div>
 )
 
 const Header = () => {
     const { setAuthTokens, setAuthUser } = useAuth();
 
     const logOut = () => {
-        return (alert('Logout'))
         setAuthTokens(null);
         setAuthUser(null)
     };
@@ -33,14 +28,14 @@ const Header = () => {
 
     return (
         <header>
-            <Grid container>
-                <Grid item container xs={12} justify='flex-end'>
+            <Grid container >
+                <Grid item container xs={12} alignItems='center' justify='flex-end' className='menu-container'>
                     {/* <Grid item container xs={12} alignItems="center" justify='flex-end' className='text-right'> */}
-                    <div className='notification'>
+                    <Grid item className='notification'>
                         <Badge badgeContent={4} color="secondary">
-                            <img src={Avatar} />
+                            <img src={Avatar} alt='Avatar' />
                         </Badge>
-                    </div>
+                    </Grid>
                     <DropDownMenu
                         menuTitle={<ProfileMenu Avatar={Avatar} />}
                         childList={childList}

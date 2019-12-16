@@ -7,7 +7,7 @@ import './index.css';
 import withAuth from '../../../lib/withAuth'
 import { AdminContentWrapper } from '../../../components/wrapper'
 // excel
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 
 const Dashboard = () => {
@@ -24,10 +24,10 @@ const Dashboard = () => {
         ]
     })
 
-    const filter = (filterName) => state.users.filter(e => e.status == state.filterName);
+    const filter = () => state.users.filter(e => e.status === state.filterName);
     const handleChange = (name, value) => setState({ ...state, [name]: value });
 
-    const users = filter(state.filter);
+    const users = filter();
     const csvData = [
         ['Name', 'Email', 'Phone', 'School'],
         ...users.map(e => ([`${e.firstName || ''} ${e.lastName || ''}`, e.email, e.phone, e.schoolName]))
@@ -39,12 +39,12 @@ const Dashboard = () => {
                 <Grid item container xs={6} justify="flex-start">
                     <Grid item container alignItems='center'>
                         <Grid><span className='header-icon'><HouseIcon /></span></Grid>
-                        <Grid><h1>Utilisateurs {`${state.filterName == Roomer ? 'location' : 'acheteur'}`} ({users.length})</h1></Grid>
+                        <Grid><h1>Utilisateurs {`${state.filterName === Roomer ? 'location' : 'acheteur'}`} ({users.length})</h1></Grid>
                     </Grid>
                 </Grid>
                 <Grid container item xs={6} justify="flex-end">
                     <Grid item container alignItems='center' justify="flex-end">
-                        <div className='pointer filter' onClick={() => handleChange('filterName', state.filterName == Roomer ? Buyer : Roomer)}>
+                        <div className='pointer filter' onClick={() => handleChange('filterName', state.filterName === Roomer ? Buyer : Roomer)}>
                             <span className='icon icon-filter'></span>
                             <span className='header-btn'>Filter</span>
                         </div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
                             <span className='header-btn'>
                                 <CSVLink
                                     data={csvData}
-                                    filename={`students_${state.filterName == Roomer ? 'locataire' : 'acheteur'}.csv`}
+                                    filename={`students_${state.filterName === Roomer ? 'locataire' : 'acheteur'}.csv`}
                                 >Exporter</CSVLink>
                             </span>
                         </div>
@@ -64,7 +64,7 @@ const Dashboard = () => {
                 <Grid container item key={index} alignItems="center" justify="center" className='user-list spacing'>
                     <Grid item container alignItems='center' xs={3}>
                         <Grid item>
-                            <img src={elem.avatar} />
+                            <img src={elem.avatar} alt='User' />
                         </Grid>
                         <Grid item>
                             <span>{`${elem.firstName || ''} ${elem.lastName || ''}`}</span>

@@ -1,38 +1,88 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { isFn } from '../../utils/converAndCheck'
+import Button from '@material-ui/core/Button';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuList from '@material-ui/core/MenuList';
+import { makeStyles } from '@material-ui/core/styles';
+import { isFn } from '../../utils/converAndCheck';
 
-const SimpleMenu = ({ menuTitle, childList }) => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = event => {
-        setAnchorEl(event.currentTarget);
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+    },
+    paper: {
+        marginRight: theme.spacing(2),
+    },
+}));
+
+export default ({ menuTitle, childList }) => {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    const handleToggle = () => {
+        setOpen(prevOpen => !prevOpen);
     };
 
-    const handleClose = (onClick) => {
+    const handleClose = (event, onClick) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target))
+            return;
         if (isFn(onClick))
             onClick();
-        setAnchorEl(null);
+        setOpen(false);
     };
 
-    return (
-        <div>
-            <div onClick={handleClick}>{menuTitle}</div>
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        }
+    }
 
-            >
-                {childList && childList.map((({ value, onClick }, index) => (
-                    <MenuItem key={index} onClick={() => handleClose(onClick)}>{value}</MenuItem>
-                )))}
-            </Menu>
-        </div>
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+        if (prevOpen.current === true && open === false) {
+            anchorRef.current.focus();
+        }
+
+        prevOpen.current = open;
+    }, [open]);
+
+    return (
+        <div className={classes.root}>
+            <div>
+                <Button
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                >
+                    {menuTitle}
+                </Button>
+                <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                    {({ TransitionProps, placement }) => (
+                        <Grow
+                            {...TransitionProps}
+                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                        >
+                            <Paper>
+                                <ClickAwayListener onClickAway={handleClose}>
+                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                        {childList && childList.map((({ value, onClick }, index) => (
+                                            <MenuItem key={index} onClick={(e) => handleClose(e, onClick)}> {value}</MenuItem>
+                                        )))}
+                                    </MenuList>
+                                </ClickAwayListener>
+                            </Paper>
+                        </Grow>
+                    )}
+                </Popper>
+            </div>
+        </div >
     );
 }
-export default SimpleMenu

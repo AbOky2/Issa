@@ -1,10 +1,22 @@
 header {
-  padding: 20px 50px 0 27px;
+  height: 60px;
+  padding: 0px 50px 0 27px;
 }
 .dropdownContainer img {
   display: block;
   height: 27px;
 }
+.dropdownContainer span {
+  display: block;
+  margin: 0 6px 0 10px;
+}
 .notification {
   margin-right: 20px;
+}
+.notification img {
+  display: block;
+  width: 32px;
+}
+.menu-container {
+  height: 64px;
 }
