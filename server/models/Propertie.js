@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const DBModel = require('./index')
 const { Schema } = mongoose;
 const { ObjectId } = Schema.Types;
 
@@ -29,9 +29,14 @@ const mongoSchema = new Schema({
         type: Number,
         required: true,
     },
+    position: {
+        type: Number,
+        required: true,
+        unique: true
+    },
 });
 
-class PropertieClass {
+class PropertieClass extends DBModel {
     static async list({ offset = 0, limit = 10 } = {}) {
         console.log(offset, limit)
         const Properties = await this.find({})
@@ -53,6 +58,7 @@ class PropertieClass {
         dimension,
         address,
         nb_available,
+        position,
 
     }) {
         const propertieDoc = await this.create({
@@ -62,6 +68,7 @@ class PropertieClass {
             dimension,
             address,
             nb_available,
+            position
         });
 
         const propertie = propertieDoc.toObject();

@@ -38,8 +38,22 @@
 .pointer {
   cursor: pointer;
 }
+.header-icon svg {
+  width: 18px;
+}
+
 
 /* app */
 .App {
   text-align: center;
+}
+
+/* other */
+.drag-and-drop {
+  border: 1px dashed rgba(255, 255, 255, 0);
+}
+/* other */
+.drag-and-drop:hover {
+  border: 1px dashed gray;
+  cursor: move;
 }

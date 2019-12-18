@@ -25,6 +25,12 @@ const handleErrors = (fn) => async (req, res, next) => {
  * as a json response
  * @param {(req: Request, res: Response) => any} listFn
  */
+const deleteCollection = (listFn) =>
+    [
+        requestMiddleware(propertieSchema.delete, 'params'),
+        handleErrors(async (req, res) => res.json(await listFn({ id: req.params.id })))
+    ];
+
 const listCollection = (listFn) =>
     [
         requestMiddleware(propertieSchema.list, 'query'),
@@ -60,5 +66,6 @@ const authCheck = (role) => handleErrors((req, res, next) => {
 module.exports = {
     handleErrors,
     listCollection,
+    deleteCollection,
     authCheck,
 };
