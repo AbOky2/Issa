@@ -12,6 +12,7 @@ const routesApi = require('./routes')
 const auth = require('./auth');
 const logger = require('./logs');
 const { jwtMiddleware } = require('./utils/jwt');
+var path = require('path');
 
 (async () => {
     const options = {
@@ -30,8 +31,9 @@ const { jwtMiddleware } = require('./utils/jwt');
         process.exit(1);
     }
 })()
-app.use(bodyParser.json());
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({

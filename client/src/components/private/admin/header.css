@@ -2,6 +2,9 @@ header {
   height: 60px;
   padding: 0px 50px 0 27px;
 }
+.header .header-icon {
+  margin-right: 17px;
+}
 .dropdownContainer img {
   display: block;
   height: 27px;

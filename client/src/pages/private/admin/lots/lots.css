@@ -2,21 +2,25 @@
     border-bottom: solid 1px #ededed;
 }
 .lots .content-container {
-    padding: 14px;}
+    padding: 14px;
+}
 .lots .content-container .content {
-    padding: 24px;
+    padding: 16px;
     border-radius: 10px;
     background-color: #f3f5f8;
     height: 100%;
     margin: 16;
-
-
 }
 .lots .content-container .spacing-wrapper {
     padding: 14px;
 }
 .lots .content-container img {
     width: 100%;
+}
+.lots .content-container .img-container {
+    width: 100%;
+    background-color: white;
+    min-height: 133px;
 }
 
 .lots h2 {

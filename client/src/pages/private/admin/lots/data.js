@@ -3,8 +3,9 @@ export default {
         field: [
             {
                 // label: "Ajouter une photo de profil",
-                name: "img",
+                name: "picture",
                 type: 'upload',
+                required: true,
                 // dimension: { ms: 2, xs: 4 },
                 props: {
                     style: {
@@ -20,8 +21,8 @@ export default {
                 dimension: { xs: 6 },
             },
             {
-                label: "Slogan",
-                name: "slogan",
+                label: "Description",
+                name: "description",
                 type: 'input',
                 required: true,
                 dimension: { xs: 6 },
@@ -42,9 +43,9 @@ export default {
             },
             {
                 label: "Nb available appart",
-                name: "nb_available_appart",
+                name: "nb_available",
                 type: 'number',
-                required: true,
+                // required: true,
                 dimension: { xs: 6 },
             },
             {

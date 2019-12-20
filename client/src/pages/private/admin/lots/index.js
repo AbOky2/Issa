@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from '@material-ui/core'
 import Lot from '../../../../assets/img/lot.png'
 import './lots.css';
@@ -8,83 +8,127 @@ import { ReactComponent as LotsIcon } from '../../../../assets/img/svg/lots.svg'
 import DragAndDrop from '../../../../components/other/dragAndDrop'
 import CardComp, { AddCard } from '../../../../components/private/admin/card'
 import Modal from '../../../../components/elements/modal'
-import FormGenerator, { FormValidator, LeanForm } from '../../../../components/formElement/generator';
+import FormGenerator, { FormValidator } from '../../../../components/formElement/generator';
 import forData from './data'
+import { getProperties, deletePropertie, updatePropertie, addPropertie, swapPosition } from '../../../../services/adminService'
 
 const defaultAddNew = {
-    img: null,
-    name: null,
-    slogan: null,
-    dimension: null,
-    address: null,
-    nb_available_appart: null,
-    location_date: null,
-    position: null
+    _id: null,
+    picture: Lot,
+    name: 'aaaa-',
+    description: 'bbbb',
+    dimension: 'cccc',
+    address: 'dddd',
+    nb_available: 1,
+    location_date: 'e',
+    position: 5
 }
+const ADD = 'add'
+const UPDATE = 'update'
+
 const Dashboard = () => {
     const [state, setState] = useState({
-        openModal: true,
-        lots: [
-            {
-                img: Lot,
-                name: 'OVATION MAGELLAN 0',
-                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
-                dimension: '3 à 5 pièces - 62m² à 117m²',
-                address: 'Colombes - 97000',
-                nb_available_appart: 35,
-                location_date: '2ème trimestre 2021',
-                position: 0
-            },
-            {
-                img: Lot,
-                name: 'OVATION MAGELLAN 1',
-                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
-                dimension: '3 à 5 pièces - 62m² à 117m²',
-                address: 'Colombes - 97000',
-                nb_available_appart: 7,
-                location_date: '2ème trimestre 2021',
-                position: 1
-            },
-            {
-                img: Lot,
-                name: 'OVATION MAGELLAN 2',
-                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
-                dimension: '3 à 5 pièces - 62m² à 117m²',
-                address: 'Colombes - 97000',
-                nb_available_appart: 0,
-                location_date: '2ème trimestre 2021',
-                position: 2
-            },
-            {
-                img: Lot,
-                name: 'OVATION MAGELLAN 4',
-                slogan: 'Programme neuf à Colombs: Appartements neufs à vendre',
-                dimension: '3 à 5 pièces - 62m² à 117m²',
-                address: 'Colombes - 97000',
-                nb_available_appart: 7,
-                location_date: '2ème trimestre 2021',
-                position: 4
-            },
-        ],
+        openModal: false,
+        modalAction: null,
+        properties: [],
         errors: [],
         ...defaultAddNew
     })
+    useEffect(() => {
+        (async () => {
+            try {
+                const { list } = await getProperties();
+                handleChange('properties', list);
+            } catch (error) {
 
+            }
+        })()
+
+    }, [])
     const handleChange = (name, value) => setState({ ...state, [name]: value });
-    const toggleState = name => () => handleChange(name, !state[name]);
-    const resetState = () => setState({ ...state, ...defaultAddNew });
+    const toggleState = name => handleChange(name, !state[name]);
+    const resetState = () => setState({ ...state, openModal: false, ...defaultAddNew });
     const handleClose = () => {
         resetState();
-        toggleState('openModal')();
+        toggleState('openModal');
     }
-    const onClick = () => {
-        const errors = FormValidator({ fields: forData.createLot.field, state });
-        if (errors.length) {
-            handleChange('errors', errors)
+    const handleRemovePropertie = async _id => {
+        let newData = [],
+            properties = state.properties;
+
+        if (!_id)
             return;
+
+        if ((newData = properties.filter(e => e._id != _id)).length === properties.length)
+            return;
+
+        if (!window.confirm('Supprimer ?'))
+            return;
+        try {
+            (await deletePropertie(_id));
+            handleChange('properties', newData);
+        } catch (err) {
+            console.error(`=> ${err}`);
         }
-        resetState();
     }
+    const handleUpdatePropertie = _id => {
+        const elem = state.properties.find(e => e._id === _id);
+
+        if (!elem)
+            return;
+        setState({ ...state, ...elem, modalAction: UPDATE, errors: [], openModal: true });
+    }
+
+    const handleAddPropertie = () => {
+        setState({ ...state, ...defaultAddNew, modalAction: ADD, errors: [], openModal: true });
+    }
+    const onClick = async () => {
+        let errors = FormValidator({ fields: forData.createLot.field, state }),
+            leanData = {},
+            properties;
+
+        if (errors.length) {
+            alert(errors)
+            console.log(state)
+            return handleChange('errors', errors);
+        }
+
+        try {
+            Object.keys(defaultAddNew).map(e => e != '_id' ? leanData[e] = state[e] : '');
+            if (state.modalAction === ADD) {
+                properties = state.properties;
+                leanData.position = properties.length + 1;
+                const { propertie } = await addPropertie(leanData);
+                properties.push(propertie);
+                handleChange('properties', properties);
+                console.log(ADD, state.properties)
+
+            }
+            else if (state.modalAction === UPDATE) {
+                const res = await updatePropertie(state._id, leanData);
+                console.log(UPDATE, res, leanData)
+            }
+
+            resetState();
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const handleDrop = async (data) => {
+        let elems = {},
+            properties = state.properties,
+            current = null;
+
+        data.map(({ _id }, i) => {
+            if (_id != properties[i]._id) {
+                current = !current ? 'first' : 'second'
+                elems[current] = { _id, position: i + 1 }
+            }
+        })
+        const res = await swapPosition(elems)
+        console.log(data, res, elems)
+    }
+
     return (
         <AdminContentWrapper className='lots'>
             <Modal
@@ -92,7 +136,7 @@ const Dashboard = () => {
                 onClose={handleClose}
                 onClick={onClick}
             >
-                <Grid container xs={12} justify="flex-start" toto='toto'>
+                <Grid container item xs={12} justify="flex-start" toto='toto'>
                     <FormGenerator
                         fields={forData.createLot.field}
                         state={state}
@@ -100,7 +144,6 @@ const Dashboard = () => {
                         settings={forData.createLot.settings}
                     />
                 </Grid>
-
             </Modal>
             <Grid container direction="row" justify="space-between" alignItems='center' className='spacing header'>
                 <Grid item container xs={6} justify="flex-start">
@@ -122,14 +165,13 @@ const Dashboard = () => {
             </Grid>
             <Grid container item className='content-container'>
                 <DragAndDrop
-                    data={state.lots}
+                    data={state.properties}
                     CardComp={CardComp}
-                    addComp={<AddCard onClick={toggleState('openModal')} />}
+                    events={{ handleDrop, handleRemovePropertie, handleUpdatePropertie }}
+                    addComp={<AddCard onClick={handleAddPropertie} />}
                 />
             </Grid>
         </AdminContentWrapper>
-
-        // </WithAuth> 
     )
 }
 

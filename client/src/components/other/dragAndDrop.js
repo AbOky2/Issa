@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react'
+import React, { useState, useCallback, useRef, useEffect } from 'react'
 import Backend from 'react-dnd-html5-backend'
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import update from 'immutability-helper'
@@ -10,16 +10,14 @@ const containerStyle = {
 
 
 
-const DragAndDrop = ({ data, addComp, CardComp }) => (
-
+const DragAndDrop = ({ data, addComp, CardComp, events }) => (
     <DndProvider backend={Backend}>
-        <Container data={data} addComp={addComp} CardComp={CardComp} />
+        <Container data={data} addComp={addComp} CardComp={CardComp} events={events} />
     </DndProvider>
-
 )
 
 
-const Container = ({ data, addComp, CardComp }) => {
+const Container = ({ data, addComp, CardComp, events }) => {
     {
         const [cards, setCards] = useState(data);
         const moveCard = useCallback(
@@ -36,6 +34,9 @@ const Container = ({ data, addComp, CardComp }) => {
             },
             [cards],
         )
+        useEffect(() => {
+            setCards(data)
+        }, [data])
         const renderCard = (card, index) => {
             return (
                 <Card
@@ -43,12 +44,13 @@ const Container = ({ data, addComp, CardComp }) => {
                     index={index}
                     id={card.position}
                     data={card}
+                    datas={cards}
                     moveCard={moveCard}
                     CardComp={CardComp}
+                    events={events}
                 />
             )
         }
-
         return (
             <>
                 <Grid xs={12} container item style={containerStyle}>
@@ -62,7 +64,7 @@ const Container = ({ data, addComp, CardComp }) => {
 
 const ItemTypes = { CARD: 'card', }
 const Card = (params) => {
-    const { id, data, index, moveCard, CardComp } = params;
+    const { id, data, datas, index, moveCard, CardComp, events } = params;
     const ref = useRef(null)
     const [, drop] = useDrop({
         accept: ItemTypes.CARD,
@@ -111,11 +113,16 @@ const Card = (params) => {
             // Generally it's better to avoid mutations,
             // but it's good here for the sake of performance
             // to avoid expensive index searches.
-            item.index = hoverIndex
+            item.index = hoverIndex;
         },
     })
     const [{ isDragging }, drag] = useDrag({
         item: { type: ItemTypes.CARD, id, index },
+        end: (item, monitor) => {
+            const dropResult = monitor.getDropResult()
+            if (item && dropResult && events.handleDrop)
+                events.handleDrop(datas)
+        },
         collect: monitor => ({
             isDragging: monitor.isDragging(),
         }),
@@ -123,8 +130,8 @@ const Card = (params) => {
     const opacity = isDragging ? 0 : 1
     drag(drop(ref));
     return (
-        <Grid ref={ref} container item style={{ opacity }} xs={3}>
-            <CardComp data={data} />
+        <Grid ref={ref} container item style={{ opacity }} xs={3} sm={6}>
+            <CardComp data={data} events={events} />
         </Grid>
     )
 }

@@ -15,6 +15,7 @@ const UploadImageComp = ({ name, value, onChange, label, showLabel, props }) => 
         let reader = new FileReader();
         let file = e.target.files[0];
         reader.onloadend = () => {
+            // console.log(file)
             setState({ imagePreviewUrl: reader.result, imageUpdated: true });
             onChange && onChange(reader.result)
         };

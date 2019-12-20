@@ -10,6 +10,7 @@ const schemas = {
         limit: Joi.number().min(0).optional()
     }),
     get: idParams,
+    update: idParams,
     delete: idParams,
 };
 module.exports = schemas;

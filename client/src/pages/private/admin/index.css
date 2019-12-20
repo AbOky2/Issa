@@ -53,18 +53,6 @@ div.header  {
   background-color: rgba(71, 95, 123, 0.08);
 }
 
-/* list */
-.user-list {
-  height: 62px;
-}
-.user-list:nth-child(even) {
-  background-color: #f3f5f8;
-}
-.user-list img {
-  display: block;
-  width: 30px;
-  margin-right: 10px;
-}
 .tiny-icon {
   margin-right: 10px;
 }

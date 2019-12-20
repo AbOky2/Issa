@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from '@material-ui/core'
 import Avatar from '../../../assets/img/picture.png'
 import { ReactComponent as HouseIcon } from '../../../assets/img/svg/house.svg'
@@ -6,40 +6,47 @@ import { Roomer, Buyer } from '../../../utils/user'
 import './index.css';
 import withAuth from '../../../lib/withAuth'
 import { AdminContentWrapper } from '../../../components/wrapper'
+import UserList from '../../../components/private/admin/user-list'
+import { getUsers, deletePropertie } from '../../../services/adminService'
+
 // excel
 import { CSVLink } from "react-csv";
 
 
-const Dashboard = () => {
+const Dashboard = ({ role }) => {
     const [state, setState] = useState({
         filterName: Roomer,
-        users: [
-            { avatar: Avatar, firstName: 'Ophelie (Roomer 1)', email: 'ophelie.meunier@gmail.com', lastName: 'Meunier', phone: '06 37 26 17 28 37', schoolName: 'HETIC', status: Roomer },
-            { avatar: Avatar, firstName: 'Ophelie (Roomer 2)', email: 'ophelie.meunier@gmail.com', lastName: 'Meunier', phone: '06 37 26 17 28 37', schoolName: 'HETIC', status: Roomer },
-            { avatar: Avatar, firstName: 'Ophelie (Roomer 3)', email: 'ophelie.meunier@gmail.com', lastName: 'Meunier', phone: '06 37 26 17 28 37', schoolName: 'HETIC', status: Roomer },
-            { avatar: Avatar, firstName: 'Ophelie (Roomer 4)', email: 'ophelie.meunier@gmail.com', lastName: 'Meunier', phone: '06 37 26 17 28 37', schoolName: 'HETIC', status: Roomer },
-
-            { avatar: Avatar, firstName: 'Ophelie (Buyer 1)', email: 'ophelie.meunier@gmail.com', lastName: 'Meunier', phone: '06 37 26 17 28 37', schoolName: 'HETIC', status: Buyer },
-            { avatar: Avatar, firstName: 'Ophelie (Buyer 2)', email: 'ophelie.meunier@gmail.com', lastName: 'Meunier', phone: '06 37 26 17 28 37', schoolName: 'HETIC', status: Buyer },
-        ]
+        users: []
     })
+    useEffect(() => {
+        (async () => {
+            const { list } = await getUsers(role)
+            handleChange('users', list)
+        })()
+    }, [])
 
-    const filter = (filterName) => state.users.filter(e => e.status === state.filterName);
     const handleChange = (name, value) => setState({ ...state, [name]: value });
-
-    const users = filter(state.filter);
+    const users = state.users;
+    const headerList = [
+        { name: 'Profile', size: { xs: 4 } },
+        { name: 'Age', size: { xs: 1 } },
+        { name: 'Mail', size: { xs: 3 } },
+        { name: 'Téléphone', size: { xs: 2 } },
+        { name: 'École', size: { xs: 1 } },
+        { name: 'Année', size: { xs: 1 } },
+    ]
     const csvData = [
-        ['Name', 'Email', 'Phone', 'School'],
+        headerList.map(e => e.name),
         ...users.map(e => ([`${e.firstName} ${e.lastName}`, e.email, e.phone, e.schoolName]))
     ];
-
+    const length = users.length
     return (
         <AdminContentWrapper>
             <Grid container direction="row" justify="space-between" alignItems='center' className='spacing header'>
                 <Grid item container xs={6} justify="flex-start">
                     <Grid item container alignItems='center'>
                         <Grid><span className='header-icon'><HouseIcon /></span></Grid>
-                        <Grid><h1>Utilisateurs {`${state.filterName === Roomer ? 'location' : 'acheteur'}`} ({users.length})</h1></Grid>
+                        <Grid><h1>Utilisateurs {`${state.filterName === Roomer ? 'location' : 'acheteur'} ${length ? `(${length})` : ''}`} </h1></Grid>
                     </Grid>
                 </Grid>
                 <Grid container item xs={6} justify="flex-end">
@@ -53,52 +60,18 @@ const Dashboard = () => {
                             <span className='header-btn'>
                                 <CSVLink
                                     data={csvData}
-                                    filename={`students_${state.filterName === Roomer ? 'locataire' : 'acheteur'}.csv`}
+                                    filename={'students_locataire.csv'}
                                 >Exporter</CSVLink>
                             </span>
                         </div>
                     </Grid>
                 </Grid>
             </Grid>
-            {users.map((elem, index) => (
-                <Grid container item key={index} alignItems="center" justify="center" className='user-list spacing'>
-                    <Grid item container alignItems='center' xs={3}>
-                        <Grid item>
-                            <img src={elem.avatar} alt='Avatar' />
-                        </Grid>
-                        <Grid item>
-                            <span>{`${elem.firstName} ${elem.lastName}`}</span>
-                        </Grid>
-                    </Grid>
-                    <Grid item container alignItems='center' xs={3}>
-                        <Grid item>
-                            <span className='tiny-icon icon-email'></span>
-                        </Grid>
-                        <Grid item>
-                            <span>{elem.email}</span>
-                        </Grid>
-                    </Grid>
-                    <Grid item container alignItems='center' xs={3}>
-                        <Grid item>
-                            <span className='tiny-icon icon-phone'></span>
-                        </Grid>
-                        <Grid item>
-                            <span>{elem.phone}</span>
-                        </Grid>
-                    </Grid>
-                    <Grid item container alignItems='center' xs={3}>
-                        <Grid item>
-                            <span className='tiny-icon icon-graduate'></span>
-                        </Grid>
-                        <Grid item>
-                            <span>{elem.schoolName}</span>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            ))}
+            <UserList
+                headerList={headerList}
+                contentList={users}
+            />
         </AdminContentWrapper>
-
-        // </WithAuth> 
     )
 }
 

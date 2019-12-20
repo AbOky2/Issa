@@ -1,10 +1,11 @@
 
 const mongoose = require('mongoose');
 const _ = require('lodash');
+const DBModel = require('./index')
+
 const {
     RoleList,
     StatusList,
-    isAdmin,
     isStudent,
     Student,
     Active,
@@ -33,6 +34,10 @@ const mongoSchema = new Schema({
     },
     school: {
         type: String,
+        required: () => isStudent(this.role)
+    },
+    studiesLevel: {
+        type: Number,
         required: () => isStudent(this.role)
     },
     password: {
@@ -66,14 +71,16 @@ const mongoSchema = new Schema({
     dateOfBirth: Date,
 });
 
-class UserClass {
+class UserClass extends DBModel {
     static publicFields() {
         return [
             '_id',
             'firstName',
             'lastName',
             'school',
+            'phone',
             'email',
+            'studiesLevel',
             'slug',
             'role',
             'status',

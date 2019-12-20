@@ -11,3 +11,6 @@
     opacity: 0;
     cursor: pointer;
 }
+.upload img {
+    max-width: 100%;
+}

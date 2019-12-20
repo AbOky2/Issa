@@ -29,6 +29,12 @@
 .icon-filter {
   background-image: url('./assets/img/icons/filter.png');
 }
+.icon-circle {
+  background-image: url('./assets/img/icons/circle.png');
+}
+.icon-candle {
+  background-image: url('./assets/img/icons/candle.png');
+}
 .text-left {
   text-align: left;
 }

@@ -18,13 +18,21 @@ const handleErrors = (fn) => async (req, res, next) => {
         res.status(400).json({ error: err.message || err.Message || err.toString() });
     }
 };
-
+const defautlMiddleware = (req, res, next) => next()
 /**
  * Creates a middleware that extract listing parameters,
  * pass them to a listing function and return the result
  * as a json response
  * @param {(req: Request, res: Response) => any} listFn
  */
+const updateCollection = (middleware = defautlMiddleware, listFn) =>
+    [
+        requestMiddleware(propertieSchema.update, 'params'),
+        middleware,
+        handleErrors(async (req, res) => res.json(await listFn({ id: req.params.id, data: req.body })))
+
+    ];
+
 const deleteCollection = (listFn) =>
     [
         requestMiddleware(propertieSchema.delete, 'params'),
@@ -67,5 +75,6 @@ module.exports = {
     handleErrors,
     listCollection,
     deleteCollection,
+    updateCollection,
     authCheck,
 };

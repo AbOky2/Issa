@@ -2,16 +2,18 @@ const mongoose = require('mongoose');
 const DBModel = require('./index')
 const { Schema } = mongoose;
 const { ObjectId } = Schema.Types;
+const { removeFiles } = require('../utils/upload');
 
 
 const mongoSchema = new Schema({
     picture: {
-        type: String,
-        // required: true,
+        type: [String],
+        required: true,
     },
     name: {
         type: String,
         required: true,
+        unique: true,
     },
     description: {
         type: String,
@@ -32,47 +34,39 @@ const mongoSchema = new Schema({
     position: {
         type: Number,
         required: true,
-        unique: true
+        // unique: true,
+        min: 1
     },
 });
 
 class PropertieClass extends DBModel {
-    static async list({ offset = 0, limit = 10 } = {}) {
-        console.log(offset, limit)
-        const Properties = await this.find({})
-            .sort({ createdAt: -1 })
-            .skip(offset)
-            .limit(limit);
-        return { Properties };
-    }
-
     /**
      * @param {Object} options
      * @param {String} options.title
      * @param {String} options.color
      */
-    static async add({
-        picture,
-        name,
-        description,
-        dimension,
-        address,
-        nb_available,
-        position,
+    static async add({ picture, name, description, dimension, address, nb_available, position }) {
 
-    }) {
-        const propertieDoc = await this.create({
-            picture,
-            name,
-            description,
-            dimension,
-            address,
-            nb_available,
-            position
-        });
+        try {
+            if (!picture || picture.length < 1)
+                throw 'Picture must be set';
 
-        const propertie = propertieDoc.toObject();
-        return { propertie };
+            const propertieDoc = await this.create({
+                picture,
+                name,
+                description,
+                dimension,
+                address,
+                nb_available,
+                position
+            });
+
+            const propertie = propertieDoc.toObject();
+            return { propertie };
+        } catch (error) {
+            removeFiles(picture);
+            throw error
+        }
     }
     /**
      * Update a propertie
@@ -96,6 +90,21 @@ class PropertieClass extends DBModel {
         await propertieDoc.save();
         const propertie = propertieDoc.toObject();
         return { propertie };
+    }
+
+    static async swapPosition(data) {
+        let first = await this.findById(data[0]._id);
+        let second = await this.findById(data[1]._id);
+
+        first.position = data[0].position;
+        second.position = data[1].position;
+
+        first.markModified('position');
+        second.markModified('position');
+        await first.save();
+        await second.save();
+
+        return { first, second };
     }
 }
 mongoSchema.loadClass(PropertieClass);

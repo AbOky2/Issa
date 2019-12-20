@@ -5,4 +5,11 @@ const getRequestConfig = () => ({
         Authorization: "Bearer " + getToken()
     }
 })
-export { getRequestConfig }
+
+const getFormDataRequestConfig = () => ({
+    headers: {
+        Authorization: "Bearer " + getToken(),
+        'Content-Type': 'multipart/form-data'
+    }
+})
+export { getRequestConfig, getFormDataRequestConfig }

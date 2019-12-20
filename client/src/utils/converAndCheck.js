@@ -30,4 +30,13 @@ const toggleArray = (array, name) => {
 
 const isValideEmail = (email) => /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 
-export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail }
+const toFormData = (form = {}) => {
+    const formData = new FormData()
+
+    Object.keys(form).map((key) => formData.append(key, form[key]));
+    formData.append('name', 'toto');
+    return formData;
+}
+
+
+export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail, toFormData }

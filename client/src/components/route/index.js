@@ -18,8 +18,8 @@ export default () => (
         <Route exact path="/login">
             <PageLogin />
         </Route>
-        <PrivateRoute exact path="/dashboard" component={PageDashboard} />
-        <PrivateRoute exact path="/dashboard/buy" component={PageBuy} />
+        <PrivateRoute exact path="/dashboard" component={() => <PageBuy role='roomer' />} />
+        <PrivateRoute exact path="/dashboard/buy" component={() => <PageBuy role='buyer' />} />
         <PrivateRoute exact path="/dashboard/lots" component={PageLots} />
     </Fragment>
 );

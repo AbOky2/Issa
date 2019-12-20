@@ -75,7 +75,7 @@ const FormGenerator = ({ fields, classes, state, onChange, settings = {}, errors
     return (
         <form onSubmit={(e) => { e.preventDefault(); }}>
             <FormControl className={classes.container} required={true}>
-                <Grid container className={classes.root} spacing={spacing} alignItems="center" xs={12}>
+                <Grid container item className={classes.root} spacing={spacing} alignItems="center" xs={12}>
                     {fields && fields.map((elem, key) => {
                         const dimentions = elem.dimension ? elem.dimension : defaultDimension;
                         const elemProps = elem.props;
@@ -189,7 +189,7 @@ FormGenerator.propTypes = {
 export default withStyles(styles)(FormGenerator);
 
 
-const excludeValueTypes = ['dateYear'];
+const excludeValueTypes = ['dateYear', 'upload'];
 
 const FormValidator = ({ fields, state }) => {
     const errors = [];
