@@ -130,7 +130,7 @@ const Card = (params) => {
     const opacity = isDragging ? 0 : 1
     drag(drop(ref));
     return (
-        <Grid ref={ref} container item style={{ opacity }} xs={3} sm={6}>
+        <Grid ref={ref} container item style={{ opacity }} xs={12} sm={6} md={3}>
             <CardComp data={data} events={events} />
         </Grid>
     )

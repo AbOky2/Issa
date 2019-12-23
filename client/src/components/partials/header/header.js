@@ -3,10 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import './header.css'
 import Routes from '../../route/'
-import { useAuth } from "../../../context/auth";
 
 
-const PublicHeader = (logOut) => (
+const PublicHeader = ({ logOut }) => (
     <header>
         <Grid container direction="row" justify="space-between" alignItems="center">
             <Grid item>logo</Grid>
@@ -22,7 +21,7 @@ const PublicHeader = (logOut) => (
                         <Link to="/dashboard">Dashboard</Link>
                     </li>
                     <li>
-                        <Link to="/" onClick={logOut}>logOut</Link>
+                        <Link to="/" onClick={logOut}>logout</Link>
                     </li>
                 </ul>
             </Grid>
@@ -30,13 +29,7 @@ const PublicHeader = (logOut) => (
     </header>
 )
 
-export default ({ isAuth }) => {
-    const { setAuthTokens, setAuthUser } = useAuth();
-
-    const logOut = () => {
-        setAuthTokens(null);
-        setAuthUser(null)
-    };
+export default ({ user, isAuth, logOut }) => {
     return (
         <Router>
             {!isAuth ? <PublicHeader logOut={logOut} /> : ''}
@@ -44,4 +37,4 @@ export default ({ isAuth }) => {
 
         </Router>
     )
-};
+}

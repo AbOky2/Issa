@@ -15,6 +15,7 @@
     padding: 14px;
 }
 .lots .content-container img {
+    display: block;
     width: 100%;
 }
 .lots .content-container .img-container {

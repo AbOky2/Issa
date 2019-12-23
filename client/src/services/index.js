@@ -1,15 +1,14 @@
 import { getToken } from '../utils/storage'
 
-const getRequestConfig = () => ({
+
+
+const getRequestConfig = (extra = {}) => ({
     headers: {
-        Authorization: "Bearer " + getToken()
+        Authorization: "Bearer " + getToken(),
+        ...extra
     }
 })
 
-const getFormDataRequestConfig = () => ({
-    headers: {
-        Authorization: "Bearer " + getToken(),
-        'Content-Type': 'multipart/form-data'
-    }
-})
+const getFormDataRequestConfig = () => getRequestConfig({ 'Content-Type': 'multipart/form-data' });
+
 export { getRequestConfig, getFormDataRequestConfig }

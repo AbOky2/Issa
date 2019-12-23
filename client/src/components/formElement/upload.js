@@ -10,22 +10,31 @@ const UploadImageComp = ({ name, value, onChange, label, showLabel, props }) => 
         imageUpdated: false,
         imagePreviewUrl: value || defaultUserImage
     })
-    const handleImageChange = (e) => {
-        e.preventDefault();
-        let reader = new FileReader();
-        let file = e.target.files[0];
+    const handlePreview = (file, cb) => {
+        const reader = new FileReader();
+
+        if (!file)
+            return;
+
         reader.onloadend = () => {
-            // console.log(file)
-            setState({ imagePreviewUrl: reader.result, imageUpdated: true });
-            onChange && onChange(reader.result)
+            if (cb)
+                cb(reader.result)
         };
         if (file)
             reader.readAsDataURL(file);
     }
+    const handleImageChange = (e) => {
+        e.preventDefault();
+        const file = e.target.files[0];
+        handlePreview(file, base66 => {
+            setState({ imagePreviewUrl: base66, imageUpdated: true });
+            onChange && onChange(file)
+        });
+    }
 
     let { imagePreviewUrl, imageUpdated } = state;
 
-    if (value && imageUpdated)
+    if (value && imageUpdated && typeof value == 'string')
         imagePreviewUrl = value;
     return (
         <FormElementWrapper label={label} showLabel={showLabel}>

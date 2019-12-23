@@ -23,12 +23,11 @@ module.exports = {
     removeFiles: (files) => {
         try {
             if (Array.isArray(files))
-                return files.map(e => unlinkFile(e))
+                return files.forEach(e => unlinkFile(e))
 
             unlinkFile(files);
         } catch (err) {
-            // handle the error
-            console.log(err)
+            throw err
         }
     },
     createImagePath: (e) => `${process.env.ROOT_URL}/${e}`

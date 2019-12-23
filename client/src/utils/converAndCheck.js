@@ -33,8 +33,8 @@ const isValideEmail = (email) => /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@
 const toFormData = (form = {}) => {
     const formData = new FormData()
 
-    Object.keys(form).map((key) => formData.append(key, form[key]));
-    formData.append('name', 'toto');
+    Object.keys(form).forEach((key) => formData.append(key, form[key]));
+    // formData.append('name', 'toto');
     return formData;
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from '../config'
 import { toFormData } from '../utils/converAndCheck'
-import { getRequestConfig } from './index'
+import { getRequestConfig, getFormDataRequestConfig } from './index'
 
 async function getData(cb) {
     try {
@@ -53,8 +53,9 @@ async function deletePropertie(id, cb) {
 }
 
 async function addPropertie(form, cb) {
+
     try {
-        const query = await axios.post(`${API_URL}/admin/propertie`, form, getRequestConfig());
+        const query = await axios.post(`${API_URL}/admin/propertie`, toFormData(form), getFormDataRequestConfig());
         const { data } = query
 
         return cb ? cb(data) : data

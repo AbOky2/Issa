@@ -12,7 +12,9 @@ import { ReactComponent as Calendar } from '../../../assets/img/svg/calendar.svg
 const Card = ({ data = {}, events = {} }) => (
     <Grid container item xs={12} className='spacing-wrapper'>
         <Grid item container className='content drag-and-drop'>
-            <Grid className='img-container'><img src={data.picture ? data.picture[0] : null} alt='Lot' /></Grid>
+            <Grid item container className='img-container' alignItems='center'>
+                <img src={data.picture ? data.picture[0] : null} alt='Lot' />
+            </Grid>
             <Grid item xs={12}><h2>{data.name}</h2></Grid>
             <Grid item xs={12} className='text-left'><p>{data.slogan}</p></Grid>
             <Grid item xs={12} className='text-left dimension'><h3>{data.dimension}</h3></Grid>

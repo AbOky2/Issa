@@ -3,6 +3,7 @@ import Header from './components/partials/header/header'
 import './App.css';
 import { AuthContext } from './context/auth'
 import { getToken, getUser, setUser, setToken } from './utils/storage'
+import { getCurrentUser, logout } from './services/authService'
 
 
 const App = () => {
@@ -20,8 +21,20 @@ const App = () => {
     setUser(data)
     setAuth(data);
   }
+  const logOut = () => {
+    setAuthTokens(null);
+    setAuthUser(null)
+  };
   const isAuth = authTokens && authUser ? true : false;
+  (async () => {
+    try {
+      if (!(await getCurrentUser()))
+        logOut()
 
+    } catch (error) {
+      // console.log('--', error)
+    }
+  })()
   return (
     <AuthContext.Provider value={{
       ...state,
@@ -30,10 +43,10 @@ const App = () => {
       setAuthTokens: setTokens,
       isAuth,
       authUser,
-      setAuthUser
+      setAuthUser,
     }}>
       <div className="App">
-        <Header user={authUser} isAuth={isAuth} />
+        <Header user={authUser} isAuth={isAuth} logOut={logOut} />
       </div>
     </AuthContext.Provider>
   );

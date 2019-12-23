@@ -22,6 +22,20 @@ class DBModel {
             throw 'Error retrieving list'
         }
     }
+    static async updateById(_id, updates) {
+        const elementDoc = await this.findById(_id);
+        if (!elementDoc) {
+            throw new Error('Element not found');
+        }
+        Object.entries(updates)
+            .filter(([_, value]) => value !== undefined)
+            .forEach(([key, value]) => {
+                elementDoc[key] = value;
+            });
+        await elementDoc.save();
+        const element = elementDoc.toObject();
+        return { element };
+    }
     static async update(_id, data = {}) {
 
         try {

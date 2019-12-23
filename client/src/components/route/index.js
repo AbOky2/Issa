@@ -4,7 +4,6 @@ import PrivateRoute from './privateRoute'
 
 // pages
 import PageLogin from '../../pages/login'
-import PageDashboard from '../../pages/private/admin'
 import PageBuy from '../../pages/private/admin/buy'
 import PageLots from '../../pages/private/admin/lots/'
 import PageHome from '../../pages'

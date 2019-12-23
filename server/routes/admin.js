@@ -18,21 +18,21 @@ router.get('/users/:role?', requestMiddleware(userSchema.admin.user.listByRole, 
     res.json({ list });
 }));
 
-router.put('/properties/swapPosition',
-    requestMiddleware(propertieSchema.admin.propertie.swapPosition),
-    handleErrors(async (req, res) => {
-        const { first, second } = req.body;
 
-        if (first._id == second._id || first.position == second.position)
-            throw 'Values must be unique';
-        const data = await Propertie.swapPosition(Object.keys(req.body).map(e => req.body[e]));
-        res.json(data)
-    }));
-
+// Propertie
 router.get('/properties', listCollection(async ({ offset, limit }) => {
     let { list } = await Propertie.list({ offset, limit });
     list.sort((a, b) => a.position - b.position);
     return { list }
+}));
+
+router.put('/properties/swapPosition', requestMiddleware(propertieSchema.admin.propertie.swapPosition), handleErrors(async (req, res) => {
+    const { first, second } = req.body;
+
+    if (first._id == second._id || first.position == second.position)
+        throw 'Values must be unique';
+    const data = await Propertie.swapPosition(Object.keys(req.body).map(e => req.body[e]));
+    res.json(data)
 }));
 
 router.post('/propertie', upload('properties').any('pictures'), requestMiddleware(propertieSchema.admin.propertie.post), handleErrors(async (req, res) => {

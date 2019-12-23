@@ -2,7 +2,7 @@ import axios from "axios";
 import { ROOT_URL, API_URL } from '../config'
 
 import { setUser, clearUser, clearToken } from '../utils/storage'
-import { getRequestConfig } from './index'
+import { getRequestConfig, handleHttpErrors } from './index'
 
 async function basicAuth(form, cb) {
     try {
@@ -47,7 +47,6 @@ async function getCurrentUser() {
     try {
         const data = await axios.get(`${API_URL}/currentUser`, getRequestConfig());
         const { data: { user, token } } = data;
-        console.log(user, token)
 
         return { user, token }
     }

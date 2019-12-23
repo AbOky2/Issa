@@ -26,7 +26,6 @@ var path = require('path');
         await mongoose.connect(MONGO_URL, options)
 
     } catch (err) {
-        console.log("nooooo", err)
         logger.error(err.message);
         process.exit(1);
     }

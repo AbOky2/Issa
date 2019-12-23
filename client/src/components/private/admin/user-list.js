@@ -26,11 +26,9 @@ const UserList = ({ contentList = [], headerList }) => {
     // const handlePageClick = (data) => {
     //     const selectedPage = data.selected;
     //     const offset = Math.ceil(selectedPage * state.limit);
-    //     console.log(offset, selectedPage)
     //     setState({ ...state, currentPage: selectedPage, offset: offset });
     // }
     const list = contentList/*.splice(state.offset, state.limit)*/;
-    // console.log(list, contentList)
     return (
         <Grid container item>
             <Header headerList={headerList} />

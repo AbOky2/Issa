@@ -11,7 +11,6 @@ class Login extends React.Component {
 
         if (search.includes('?token=') && (token = search.slice(7))) {
             setToken(token);
-            console.log(getToken())
         }
     }
     render() {

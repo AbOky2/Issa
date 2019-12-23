@@ -87,31 +87,25 @@ const Dashboard = () => {
             leanData = {},
             properties;
 
-        if (errors.length) {
-            alert(errors)
-            console.log(state)
-            return handleChange('errors', errors);
-        }
+        if (errors.length)
+            handleChange('errors', errors);
 
         try {
-            Object.keys(defaultAddNew).map(e => e != '_id' ? leanData[e] = state[e] : '');
+            Object.keys(defaultAddNew).forEach(e => e != '_id' ? leanData[e] = state[e] : '');
             if (state.modalAction === ADD) {
                 properties = state.properties;
                 leanData.position = properties.length + 1;
                 const { propertie } = await addPropertie(leanData);
                 properties.push(propertie);
                 handleChange('properties', properties);
-                console.log(ADD, state.properties)
 
             }
             else if (state.modalAction === UPDATE) {
                 const res = await updatePropertie(state._id, leanData);
-                console.log(UPDATE, res, leanData)
             }
 
             resetState();
         } catch (err) {
-            console.log(err)
         }
     }
     const handleDrop = async (data) => {
@@ -119,14 +113,13 @@ const Dashboard = () => {
             properties = state.properties,
             current = null;
 
-        data.map(({ _id }, i) => {
+        data.forEach(({ _id }, i) => {
             if (_id != properties[i]._id) {
                 current = !current ? 'first' : 'second'
                 elems[current] = { _id, position: i + 1 }
             }
         })
         const res = await swapPosition(elems)
-        console.log(data, res, elems)
     }
 
     return (

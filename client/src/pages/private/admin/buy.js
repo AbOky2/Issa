@@ -37,9 +37,10 @@ const Dashboard = ({ role }) => {
     ]
     const csvData = [
         headerList.map(e => e.name),
-        ...users.map(e => ([`${e.firstName} ${e.lastName}`, e.email, e.phone, e.schoolName]))
+        ...users.map(e => ([`${e.firstName} ${e.lastName}`, e.age, e.email, e.phone, e.school, e.studiesLevel]))
     ];
     const length = users.length
+    console.log(users)
     return (
         <AdminContentWrapper>
             <Grid container direction="row" justify="space-between" alignItems='center' className='spacing header'>
