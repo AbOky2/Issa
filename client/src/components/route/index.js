@@ -6,6 +6,7 @@ import PrivateRoute from './privateRoute'
 import PageLogin from '../../pages/login'
 import PageBuy from '../../pages/private/admin/buy'
 import PageLots from '../../pages/private/admin/lots/'
+import PagePartners from '../../pages/private/admin/lots/partners'
 import PageHome from '../../pages'
 
 
@@ -20,5 +21,6 @@ export default () => (
         <PrivateRoute exact path="/dashboard" component={() => <PageBuy role='roomer' />} />
         <PrivateRoute exact path="/dashboard/buy" component={() => <PageBuy role='buyer' />} />
         <PrivateRoute exact path="/dashboard/lots" component={PageLots} />
+        <PrivateRoute exact path="/dashboard/partners" component={PagePartners} />
     </Fragment>
 );

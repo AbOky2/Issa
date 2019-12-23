@@ -55,7 +55,7 @@ const UploadImageComp = ({ name, value, onChange, label, showLabel, props }) => 
 }
 UploadImageComp.propTypes = {
     name: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.any,
     onChange: PropTypes.func.isRequired,
     showLabel: PropTypes.bool,
     label: PropTypes.string,

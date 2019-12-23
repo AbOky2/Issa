@@ -37,10 +37,10 @@ const Container = ({ data, addComp, CardComp, events }) => {
         useEffect(() => {
             setCards(data)
         }, [data])
-        const renderCard = (card, index) => {
+        const renderCard = (card = {}, index) => {
             return (
                 <Card
-                    key={card.position}
+                    key={card.position || card.name}
                     index={index}
                     id={card.position}
                     data={card}

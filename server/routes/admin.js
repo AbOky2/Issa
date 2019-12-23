@@ -3,8 +3,10 @@ const router = express.Router();
 const { handleErrors, listCollection, deleteCollection, updateCollection } = require('../utils/express');
 const { upload, createImagePath } = require('../utils/upload');
 const Propertie = require('../models/Propertie')
+const Partner = require('../models/Partner')
 const User = require('../models/User')
 const propertieSchema = require('../middleware/schema/propertie')
+const partnerSchema = require('../middleware/schema/partner')
 const userSchema = require('../middleware/schema/user')
 const requestMiddleware = require('../middleware/request')
 
@@ -19,7 +21,8 @@ router.get('/users/:role?', requestMiddleware(userSchema.admin.user.listByRole, 
 }));
 
 
-// Propertie
+
+// Properties
 router.get('/properties', listCollection(async ({ offset, limit }) => {
     let { list } = await Propertie.list({ offset, limit });
     list.sort((a, b) => a.position - b.position);
@@ -37,7 +40,8 @@ router.put('/properties/swapPosition', requestMiddleware(propertieSchema.admin.p
 
 router.post('/propertie', upload('properties').any('pictures'), requestMiddleware(propertieSchema.admin.propertie.post), handleErrors(async (req, res) => {
     let newData = req.body;
-    let filesPath = req.files.map(e => createImagePath(e.path));
+    const files = req.files || [];
+    const filesPath = files.map(e => createImagePath(e.path));
 
     delete newData.pictures;
 
@@ -52,6 +56,43 @@ router.put('/propertie/:id', updateCollection(requestMiddleware(propertieSchema.
 );
 
 router.delete('/propertie/:id', deleteCollection(async ({ id }) => await Propertie.delete(id)));
+
+
+
+// Partners
+router.get('/partners', listCollection(async ({ offset, limit }) => {
+    let { list } = await Partner.list({ offset, limit });
+    list.sort((a, b) => a.position - b.position);
+    return { list }
+}));
+
+router.put('/partners/swapPosition', requestMiddleware(partnerSchema.admin.partner.swapPosition), handleErrors(async (req, res) => {
+    const { first, second } = req.body;
+
+    if (first._id == second._id || first.position == second.position)
+        throw 'Values must be unique';
+    const data = await Partner.swapPosition(Object.keys(req.body).map(e => req.body[e]));
+    res.json(data)
+}));
+
+router.post('/partner', upload('partners').any('pictures'), requestMiddleware(partnerSchema.admin.partner.post), handleErrors(async (req, res) => {
+    let newData = req.body;
+    const files = req.files || [];
+    const filesPath = files.map(e => createImagePath(e.path));
+
+    delete newData.pictures;
+
+    newData.picture = filesPath;
+
+    const data = await Partner.add(newData)
+    res.json(data);
+}));
+
+router.put('/partner/:id', updateCollection(requestMiddleware(partnerSchema.admin.partner.update),
+    async ({ id, data }) => await Partner.update(id, data))
+);
+
+router.delete('/partner/:id', deleteCollection(async ({ id }) => await Partner.delete(id)));
 
 
 module.exports = router;

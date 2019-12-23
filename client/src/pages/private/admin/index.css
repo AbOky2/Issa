@@ -33,6 +33,7 @@ div.header  {
 
 .admin-container {
   background-color: #f2f4f4;
+  min-height: 100vh;
 }
 .spacing {
   padding: 0 24px;

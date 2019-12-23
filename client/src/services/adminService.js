@@ -28,6 +28,8 @@ async function getUsers(role, cb) {
     }
 }
 
+
+// Properties
 async function getProperties(cb) {
     try {
         const query = await axios.get(`${API_URL}/admin/properties`, getRequestConfig());
@@ -90,4 +92,84 @@ async function swapPosition(form, cb) {
     }
 }
 
-export { getData, getProperties, deletePropertie, updatePropertie, getUsers, addPropertie, swapPosition };
+// Partners
+async function getPartners(cb) {
+    try {
+        const query = await axios.get(`${API_URL}/admin/partners`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function deletePartner(id, cb) {
+    try {
+        const query = await axios.delete(`${API_URL}/admin/partner/${id}`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function addPartner(form, cb) {
+
+    try {
+        const query = await axios.post(`${API_URL}/admin/partner`, toFormData(form), getFormDataRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function updatePartner(id, form, cb) {
+    try {
+        console.log(form)
+        const query = await axios.put(`${API_URL}/admin/partner/${id}`, form, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function swapParnersPosition(form, cb) {
+    try {
+        const query = await axios.put(`${API_URL}/admin/partners/swapPosition`, form, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+export {
+    getData,
+
+    // Properties
+    getProperties,
+    deletePropertie,
+    updatePropertie,
+    getUsers,
+    addPropertie,
+    swapPosition,
+
+    // Partners
+    getPartners,
+    deletePartner,
+    addPartner,
+    updatePartner,
+    swapParnersPosition,
+};
