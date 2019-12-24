@@ -22,21 +22,13 @@ const menuList = [
     {
         title: 'ADMINISTRATIONS',
         menu: [
-            { slug: 'lots', name: 'Lots Nexity', path: '/dashboard/lots', Icon: LotsIcon },
+            { slug: 'lots', name: 'Lots Nexity', path: '/dashboard/properties', Icon: LotsIcon },
             { slug: 'partners', name: 'Offres partenaires', path: '/dashboard/partners', Icon: PartnersKeyIcon },
             { slug: 'agence', name: 'Agence Nexity', path: '/dashboard/nexity', Icon: NexityIcon },
         ]
-    },
-    // {
-    //     title: 'Chat',
-    //     menu: [
-    //         { name: 'Chats', path: '/dashboard/chat', Icon: NexityIcon }
-    //     ]
-    // },
+    }
 ]
 const Sidebar = ({ notifications = { locations: 1 } }) => {
-
-    console.log(notifications)
     return (
         <div id='sidebar'>
             <div className='logo_container'>

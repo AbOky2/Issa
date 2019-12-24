@@ -18,6 +18,10 @@ const bcrypt = require('../utils/bcrypt');
 const { Schema } = mongoose;
 
 const mongoSchema = new Schema({
+    picture: {
+        type: String,
+        // required: true,
+    },
     firstName: {
         type: String,
         required: true,

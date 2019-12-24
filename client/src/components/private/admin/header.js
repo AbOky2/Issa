@@ -7,21 +7,21 @@ import { useAuth } from "../../../context/auth";
 import './header.css'
 
 
-const ProfileMenu = ({ Avatar }) => (
+const ProfileMenu = ({ Avatar, authUser: { firstName, picture } = {} }) => (
     <Grid container alignItems='center' className='dropdownContainer'>
-        <Grid><span>Raphael</span></Grid>
-        <Grid><img src={Avatar} alt='Avatar' /></Grid>
+        <Grid><span>{firstName}</span></Grid>
+        <Grid><img src={picture || Avatar} alt='Avatar' /></Grid>
     </Grid>
 )
 
 const Header = () => {
-    const { setAuthTokens, setAuthUser } = useAuth();
+    const { setAuthTokens, setAuthUser, authUser } = useAuth();
 
     const logOut = () => {
         setAuthTokens(null);
         setAuthUser(null)
     };
-
+    console.log(authUser)
     const childList = [{ value: 'logout', onClick: logOut }]
 
     return (
@@ -29,7 +29,7 @@ const Header = () => {
             <Grid container >
                 <Grid item container xs={12} alignItems='center' justify='flex-end' className='menu-container'>
                     <DropDownMenu
-                        menuTitle={<ProfileMenu Avatar={Avatar} />}
+                        menuTitle={<ProfileMenu authUser={authUser} Avatar={Avatar} />}
                         childList={childList}
                     />
                 </Grid>
