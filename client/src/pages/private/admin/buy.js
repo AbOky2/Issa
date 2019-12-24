@@ -20,8 +20,13 @@ const Dashboard = ({ role }) => {
     })
     useEffect(() => {
         (async () => {
-            const { list } = await getUsers(role)
-            handleChange('users', list)
+            try {
+                const { list } = await getUsers(role)
+                handleChange('users', list)
+
+            } catch (error) {
+                console.error(error)
+            }
         })()
     }, [])
 

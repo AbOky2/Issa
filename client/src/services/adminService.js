@@ -69,7 +69,6 @@ async function addPropertie(form, cb) {
 
 async function updatePropertie(id, form, cb) {
     try {
-        console.log(form)
         const query = await axios.put(`${API_URL}/admin/propertie/${id}`, form, getRequestConfig());
         const { data } = query
 
@@ -132,7 +131,6 @@ async function addPartner(form, cb) {
 
 async function updatePartner(id, form, cb) {
     try {
-        console.log(form)
         const query = await axios.put(`${API_URL}/admin/partner/${id}`, form, getRequestConfig());
         const { data } = query
 

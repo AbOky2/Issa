@@ -8,21 +8,22 @@ import './login.css';
 
 const LoginTab = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
-    const [state] = useState({ email: 'test@admin.admin', password: 'test' });
+    const [state] = useState({ email: 'test@test.test', password: 'test' });
+    // const [state] = useState({ email: 'test@admin.admin', password: 'test' });
     const { setAuthTokens, setAuthUser } = useAuth();
     const referer = '/dashboard';
 
+    if (isLoggedIn)
+        return <Redirect to={referer} />;
+
+
     const onClick = () => {
         basicAuth(state, ({ token, user }) => {
+            setLoggedIn(true);
             setAuthTokens(token);
             setAuthUser(user)
-            setLoggedIn(true);
         })
     }
-    if (isLoggedIn) {
-        return <Redirect to={referer} />;
-    }
-
     return (
         <div id='login'>
             <Grid container spacing={8} alignItems="flex-end">

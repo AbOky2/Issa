@@ -14,7 +14,7 @@ const Inactive = 'inactive';
 const StatusList = [Active, Inactive];
 
 const isAdmin = (user) => user && user.role === Admin;
-const isStudent = (user) => user && user.role === Student;
+const isStudent = (user) => user && studentRoleList.includes(user.role);
 
 
 // Slug
