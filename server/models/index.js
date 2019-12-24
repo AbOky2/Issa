@@ -2,7 +2,8 @@ class DBModel {
     static publicFields() {
         return ['-__v'];
     }
-    static name = 'Element'
+    static name = 'Element';
+
     static async get(_id) {
         const element = await this.findById(_id);
         if (!element) {
@@ -10,13 +11,14 @@ class DBModel {
         }
         return element;
     }
+
     /**
- * List a limited amount of Users
- * @param {Object} [where] - Filtering criterias
- * @param {Object} [options]
- * @param {Number} [options.offset] - Amount of Users to skip
- * @param {Number} [options.limit] - Amount of Users to return
- */
+     * List a limited amount of Users
+     * @param {Object} [where] - Filtering criterias
+     * @param {Object} [options]
+     * @param {Number} [options.offset] - Amount of Users to skip
+     * @param {Number} [options.limit] - Amount of Users to return
+     */
     static async list(where = {}, { offset = 0, limit = 10 } = {}) {
         try {
             const list = await this.find(where)
