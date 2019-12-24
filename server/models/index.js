@@ -76,6 +76,21 @@ class DBModel {
             throw 'Error white delete'
         }
     }
+
+    static async swapPosition(data) {
+        let first = await this.findById(data[0]._id);
+        let second = await this.findById(data[1]._id);
+
+        first.position = data[0].position;
+        second.position = data[1].position;
+
+        first.markModified('position');
+        second.markModified('position');
+        await first.save();
+        await second.save();
+
+        return { first, second };
+    }
 }
 
 module.exports = DBModel

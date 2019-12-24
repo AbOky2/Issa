@@ -40,7 +40,7 @@ const Dashboard = ({ role }) => {
         ...users.map(e => ([`${e.firstName} ${e.lastName}`, e.age, e.email, e.phone, e.school, e.studiesLevel]))
     ];
     const length = users.length
-    console.log(users)
+
     return (
         <AdminContentWrapper>
             <Grid container direction="row" justify="space-between" alignItems='center' className='spacing header'>

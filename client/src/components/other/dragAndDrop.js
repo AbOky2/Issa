@@ -36,7 +36,7 @@ const Container = ({ data, addComp, CardComp, events }) => {
         )
         useEffect(() => {
             setCards(data)
-        }, [data])
+        }, [data, data.length])
         const renderCard = (card = {}, index) => {
             return (
                 <Card

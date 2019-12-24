@@ -81,12 +81,10 @@ const Dashboard = ({ defaultAddNew, getData, addData, updateData, deleteData, sw
                 const { elem } = await addData(leanData);
                 datas.push(elem);
                 handleChange('datas', datas);
-
             }
             else if (state.modalAction === UPDATE) {
                 const res = await updateData(state._id, leanData);
             }
-
             resetState();
         } catch (err) {
         }
@@ -102,7 +100,7 @@ const Dashboard = ({ defaultAddNew, getData, addData, updateData, deleteData, sw
                 elems[current] = { _id, position: i + 1 }
             }
         })
-        const res = await swapPosition(elems)
+        await swapPosition(elems)
     }
 
     return (
