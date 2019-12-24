@@ -2,6 +2,14 @@ class DBModel {
     static publicFields() {
         return ['-__v'];
     }
+    static name = 'Element'
+    static async get(_id) {
+        const element = await this.findById(_id);
+        if (!element) {
+            throw new Error('Element not found');
+        }
+        return element;
+    }
     /**
  * List a limited amount of Users
  * @param {Object} [where] - Filtering criterias
@@ -25,7 +33,7 @@ class DBModel {
     static async updateById(_id, updates) {
         const elementDoc = await this.findById(_id);
         if (!elementDoc) {
-            throw new Error('Element not found');
+            throw new Error(`${this.name} not found`);
         }
         Object.entries(updates)
             .filter(([_, value]) => value !== undefined)
