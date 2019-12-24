@@ -120,19 +120,9 @@ const Dashboard = ({ defaultAddNew, getData, addData, updateData, deleteData, sw
                 </Grid>
             </Modal>
             <Grid container direction="row" justify="space-between" alignItems='center' className='spacing header'>
-                <Grid item container xs={6} justify="flex-start">
+                <Grid item container xs={12} justify="flex-start">
                     <Grid item container alignItems='center'>
                         <Header />
-                    </Grid>
-                </Grid>
-                <Grid container item xs={6} justify="flex-end">
-                    <Grid item container alignItems='center' justify="flex-end">
-                        <div className='pointer export'>
-                            <span className='icon icon-export'></span>
-                            <span className='header-btn'>
-                                reload
-                            </span>
-                        </div>
                     </Grid>
                 </Grid>
             </Grid>
