@@ -30,7 +30,7 @@ const Card = ({ data = {}, events = {} }) => (
                 </Grid>
                 <Grid item container alignItems='center'>
                     <Grid><span className='header-icon'><Calendar /></span></Grid>
-                    <Grid><h3>{data.location_date}</h3></Grid>
+                    <Grid><h3>{data.nb_available}</h3></Grid>
                 </Grid>
             </Grid>
             <Grid item container xs={12} justify='center' alignItems='center' className='submit-container'>
