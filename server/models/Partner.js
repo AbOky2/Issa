@@ -39,24 +39,15 @@ class PartnerClass extends DBModel {
      * @param {String} options.title
      * @param {String} options.color
      */
-    static async add({ picture, name, description, position, link }) {
+    static async add(args) {
 
         try {
-            if (!picture || picture.length < 1)
-                throw `Picture must be set`;
+            if (!args.picture || args.picture.length < 1)
+                throw 'Picture must be set';
 
-            const partnerDoc = await this.create({
-                picture,
-                name,
-                description,
-                position,
-                link
-            });
-
-            const partner = partnerDoc.toObject();
-            return { partner };
+            return super.add(args);
         } catch (error) {
-            removeFiles(picture);
+            removeFiles(args.picture);
             throw error
         }
     }

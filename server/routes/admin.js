@@ -10,7 +10,7 @@ const partnerSchema = require('../middleware/schema/partner')
 const userSchema = require('../middleware/schema/user')
 const requestMiddleware = require('../middleware/request')
 
-const queries = [{
+const sameQueries = [{
     name: { singular: 'propertie', plural: 'properties' },
     model: Propertie,
     schema: propertieSchema.admin.propertie
@@ -31,7 +31,7 @@ router.get('/users/:role?', requestMiddleware(userSchema.admin.user.listByRole, 
     res.json({ list });
 }));
 
-queries.forEach(({ name: { singular, plural }, model, schema }) => {
+sameQueries.forEach(({ name: { singular, plural }, model, schema }) => {
     router.get(`/${plural}`, listCollection(async ({ offset, limit }) => {
         let { list } = await model.list({ offset, limit });
         list.sort((a, b) => a.position - b.position);
@@ -65,9 +65,8 @@ queries.forEach(({ name: { singular, plural }, model, schema }) => {
     );
 
     router.delete(`/${singular}/:id`, deleteCollection(async ({ id }) => {
-        const elem = await Partner.get(id);
+        const elem = await model.get(id);
         removeFiles(elem.picture);
-
         await model.delete(id);
     }));
 })

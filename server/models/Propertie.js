@@ -45,26 +45,15 @@ class PropertieClass extends DBModel {
      * @param {String} options.title
      * @param {String} options.color
      */
-    static async add({ picture, name, description, dimension, address, nb_available, position }) {
+    static async add(args) {
 
         try {
-            if (!picture || picture.length < 1)
+            if (!args.picture || args.picture.length < 1)
                 throw 'Picture must be set';
 
-            const propertieDoc = await this.create({
-                picture,
-                name,
-                description,
-                dimension,
-                address,
-                nb_available,
-                position
-            });
-
-            const propertie = propertieDoc.toObject();
-            return { propertie };
+            return super.add(args);
         } catch (error) {
-            removeFiles(picture);
+            removeFiles(args.picture);
             throw error
         }
     }

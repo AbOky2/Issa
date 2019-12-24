@@ -78,8 +78,8 @@ const Dashboard = ({ defaultAddNew, getData, addData, updateData, deleteData, sw
             if (state.modalAction === ADD) {
                 datas = state.datas;
                 leanData.position = datas.length + 1;
-                const { list } = await addData(leanData);
-                datas.push(list);
+                const { elem } = await addData(leanData);
+                datas.push(elem);
                 handleChange('datas', datas);
 
             }

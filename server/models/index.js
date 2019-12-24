@@ -4,6 +4,18 @@ class DBModel {
     }
     static name = 'Element';
 
+
+    static async add(args) {
+        try {
+            const propertieDoc = await this.create(args);
+
+            const elem = propertieDoc.toObject();
+            return { elem };
+        } catch (error) {
+            throw error
+        }
+    }
+
     static async get(_id) {
         const element = await this.findById(_id);
         if (!element) {
