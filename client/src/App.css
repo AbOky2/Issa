@@ -14,6 +14,24 @@
   width: 13px;
   height: 13px;
 }
+.bold {
+  font-weight: bold;
+}
+.auto {
+  margin: auto;
+}
+.no-bg {
+  background-color: initial;
+}
+.no-box-shadow {
+  box-shadow: initial;
+}
+.fullwidth {
+  width: 100%;
+}
+.fullheight {
+  height: 100%;
+}
 .icon-email {
   background-image: url('./assets/img/icons/email.png');
 }
@@ -62,4 +80,60 @@
 .drag-and-drop:hover {
   border: 1px dashed gray;
   cursor: move;
+}
+/* Table */
+.custom-table-cell-container {
+  padding-bottom: 12px;
+  font-family: Rubik;
+  font-size: 15px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #475f7b;
+}
+.custom-table .custom-table-cell-container:last-of-type {
+  padding-bottom: 0;
+}
+.custom-table-cell-container .left-side {
+  font-weight: bold;
+}
+/* Btn */
+div.btn-container {
+  width: auto;
+  padding: 8px 18px;
+  border-radius: 4px;
+  border: solid 0.8px #475f7b;
+  margin-top: 26px;
+  font-family: Rubik;
+  font-size: 15px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  cursor: pointer;
+}
+.btn-container.full {
+  width: 100%;
+}
+.btn-container.auto {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-container.grayColor {
+  color: #475f7b;
+  background-color: rgba(71, 95, 123, 0.15);
+}
+.btn-container.greenColor {
+  color: #ffffff;
+  background-color: #06ae88;
+}
+.btn-container.opaqueGreenColor {
+  border: solid 1px #06ae88;
+}
+.btn-container.opaqueGreenColor a ,
+.btn-container.opaqueGreenColor span {
+  color: #06ae88;
 }

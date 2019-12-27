@@ -1,30 +1,34 @@
 import React, { Fragment, Component } from 'react';
 import Sidebar from '../components/private/admin/sidebar'
-import Header from '../components/private/admin/header'
+import StudentSidebar from '../components/private/admin/student/sidebar'
+import AdminHeader from '../components/private/admin/header'
+import StudentHeader from '../components/private/admin/student/header'
+import StudentFooter from '../components/private/admin/student/footer'
 import { Grid } from '@material-ui/core';
+import Hidden from '@material-ui/core/Hidden';
 import { AuthContext } from '../context/auth'
 import { isAdmin, isStudent } from '../utils/user'
 
-const AdminSidebar = ({ children }) => (
+const AdminSidebarComp = ({ children, authUser }) => (
     <Grid container className='admin-container'>
         <Grid item xs={2}><Sidebar /></Grid>
         <Grid item xs={10} className='content'>
-            <Grid item xs={12}><Header /></Grid>
+            <Grid item xs={12}><AdminHeader /></Grid>
             <Grid item xs={12}>{children}</Grid>
         </Grid>
     </Grid>
 )
 
-const StudentSidebar = ({ children }) => (
-    <Grid container className='admin-container'>
-        <Grid item xs={2}>student<Sidebar /></Grid>
-        <Grid item xs={10} className='content'>
-            <Grid item xs={12}><Header /></Grid>
-            <Grid item xs={12}>{children}</Grid>
+const StudentSidebarComp = ({ children, authUser }) => (
+    <Grid container className='admin-container student-container'>
+        <Grid item xs={12}><StudentHeader /></Grid>
+        <Grid container item xs={12} className='content'>
+            <Hidden only="xs"><Grid item smUp sm={3}><StudentSidebar authUser={authUser} /></Grid></Hidden>
+            <Grid item xs={12} sm={9}>{children}</Grid>
         </Grid>
+        <Grid item xs={12}><StudentFooter userAgent={authUser} /></Grid>
     </Grid>
 )
-
 export default (OriginalComponent) => (class BaseComponent extends Component {
     render() {
         return (
@@ -33,11 +37,12 @@ export default (OriginalComponent) => (class BaseComponent extends Component {
                     let CustomComp = null;
 
                     if (isAdmin(authUser))
-                        CustomComp = AdminSidebar;
+                        CustomComp = AdminSidebarComp;
                     else if (isStudent(authUser))
-                        CustomComp = StudentSidebar;
+                        CustomComp = StudentSidebarComp;
+                    console.log(authUser)
                     return (
-                        <CustomComp>
+                        <CustomComp authUser={authUser}>
                             <OriginalComponent {...this.props} />
                         </CustomComp>
                     )

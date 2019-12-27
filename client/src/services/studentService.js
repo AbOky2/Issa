@@ -15,5 +15,29 @@ async function studentGetData(cb) {
         console.error(`error => ${err}`)
     }
 }
+// Partners
+async function getPartners(cb) {
+    try {
+        const query = await axios.get(`${API_URL}/student/partners`, getRequestConfig());
+        const { data } = query
 
-export { studentGetData };
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+// Properties
+async function getProperties(cb) {
+    try {
+        const query = await axios.get(`${API_URL}/student/properties`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+export { studentGetData, getPartners, getProperties };

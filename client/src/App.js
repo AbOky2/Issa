@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Header from './components/partials/header/header'
 import './App.css';
-import { AuthContext } from './context/auth'
+import { AuthContext } from './context/auth';
+
 import { getToken, getUser, setUser, setToken } from './utils/storage'
 import { getCurrentUser, logout } from './services/authService'
 
@@ -21,15 +22,18 @@ const App = () => {
     setUser(data)
     setAuth(data);
   }
-  const logOut = () => {
+  const logOut = (redirect = true) => {
+    console.log('---')
+    if (redirect)
+      window.location = '/login'
     setAuthTokens(null);
-    setAuthUser(null)
+    setAuthUser(null);
   };
   const isAuth = authTokens && authUser ? true : false;
   (async () => {
     try {
       if (!(await getCurrentUser()))
-        logOut()
+        logOut(false)
 
     } catch (error) {
       console.error('--', error)
@@ -44,6 +48,7 @@ const App = () => {
       isAuth,
       authUser,
       setAuthUser,
+      logOut
     }}>
       <div className="App">
         <Header user={authUser} isAuth={isAuth} logOut={logOut} />

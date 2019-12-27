@@ -2,24 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { handleErrors, listCollection, deleteCollection, updateCollection } = require('../utils/express');
 const { upload, createImagePath, removeFiles } = require('../utils/upload');
-const Propertie = require('../models/Propertie')
-const Partner = require('../models/Partner')
 const User = require('../models/User')
-const propertieSchema = require('../middleware/schema/propertie')
-const partnerSchema = require('../middleware/schema/partner')
 const userSchema = require('../middleware/schema/user')
+const sameQueries = require('./utils')
+
 const requestMiddleware = require('../middleware/request')
 
-const sameQueries = [{
-    name: { singular: 'propertie', plural: 'properties' },
-    model: Propertie,
-    schema: propertieSchema.admin.propertie
-},
-{
-    name: { singular: 'partner', plural: 'partners' },
-    model: Partner,
-    schema: partnerSchema.admin.partner
-}]
 
 router.get('/', handleErrors((req, res) => {
     res.send('Admin Api route');

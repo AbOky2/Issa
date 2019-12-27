@@ -1,0 +1,9 @@
+div.profile-heading-container {
+    text-align: center;
+    margin: auto;
+}
+.profile-heading-container img {
+    display: block;
+    margin: auto;
+    max-width: 106px;
+}

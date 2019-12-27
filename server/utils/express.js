@@ -1,6 +1,6 @@
 const logger = require('../logs');
 const User = require('../models/User');
-const { RoleList } = require('../utils/user')
+const { RoleList, studentRoleList, Admin, Student } = require('../utils/user')
 const { wrongInfo, notAuthorized } = require('../utils/message')
 const propertieSchema = require('../middleware/schema')
 const requestMiddleware = require('../middleware/request')
@@ -59,10 +59,14 @@ const authCheck = (role) => handleErrors((req, res, next) => {
 
     if (!user)
         message = notAuthorized;
+    else if (!role)
+        message = wrongInfo('role');
     else if (role === '*' && !RoleList.includes(user.role))
         message = wrongInfo('role');
-    else if (!role || (role !== '*' && (!RoleList.includes(role) || user.role !== role)))
-        message = wrongInfo('role');
+    else if (role !== '*') {
+        if (!RoleList.includes(role) || (role == Student && !studentRoleList.includes(user.role)) || (role === Admin && user.role !== Admin))
+            message = wrongInfo('role');
+    }
 
     if (message) {
         res.status(401).json({ authenticated, message });

@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import PrivateRoute from '../privateRoute'
 
 // pages
-import PageBuy from '../../../pages/private/admin/buy'
+import PageBuy from '../../../pages/private/student/buyer'
 import { PublicRoute } from '../public'
 
 export default () => (

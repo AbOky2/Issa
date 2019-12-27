@@ -37,6 +37,9 @@ h2 {
   text-align: left;
   padding-left: 27px;
 }
+.student-container .logo_container {
+  padding-left: 0;
+}
 .logo_container img {
   height: 27px;
 }
@@ -60,9 +63,10 @@ h2 {
   border-right: solid 0.5px #c7cfd6;
   box-sizing: border-box;
 }
+.student-container #sidebar {
+  padding: 36px 35px;
+}
 h2 {
-  width: 97px;
-  height: 14px;
   font-family: Rubik;
   font-size: 12px;
   font-weight: 500;

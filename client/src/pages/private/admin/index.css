@@ -35,6 +35,9 @@ div.header  {
   background-color: #f2f4f4;
   min-height: 100vh;
 }
+.student-container.admin-container #sidebar{
+  min-height: calc(100vh - 202px);
+}
 .spacing {
   padding: 0 24px;
 }

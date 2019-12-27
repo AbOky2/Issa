@@ -1,0 +1,22 @@
+.student-section-title {
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #c1c8cf;
+}
+.content-container {
+    padding: 0;
+}
+.content-container .list {
+    max-width: calc(25% - 15px);
+}
+.content-container .list:nth-child(4n+1) {
+    padding-left: 0;
+}
+.content-container .list:nth-child(4n+4) {
+    padding-right: 0;
+}

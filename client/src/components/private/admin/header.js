@@ -15,8 +15,7 @@ const ProfileMenu = ({ Avatar, authUser: { firstName, picture } = {} }) => (
 )
 
 const Header = () => {
-    const { setAuthTokens, setAuthUser, authUser } = useAuth();
-    const logOut = () => { setAuthTokens(null); setAuthUser(null) };
+    const { authUser, logOut } = useAuth();
     const childList = [{ value: 'logout', onClick: logOut }]
 
     return (
