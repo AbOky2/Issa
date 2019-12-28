@@ -37,6 +37,7 @@ div.header  {
 }
 .student-container.admin-container #sidebar{
   min-height: calc(100vh - 202px);
+  height: 100%;
 }
 .spacing {
   padding: 0 24px;
@@ -59,4 +60,12 @@ div.header  {
 
 .tiny-icon {
   margin-right: 10px;
+}
+
+
+
+@media screen and (max-width: 400px) {
+  .spacing {
+      padding: 0 16px;
+  }
 }

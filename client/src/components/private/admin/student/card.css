@@ -1,3 +1,5 @@
+
+
 .header {
     border-bottom: solid 1px #ededed;
 }
@@ -41,80 +43,153 @@ h2 {
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
-    color: var(--dusk);
+    color: #475f7b;
 }
 
 p {
-    font-family: Rubik;
+    font-family: 'Rubik';
     font-size: 13px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: var(--dusk);
+    color: #475f7b;
 }
-
-
-
-
-
-
-
-
-
-.content h3 {
-    padding: 10px;
-    font-family: Rubik;
-    font-size: 15px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.4;
-    letter-spacing: normal;
-    color: #95a0ab;
+.update-profile {
+    border-radius: 9px;
+    border: solid 1px #c7cfd6;
+    background-color: #e9eaee;
+    padding: 30px 40px;
 }
-.content .dimension h3 {
-    padding: 8px 0 20px;
-}
-.content .description h3 {
-    padding: 6px 10px;
-}
-.content-container p {
-    margin: 0;
-    font-family: Rubik;
-    font-size: 15px;
+.update-profile h2 {
+    font-family: 'Rubik';
+    font-size: 19px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.4;
+    line-height: normal;
     letter-spacing: normal;
-    color: #727e8c;
+    text-align: center;
+    color: #475f7b;
 }
-.submit-container {
-    padding: 18px 0 0;
+.update-profile p {
+    font-family: 'Rubik';
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #708093;
 }
-.submit {
-    width: auto;
-    /* height: 33px; */
-    border-radius: 4px;
-    border: solid 0.8px #475f7b;
-    background-color: rgba(71, 95, 123, 0.03);
-    cursor: pointer;
-    padding: 7px 22px 7px 11px;
+.home-icon {
+    width: 100%;
 }
-.delete-btn {
-    border: solid 1px #b41420;
-    padding: 7px 12px;
-    margin-left: 8px;
-    background-color: rgba(180, 20, 32, 0.05);
+.home-icon img {
+    margin: auto;
+    width: 100%;
+    width: 94px;
 }
-.delete-btn .header-icon{
-    margin: 0;
+.home-icon-text {
+    width: 100%;
+}
+.btn-container.double-btn {
+    margin-top: 10px;
+}
+.offers {
+    position: relative;
+    padding: 26px 16px 26px 30px;
+    border: solid 1px #c7cfd6;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-radius: 9px;
+    background-color: white;
+}
+.offers h2 {
+    font-family: Rubik;
+    max-width: 75%;
+    margin: auto;
+    font-size: 19px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #475f7b;
+}
+.offers .list-container {
+    max-height: 290px;
+    margin-top: 25px;
+    padding-bottom: 62px;
+    overflow: scroll;
+}
+.offers .list-container::-webkit-scrollbar {
+    width: 3px;
+}
+.offers .list-container::-webkit-scrollbar-thumb {
+  background-color: #d9dce4;
 }
 
-.submit p {
-    margin-left: 16px;
+.offers .list {
+    border-radius: 4px;
+    background-color: #f2f3f7;
+    padding: 20px 6px 1px 20px;
+    margin-right: 15px;
+    margin-bottom: 13px;
+}
+.offers .list h3{
+    padding: 0;
+}
+.offers .status span {
+    display: block;
+    margin: auto;
+    width: 11px;
+    height: 11px;
+    border-radius: 100%;
+}
+.offers .status.waiting span {
+    background-color: #ff8437;
+}
+.offers .status.done span {
+    background-color: #06ae88;
+}
+.offers .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 63px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top: solid 1px #c7cfd6;
+    background-color: #ffffff;
+}
+.offers .footer img {
+    width: 42px;
+}
+.offers .footer a {
+    font-family: Rubik;
+    font-size: 13px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #d32238;
+}
+.offers .info-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    border: solid 0.8px #475f7b;
+    background-color: rgba(71, 95, 123, 0.15);
+    padding: 7px;
+}
+.offers .info-container img {
+    width: 18px;
+}
+.offers span {
     font-family: Rubik;
     font-size: 14.4px;
     font-weight: 500;
@@ -124,24 +199,20 @@ p {
     letter-spacing: normal;
     color: #475f7b;
 }
-.add-card .content {
-    background-color: initial;
-    border: 1px dashed #475f7b;
-    min-height: 400px;
-}
-.add-card .add-text p {
-    margin-bottom: 16px;
-    font-family: Rubik;
-    font-size: 18px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.17;
-    letter-spacing: normal;
-    text-align: center;
-    color: #475f7b;
-}
-.add-card .submit {
-    max-width: 128px;
-    margin: auto;
+@media screen and (max-width: 400px) {
+    .update-profile {
+        padding: 16px;
+    }
+    .update-profile .flex-reverse {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+    }
+    div.home-icon-text {
+        width: calc(100% - 80px);
+    }
+    .home-icon img {
+        width: 65px;
+    }
 }

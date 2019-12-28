@@ -129,6 +129,7 @@ div.btn-container {
 .btn-container.greenColor {
   color: #ffffff;
   background-color: #06ae88;
+  border: 1px solid #06ae88;
 }
 .btn-container.opaqueGreenColor {
   border: solid 1px #06ae88;
@@ -136,4 +137,11 @@ div.btn-container {
 .btn-container.opaqueGreenColor a ,
 .btn-container.opaqueGreenColor span {
   color: #06ae88;
+}
+
+
+@media screen and (max-width: 400px) {
+  .mobile-auto {
+    width: auto;
+  }
 }
