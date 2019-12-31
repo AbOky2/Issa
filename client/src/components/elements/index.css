@@ -1,0 +1,13 @@
+.drawer-container .header-container {
+    padding: 50px 0 0 0;
+}
+.drawer-container .header-container img {
+    width: 18px;
+    margin-right: 20px;
+}
+.drawer-container .content-container {
+    width: 80vw;
+}
+.drawer-container .MuiDrawer-paper {
+    background-color: #f2f2f4;
+}

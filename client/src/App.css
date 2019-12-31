@@ -139,9 +139,21 @@ div.btn-container {
   color: #06ae88;
 }
 
-
+.mobile-show {
+  display: none;
+}
 @media screen and (max-width: 400px) {
   .mobile-auto {
     width: auto;
+  }
+  
+  .mobile-none, .mobile-hide {
+    display: none!important;
+  }
+  .mobile-show {
+    display: block;   
+  }
+  .mobile-text-left {
+    text-align: left!important;
   }
 }

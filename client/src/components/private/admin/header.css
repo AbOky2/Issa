@@ -28,10 +28,10 @@ header .help {
   padding-right: 36px;
 }
 .student-header {
-  border-bottom: solid 0.5px #c7cfd6;
   height: 80px;
   background-color: rgba(229, 230, 235, 0.68);
   font-family: Rubik;
+  border-bottom: solid 0.5px #c7cfd6;
   font-size: 15px;
   font-weight: bold;
   font-stretch: normal;
@@ -42,4 +42,19 @@ header .help {
 }
 .student-header > div{
   height: 100%;
+}
+@media screen and (max-width: 400px) {
+  header.student-header {
+    padding: 0px 16px 0 27px;
+  }
+  .student-header .profile-icon {
+    width: 25px;
+  }
+  .profile-container {
+      padding: 45px 44px 60px;
+      box-sizing: border-box;
+  }
+  .profile-logout-container {
+      padding-top: 45px;
+  }
 }

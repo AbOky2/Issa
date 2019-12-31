@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from '@material-ui/core'
 import { useAuth } from '../../../../context/auth';
 import Logo from '../../../../assets/img/logo.png'
+import LoginIcon from '../../../../assets/img/icons/profile.png'
 import { Link } from "react-router-dom";
+import Drawer from '../../../elements/drawer'
+import Divider from '@material-ui/core/Divider';
+import Profile from './profile'
 import '../header.css'
+
+const LogOUtInfo = ({ logOut, className = '' }) => (
+    <Grid className={className}>
+        <Grid className='help'><span>Aide</span></Grid>
+        <Grid onClick={logOut} className='pointer'>Déconnexion</Grid>
+    </Grid>
+)
 
 
 const Header = () => {
-    const { logOut } = useAuth();
+    const [state, setState] = useState({ open: false });
+    const { logOut, authUser } = useAuth();
+
+    const handleChange = (name, value) => setState({ ...state, [name]: value });
 
     return (
         <header className='student-header'>
@@ -18,10 +32,19 @@ const Header = () => {
                     </div>
                 </Grid>
                 <Grid container item xs={6} alignItems='center' justify='flex-end'>
-                    <Grid className='help'><span>Aide</span></Grid>
-                    <Grid onClick={logOut} className='pointer'>Déconnexion</Grid>
+                    <LogOUtInfo logOut={logOut} className='mobile-hide' />
+                    <img src={LoginIcon} className='mobile-show profile-icon' onClick={() => handleChange('open', true)} />
                 </Grid>
             </Grid>
+            <Drawer handleChange={handleChange} open={state.open}>
+                <Grid className='profile-container'>
+                    <Profile authUser={authUser} />
+                </Grid>
+                <Divider />
+                <Grid className='profile-logout-container'>
+                    <LogOUtInfo logOut={logOut} />
+                </Grid>
+            </Drawer>
         </header>
     )
 }

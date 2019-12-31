@@ -12,8 +12,8 @@ export default ({ }) => (
                 <img src={IconHome} />
             </Grid>
             <Grid item className='home-icon-text mobile-auto'>
-                <h2>Tu souhaites devenir propriétaires ?</h2>
-                <p>Tu viens de commencer ton nouveau travail. N’attends pas pour devenir propriétaires !</p>
+                <h2 className='mobile-text-left'>Tu souhaites devenir propriétaires ?</h2>
+                <p className='mobile-text-left'>Tu viens de commencer ton nouveau travail. N’attends pas pour devenir propriétaires !</p>
             </Grid>
         </Grid>
         <Grid item xs={12}>

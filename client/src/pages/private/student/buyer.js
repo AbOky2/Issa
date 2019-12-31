@@ -5,7 +5,7 @@ import { AdminContentWrapper } from '../../../components/wrapper'
 import { getProperties, getPartners } from '../../../services/studentService'
 import Card from '../../../components/private/admin/student/card'
 import UpdateCard from '../../../components/private/admin/student/update-profile'
-import Offers from '../../../components/private/admin/student/offers'
+import Offers from '../../../components/private/admin/student/viewCard'
 
 import './index.css'
 
@@ -50,7 +50,7 @@ const Dashboard = () => {
             <Grid><h2 className='student-section-title text-left'>VOTRE DOSSIER</h2></Grid>
 
             <Grid container direction="row" justify="space-between" alignItems='center'>
-                <Grid item container xs={8} className='offers-container'>
+                <Grid item container xs={12} sm={8} className='offers-container'>
                     <Offers data={data} />
                 </Grid>
                 <Grid container item xs={12} sm={4}>
