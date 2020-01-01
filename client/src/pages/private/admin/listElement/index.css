@@ -119,3 +119,12 @@
     max-width: 128px;
     margin: auto;
 }
+
+@media screen and (max-width: 400px) {
+    div.content-container .content {
+        padding: 16px 7px;
+    }
+    div.content-container .content h2 {
+        margin-top: .5rem;
+    }
+}

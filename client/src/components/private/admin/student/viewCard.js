@@ -30,7 +30,7 @@ export default ({ data = [] }) => (
                         <span>{e.address}</span>
                     </Grid>
                     <Grid container item alignItems="center" className='info-container-container'>
-                        <Grid item className='info-container' direction='column' justify="space-between">
+                        <Grid item className='info-container text-center' direction='column' justify="space-between">
                             <Grid item><img src={InfoIcon} /></Grid>
                             <Grid item><span>Info</span></Grid>
                         </Grid>

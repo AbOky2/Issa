@@ -59,7 +59,7 @@ const Dashboard = () => {
             </Grid>
 
             <Grid><h2 className='student-section-title text-left'>NOS OFFRES PARTENAIRES</h2></Grid>
-            <Grid item container className='content-container' justify='space-between'>
+            <Grid item container className='content-container'>
                 {state.partners.map((e, i) =>
                     <Grid item container index={i} xs={6} sm={3} className='list'>
                         <Card data={e} />

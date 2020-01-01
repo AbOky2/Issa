@@ -17,5 +17,10 @@
 @media screen and (max-width: 400px) {
   .admin-content-container {
       width: 100%;
+      padding: 15px 10px;
+      box-sizing: border-box;
+  }
+  .admin-content-container .student-section-title:nth-of-type(1) {
+    margin-top: 0;
   }
 }

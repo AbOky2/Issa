@@ -13,13 +13,13 @@
 }
 .content-container .list {
     max-width: calc(25% - 15px);
-
+    margin: 0 10px;
 }
 .content-container .list:nth-child(4n+1) {
-    padding-left: 0;
+    margin-left: 0;
 }
 .content-container .list:nth-child(4n+4) {
-    padding-right: 0;
+    margin-right: 0;
 }
 .content-container div.spacing-wrapper {
     padding-bottom: 0;
@@ -29,6 +29,18 @@
 }
 @media screen and (max-width: 400px) {
     .content-container .list {
-        max-width: calc(50% - 10px);
-  }
+        max-width: calc(50% - 7px);
+    }
+    .content-container .list:nth-child(odd) {
+        margin-left: 0;
+    }
+    .content-container .list:nth-child(even) {
+        margin-right: 0;
+    }
+    .content-container .list{
+        margin: 0 7px;
+    }
+    div.update-profile {
+        margin-bottom: 20px;
+    }
 }
