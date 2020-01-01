@@ -9,7 +9,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { AuthContext } from '../context/auth'
 import { isAdmin, isStudent } from '../utils/user'
 
-const AdminSidebarComp = ({ children, authUser }) => (
+const AdminSidebarComp = ({ children }) => (
     <Grid container className='admin-container'>
         <Grid item xs={2}><Sidebar /></Grid>
         <Grid item xs={10} className='content'>
@@ -23,8 +23,12 @@ const StudentSidebarComp = ({ children, authUser }) => (
     <Grid container className='admin-container student-container'>
         <Grid item xs={12}><StudentHeader /></Grid>
         <Grid container item xs={12} className='content'>
-            <Hidden only="xs"><Grid item smUp sm={3}><StudentSidebar authUser={authUser} /></Grid></Hidden>
-            <Grid item xs={12} sm={9}>{children}</Grid>
+            <Hidden only="xs">
+                <Grid item smUp sm={2}>
+                    <StudentSidebar authUser={authUser} />
+                </Grid>
+            </Hidden>
+            <Grid item xs={12} sm={10}>{children}</Grid>
         </Grid>
         <Grid item xs={12}><StudentFooter userAgent={authUser} /></Grid>
     </Grid>
@@ -40,7 +44,6 @@ export default (OriginalComponent) => (class BaseComponent extends Component {
                         CustomComp = AdminSidebarComp;
                     else if (isStudent(authUser))
                         CustomComp = StudentSidebarComp;
-                    console.log(authUser)
                     return (
                         <CustomComp authUser={authUser}>
                             <OriginalComponent {...this.props} />

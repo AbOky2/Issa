@@ -10,7 +10,7 @@ export default ({ user, isAuth, logOut }) => {
         if (isAdmin(user))
             return <AdminRoutes />
         else (isStudent(user))
-        return <StudentRoutes />
+        return <StudentRoutes user={user} />
     }
     return (<PublicRoutes logOut={logOut} />)
 }

@@ -30,6 +30,9 @@
 .admin-content-container .content-container .img-container {
     min-height: initial;
 }
+.admin-content-container .content-container .btn-container {
+    height: fit-content;
+}
 .content-container .img-container img {
     display: block;
 }

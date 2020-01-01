@@ -5,7 +5,7 @@ import './card.css'
 
 const Card = ({ data = {}, events = {} }) => (
     <Grid container item xs={12} className='spacing-wrapper'>
-        <Grid item container className='content'>
+        <Grid item container className='content' justify="space-around">
             <Grid item container className='img-container' alignItems='center'>
                 <img src={data.picture ? data.picture[0] : null} alt='Lot' />
             </Grid>
