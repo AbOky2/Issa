@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Header from './components/partials/header/header'
 import './App.css';
 import { AuthContext } from './context/auth';
-
 import { getToken, getUser, setUser, setToken } from './utils/storage'
 import { getCurrentUser, logout } from './services/authService'
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
@@ -10,22 +10,29 @@ const NoMatch = ({ location }) => (
         <h3>No match for <code>{location.pathname}</code></h3>
     </div>
 )
+const publicRouteList = [
+    { path: '/', component: PageHome },
+    { path: '/login', component: PageLogin },
+]
 
-const PublicRoute = () => (
-    <Switch>
-        <Route exact path="/">
-            <PageHome />
-        </Route>
-        <Route exact path="/login">
-            <PageLogin />
-        </Route>
-        <Route path='*' component={NoMatch} />
-    </Switch>
-);
+const PublicRoute = () => (publicRouteList.map(({ path, component }, i) => (<Route key={i} exact path={path} component={component} />)))
+// const PublicRoute = () => (
+//     <>
+//         <Route exact path="/">
+//             <PageHome />
+//         </Route>
+//         <Route exact path="/login">
+//             <PageLogin />
+//         </Route>
+//         <Route path='*' component={NoMatch} />
+//     </>
+// );
 
 export default () => (
     <Router>
-        <PublicRoute />
+        <Switch>
+            <PublicRoute />
+        </Switch>
     </Router>
 );
 export { PublicRoute }

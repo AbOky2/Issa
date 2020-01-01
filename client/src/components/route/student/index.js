@@ -11,7 +11,7 @@ export default () => (
     <Router>
         <Switch>
             <PrivateRoute exact path="/dashboard" component={() => <PageBuy role='roomer' />} />
+            <PublicRoute />
         </Switch>
-        <PublicRoute />
     </Router>
 );

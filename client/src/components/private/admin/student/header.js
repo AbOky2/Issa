@@ -10,9 +10,16 @@ import Profile from './profile'
 import '../header.css'
 
 const LogOUtInfo = ({ logOut, className = '' }) => (
-    <Grid className={className}>
-        <Grid className='help'><span>Aide</span></Grid>
-        <Grid onClick={logOut} className='pointer'>Déconnexion</Grid>
+    <Grid container className={`help ${className}`} justify='flex-end'>
+        <div>
+            <img src={LoginIcon} style={{ width: 16 }} />
+            <span>Aide</span>
+        </div>
+        <div onClick={logOut} className='pointer'>
+            <img src={LoginIcon} style={{ width: 16 }} />
+
+            <span>Déconnexion</span>
+        </div>
     </Grid>
 )
 
@@ -25,7 +32,7 @@ const Header = () => {
 
     return (
         <header className='student-header'>
-            <Grid container xs={12} alignItems='center' className='menu-container'>
+            <Grid container alignItems='center' className='menu-container'>
                 <Grid container item xs={6} alignItems='center'>
                     <div className='logo_container'>
                         <Link to='/dashboard'><img src={Logo} alt='Logo' /></Link>

@@ -24,8 +24,18 @@ header {
 .menu-container {
   height: 64px;
 }
-header .help {
-  padding-right: 36px;
+header .help > div {
+  padding-left: 36px;
+}
+header .help img {
+  display: inline-block;
+  width: 15px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+header .help span {
+  display: inline-block;
+  vertical-align: middle;
 }
 .student-header {
   height: 80px;
@@ -56,5 +66,18 @@ header .help {
   }
   .profile-logout-container {
       padding-top: 45px;
+  }
+  .help {
+    flex-direction: column-reverse;
+  }
+  .help > div {
+    display: block;
+    width: 100%;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+  .help > div img {
+    display: inline-block;
+    padding-right: 8px;
   }
 }
