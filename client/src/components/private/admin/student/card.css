@@ -27,6 +27,9 @@
     background-color: white;
     min-height: 133px;
 }
+.admin-content-container .content-container .img-container {
+    min-height: initial;
+}
 .content-container .img-container img {
     display: block;
 }

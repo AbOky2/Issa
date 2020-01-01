@@ -22,9 +22,9 @@ const Column = ({ src, text }) => (
 
 export default ({ userAgent: { firstName = '', lastName = '' } = {} }) => (
     <footer>
-        <Grid container xs={12} alignItems="space-between">
+        <Grid container xs={12} alignItems="center">
             <Grid item className='agent-logo'>
-                <Grid item container>
+                <Grid item container alignItems="center">
                     <Grid item ><img src={Logo} alt='Logo' /></Grid>
                     <Grid item>
                         <p>Ton agent Kit le Nid</p>
