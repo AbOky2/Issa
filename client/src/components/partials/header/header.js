@@ -1,9 +1,9 @@
 import React from "react";
-import './header.css'
 import AdminRoutes from '../../route/admin'
 import StudentRoutes from '../../route/student'
 import PublicRoutes from '../../route/public'
 import { isAdmin, isStudent } from '../../../utils/user'
+import './header.css'
 
 export default ({ user, isAuth, logOut }) => {
     if (isAuth) {

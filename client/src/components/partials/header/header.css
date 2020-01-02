@@ -1,2 +1,26 @@
-header {
+/* list-menu */
+.list-menu > div {
+    border: solid 1px #f2f2f2;
+    border-left: none;
+    padding: 45px 0;
+    position: relative;
+}
+.list-menu > div.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: calc(100% - 10px);
+    left: 5px;
+    border-radius: 20px;
+    height: 4px;
+    background-color: #0fc1a9;
+}
+.list-menu > div:nth-child(1) {
+    border-left: solid 1px #f2f2f2;
+}
+.list-menu h3 {
+    padding-left: 15px;
+}
+.list-menu img {
+    width: 24px;
 }
