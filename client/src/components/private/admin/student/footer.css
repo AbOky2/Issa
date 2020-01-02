@@ -59,3 +59,17 @@ footer .icon-list-container p {
   color: #a9b3ba;
   margin: 10px 0 0 0;
 }
+@media screen and (max-width: 400px) {
+  footer {
+    padding: 16px 20px;
+  }
+  footer .icon-list-container p {
+    display: none;
+  }
+  footer .agent-logo {
+    margin-right: 0;
+  }
+  footer h3 {
+    padding: 8px 0 0;
+  }
+}

@@ -22,23 +22,23 @@ const Column = ({ src, text }) => (
 
 export default ({ userAgent: { firstName = '', lastName = '' } = {} }) => (
     <footer>
-        <Grid container xs={12} alignItems="center">
-            <Grid item className='agent-logo'>
+        <Grid container alignItems="center">
+            <Grid item className='agent-logo' xs={3} sm='auto'>
                 <Grid item container alignItems="center">
-                    <Grid item ><img src={Logo} alt='Logo' /></Grid>
-                    <Grid item>
-                        <p>Ton agent Kit le Nid</p>
+                    <Grid item><img src={Logo} alt='Logo' /></Grid>
+                    <Grid item className='agent-info'>
+                        <p className='mobile-hide'>Ton agent Kit le Nid</p>
                         <h3>{`${firstName} ${firstName}`}</h3>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item className='icon-list-container'>
+            <Grid item className='icon-list-container' xs={3} sm='auto'>
                 <Column src={PhoneIcon} text='Téléphone' />
             </Grid>
-            <Grid item className='icon-list-container bordered'>
+            <Grid item className='icon-list-container bordered' xs={3} sm='auto'>
                 <Column src={EmailIcon} text='Mail' />
             </Grid>
-            <Grid item className='icon-list-container'>
+            <Grid item className='icon-list-container' xs={3} sm='auto'>
                 <Column src={TchatIcon} text='Chat' />
             </Grid>
         </Grid>

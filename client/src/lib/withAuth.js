@@ -24,7 +24,7 @@ const StudentSidebarComp = ({ children, authUser }) => (
         <Grid item xs={12}><StudentHeader /></Grid>
         <Grid container item xs={12} className='content'>
             <Hidden only="xs">
-                <Grid item smUp sm={2}>
+                <Grid item smup='true' sm={2}>
                     <StudentSidebar authUser={authUser} />
                 </Grid>
             </Hidden>
