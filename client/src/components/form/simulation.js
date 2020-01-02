@@ -6,7 +6,6 @@ import Btn from '../elements/btn'
 
 const defaultState = {
     errors: [],
-    submitable: false,
     buy_or_rommer: 'two',
     have_credit: 'true'
 }
@@ -17,16 +16,18 @@ export default () => {
 
     const resetState = () => setState(defaultState);
 
+    const errors = FormValidator({ fields: forData.create.field, state });
+    const submitable = errors.length == 0;
     const onClick = async () => {
-        let errors = FormValidator({ fields: forData.create.field, state });
+        if (!submitable)
+            return handleChange('errors', errors);
 
-        if (errors.length)
-            handleChange('errors', errors);
-
+        handleChange('errors', errors)
         try {
         } catch (err) {
         }
     }
+
     return (
         <Grid container item xs={12} justify="flex-start">
             <FormGenerator
@@ -37,7 +38,7 @@ export default () => {
                 settings={forData.create.settings}
             >
 
-                <Btn text='Continuer' greenColor className={state.submitable ? '' : 'disable'} onClick={onClick} />
+                <Btn text='Continuer' greenColor className={submitable ? '' : 'disable'} onClick={onClick} />
             </FormGenerator>
         </Grid>
     )
