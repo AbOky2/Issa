@@ -27,6 +27,69 @@
 .offers-container {
     padding-right: 18px;
 }
+.buyer .steps-container {
+    border-radius: 9px;
+    background-color: #233952;
+    padding: 20px 17px;
+}
+.buyer .steps-container h2 {
+    font-family: DMSans;
+    font-size: 17px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin: 20px 0 30px;
+}
+.buyer .subscription-container {
+    padding: 0 20px;
+}
+.buyer .subscription-container > div {
+    border-radius: 9px;
+    border: solid 1px #c7cfd6;
+    background-color: #e9eaee;
+    padding: 40px 25px;
+}
+.buyer .subscription-container h2 {
+    padding: 25px 0;
+}
+.buyer .list-style-index {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: solid 1.6px #ffffff;
+    border-radius: 50px;
+    background-color: #06ae88;
+    text-align: center;
+    font-size: 8.8px;
+    font-family: Rubik;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+    padding-top: 3px;
+}
+.buyer .list-style-content {
+    width: calc(100% - 25px);
+    font-family: Rubik;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    padding-left: 10px;
+    text-align: left;
+}
+.buyer .list-style-content p {
+    color: #c7def8;
+}
+
 @media screen and (max-width: 400px) {
     .content-container .list {
         max-width: calc(50% - 7px);

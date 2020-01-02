@@ -9,6 +9,13 @@ import Btn from '../../../components/elements/btn'
 
 import './index.css'
 
+const ListStyle = ({ index, children }) => (
+    <Grid container className='list-style' alignItems='center'>
+        <Grid item className='list-style-index'><span>{index}</span></Grid>
+        <Grid item className='list-style-content'>{children}</Grid>
+    </Grid>
+)
+
 const Dashboard = () => {
     const [state, setState] = useState({
         properties: [],
@@ -44,19 +51,31 @@ const Dashboard = () => {
 
     const data = fields.map(({ name, field }) => [name, state.user[field]])
 
+    const infoLists = ['Ton conseiller prendra contact avec toi.', 'Profites en pour completer ton profil !', 'Regarde aussi nos offres de logements.', 'Découvre nos différents guide d’achats.'];
+
     return (
         <AdminContentWrapper className='no-bg no-box-shadow buyer'>
             <Grid><h2 className='student-section-title text-left'>VOTRE DOSSIER</h2></Grid>
 
             <Grid container direction="row" justify="space-between" alignItems='stretch'>
-                <Grid item container xs={12} sm={4} className='offers-container'>
-                    <h2 className='text-center fullwidth'>Ma demande  de logement</h2>
-                    <CustomTable data={data} />
-                    <Btn text='Mettre à jour ma demande' greenColor />
-                    {/* <Offers data={data} /> */}
+                <Grid item container xs={12} sm={7}>
+                    <Grid item xs={12} sm={5} className='steps-container'>
+                        <h2 className='text-center fullwidth'>Votre demande est prise en compte !</h2>
+                        {infoLists.map((elem, index) =>
+                            <ListStyle key={index} index={index + 1}>
+                                <p>{elem}</p>
+                            </ListStyle>
+                        )}
+                    </Grid>
+                    <Grid item container xs={12} sm={7} className='subscription-container'>
+                        <div>
+                            <h2 className='text-center fullwidth'>Ma demande  de logement</h2>
+                            <CustomTable data={data} />
+                            <Btn text='Mettre à jour ma demande' greenColor />
+                        </div>
+                    </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={6}>
-                    {/* <UpdateCard /> */}
+                <Grid container item xs={12} sm={5}>
                 </Grid>
             </Grid>
 
