@@ -3,6 +3,8 @@ import { Grid } from '@material-ui/core'
 import { useAuth } from '../../../../context/auth';
 import Logo from '../../../../assets/img/logo.png'
 import LoginIcon from '../../../../assets/img/icons/profile.png'
+import LogoutIcon from '../../../../assets/img/icons/logout.png'
+import HelpIcon from '../../../../assets/img/icons/help.png'
 import { Link } from "react-router-dom";
 import Drawer from '../../../elements/drawer'
 import Divider from '@material-ui/core/Divider';
@@ -12,11 +14,11 @@ import '../header.css'
 const LogOUtInfo = ({ logOut, className = '' }) => (
     <Grid container className={`help ${className}`} justify='flex-end'>
         <div>
-            <img src={LoginIcon} style={{ width: 16 }} />
+            <img src={HelpIcon} />
             <span>Aide</span>
         </div>
         <div onClick={logOut} className='pointer'>
-            <img src={LoginIcon} style={{ width: 16 }} />
+            <img src={LogoutIcon} />
 
             <span>Déconnexion</span>
         </div>

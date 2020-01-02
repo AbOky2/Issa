@@ -29,7 +29,8 @@ header .help > div {
 }
 header .help img {
   display: inline-block;
-  width: 15px;
+  height: 12px;
+  width: auto;
   padding-right: 10px;
   vertical-align: middle;
 }

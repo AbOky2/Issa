@@ -83,7 +83,7 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
                         const inputDefaultProps = elemProps && elemProps.defaultValue ? elemProps.defaultValue : '';
                         const error = state.errors && state.errors.includes(elem.name);
                         const elemSettings = settings
-                        let containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : {}
+                        let containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : { paddingTop: 10, paddingBottom: 10 }
 
                         return (
                             <Grid key={key} item {...dimentions} style={containerStyle} className='no-left-right-padding'>

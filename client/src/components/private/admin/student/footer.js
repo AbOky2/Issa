@@ -4,7 +4,7 @@ import { useAuth } from '../../../../context/auth';
 import Logo from '../../../../assets/img/picture.png'
 import { Link } from "react-router-dom";
 import EmailIcon from '../../../../assets/img/icons/email.png'
-import TchatIcon from '../../../../assets/img/icons/tchat.png'
+import TchatIcon from '../../../../assets/img/icons/chat.png'
 import PhoneIcon from '../../../../assets/img/icons/phone.png'
 
 import './footer.css'
