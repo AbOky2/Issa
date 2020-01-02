@@ -1,0 +1,41 @@
+.radio-container label {
+    display: block;
+    position: relative;
+    border-radius: 3px;
+    border: solid 1px #c7cfd6;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 10px;
+    width: 50%;
+    box-sizing: border-box;
+}
+.radio-container label:nth-child(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+}
+.radio-container label:nth-child(2) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}
+.radio-container label .radio-checker-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+.radio-container label.checked {
+    background-color: #06ae88;
+    border: solid 1px #06ae88;
+    color: white;
+}
+.checker-container {
+    display: none!important;
+}
+.no-left-right-padding {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}

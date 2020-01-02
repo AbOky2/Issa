@@ -12,6 +12,7 @@ import Checkbox from './checkbox';
 import Date from './date';
 import TextField from './text-field'
 import { isValideEmail } from '../../utils/converAndCheck'
+import './index.css'
 /*
 
     <FormGenerator
@@ -61,14 +62,14 @@ const styles = theme => ({
 });
 
 
-const FormGenerator = ({ fields, classes, state, onChange, settings = {}, errors = [] }) => {
+const FormGenerator = ({ children, fields, classes, state, onChange, settings = {}, errors = [] }) => {
 
     const textTypes = ['input', 'text', 'password', 'email', 'number', 'textarea', 'date', 'datetime-local'],
         selectTypes = ['select'],
         spacing = 4,
         defaultDimension = { xs: 12 };
 
-    const handleChange = (name) => ({ target: { value } }) => onChange(name, value)
+    const handleChange = name => ({ target: { value } }) => onChange(name, value)
     const showLabel = settings && settings.showLabel;
     const labelSpacing = showLabel ? settings.showLabel : defaultDimension;
 
@@ -82,11 +83,10 @@ const FormGenerator = ({ fields, classes, state, onChange, settings = {}, errors
                         const inputDefaultProps = elemProps && elemProps.defaultValue ? elemProps.defaultValue : '';
                         const error = state.errors && state.errors.includes(elem.name);
                         const elemSettings = settings
-                        const containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : {}
-                        const listStyle = settings.listStyle || {};
+                        let containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : {}
 
                         return (
-                            <Grid key={key} item {...dimentions} style={containerStyle} style={listStyle}>
+                            <Grid key={key} item {...dimentions} style={containerStyle} className='no-left-right-padding'>
                                 {textTypes.includes(elem.type) && (
                                     <TextField
                                         error={error}
@@ -138,16 +138,22 @@ const FormGenerator = ({ fields, classes, state, onChange, settings = {}, errors
                                         </ Grid>
                                     )
                                     || elem.type == 'radio' && (
-                                        <Grid container>
-                                            {showLabel && <Grid item {...labelSpacing}>{elem.label}</Grid>}
+                                        <Radio
 
-                                            <Grid item {...labelSpacing}>
+                                            error={error}
+                                            onChange={handleChange}
+                                            showLabel={showLabel}
+                                            value={state[elem.name] || inputDefaultProps}
+                                            {...{ ...elem, ...elemSettings }}
+                                        // list={elem.list}
 
-                                                <div>
-                                                    <Radio name={elem.name} label={showLabel ? '' : elem.label} value={state[elem.name]} list={elem.list} onChange={onChange} {...elemProps} />
-                                                </div>
-                                            </ Grid>
-                                        </ Grid>
+                                        // name={elem.name}
+                                        // label={showLabel ? '' : elem.label}
+                                        // value={state[elem.name]}
+                                        // list={elem.list} onChange={onChange} {...elemProps}
+                                        />
+                                        // <Radio name={elem.name} label={showLabel ? '' : elem.label} value={state[elem.name]} list={elem.list} onChange={onChange} {...elemProps} />
+
                                     )
                                     || elem.type == 'checkbox' && (
                                         <Checkbox name={elem.name} label={elem.label} value={state[elem.name] || []} onChange={onChange} list={elem.list} {...elemProps} />
@@ -172,6 +178,7 @@ const FormGenerator = ({ fields, classes, state, onChange, settings = {}, errors
                     )}
                 </Grid>
             </FormControl>
+            {children}
         </form>
     )
 }

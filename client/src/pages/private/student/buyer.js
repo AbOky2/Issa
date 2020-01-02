@@ -6,7 +6,7 @@ import { getProperties } from '../../../services/studentService'
 import Card from '../../../components/private/admin/student/card'
 import CustomTable from '../../../components/elements/table'
 import Btn from '../../../components/elements/btn'
-
+import FormSimulation from '../../../components/form/simulation'
 import './index.css'
 
 const ListStyle = ({ index, children }) => (
@@ -69,13 +69,15 @@ const Dashboard = () => {
                     </Grid>
                     <Grid item container xs={12} sm={7} className='subscription-container'>
                         <div>
-                            <h2 className='text-center fullwidth'>Ma demande  de logement</h2>
+                            <h2 className='text-center fullwidth'>Ma demande de logement</h2>
                             <CustomTable data={data} />
                             <Btn text='Mettre à jour ma demande' greenColor />
                         </div>
                     </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={5}>
+                <Grid container item xs={12} sm={5} className='simulation-container'>
+                    <h2 className='text-center fullwidth'>Simuler mon prêt</h2>
+                    <FormSimulation />
                 </Grid>
             </Grid>
 

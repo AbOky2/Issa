@@ -129,7 +129,7 @@ const Dashboard = () => {
                 onClose={handleClose}
                 onClick={onClick}
             >
-                <Grid container item xs={12} justify="flex-start" toto='toto'>
+                <Grid container item xs={12} justify="flex-start">
                     <FormGenerator
                         fields={forData.createLot.field}
                         state={state}

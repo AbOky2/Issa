@@ -43,7 +43,6 @@ const LableWrapper = ({ value, label, labelPosition = '', icon, fullIcon, withGr
 }
 
 const FormElementWrapper = ({ value, showLabel = false, icon, fullIcon, withGrayScaleIcon, ...props }) => {
-
     if (showLabel)
         return (<LableWrapper {...props} icon={icon} />)
 

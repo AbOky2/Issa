@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { FormElementWrapper } from './index'
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-
+import './index.css'
 
 const useStyles = makeStyles({
     root: {
@@ -17,6 +17,7 @@ const useStyles = makeStyles({
         },
     },
     icon: {
+        position: 'absolute',
         borderRadius: '50%',
         width: 16,
         height: 16,
@@ -57,11 +58,11 @@ function StyledRadio(props) {
 
     return (
         <Radio
-            className={classes.root}
+            className={clsx(classes.root, 'checker-container')}
             disableRipple
             color="default"
             checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-            icon={<span className={classes.icon} />}
+            icon={<span className={classes.icon} toto='toto' />}
             {...props}
         />
     );
@@ -71,34 +72,32 @@ const styles = {
     root: {
         display: 'flex',
     },
-    // radio: {
-    //     '&$checked': {
-    //         color: blue
-    //     }
-    // },
+    radio: {
+        '&$checked': {
+            color: 'white',
+            backgroundColor: '#06ae88'
+        }
+    },
 };
 
-const RadioType = ({ classes, list, label, showLabel, labelPosition, value, onChange, name = '' }) => {
-    const handleChange = ({ target: { value } }) => onChange(name, value);
-
-    return (
-        <FormElementWrapper label={label} showLabel={showLabel} labelPosition={labelPosition}>
-
-            <FormControl component="fieldset" className={classes.formControl}>
-                <RadioGroup onChange={handleChange} value={value + ''} row>
-                    {list && list.map((elem, key) => (
-                        <FormControlLabel key={key} value={elem.value + ''}
-                            control={
-                                <StyledRadio classes={{ root: classes.radio, checked: classes.checked }} />
-                            }
-                            label={elem.name} />
-                    )
-                    )}
-                </RadioGroup>
-            </FormControl>
-        </FormElementWrapper>
-    )
-}
+const RadioType = ({ classes, list, label, showLabel, labelPosition, value, onChange, name = '' }) => (
+    <FormElementWrapper value={value} label={label} showLabel={showLabel} labelPosition={labelPosition}>
+        <FormControl component="fieldset" className={clsx(classes.formControl, 'fullwidth')}>
+            <RadioGroup onChange={onChange(name)} value={value + ''} row className='radio-container'>
+                {list && list.map((elem, key) => (
+                    <FormControlLabel key={key} value={elem.value + ''}
+                        control={
+                            <StyledRadio classes={{ root: classes.radio, checked: classes.checked }} />
+                        }
+                        className={elem.value == value ? 'checked ' : ''}
+                        label={elem.name}
+                    />
+                )
+                )}
+            </RadioGroup>
+        </FormControl>
+    </FormElementWrapper>
+)
 
 RadioType.propTypes = {
     list: PropTypes.arrayOf(PropTypes.object).isRequired,

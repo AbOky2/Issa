@@ -121,7 +121,7 @@ div.btn-container {
   width: 100%;
 }
 .btn-container.auto {
-  width: auto;
+  width: fit-content;
   margin-left: auto;
   margin-right: auto;
 }
@@ -140,6 +140,10 @@ div.btn-container {
 .btn-container.opaqueGreenColor a ,
 .btn-container.opaqueGreenColor span {
   color: #06ae88;
+}
+.btn-container.disable {
+  opacity: .7;
+  cursor: not-allowed;
 }
 
 .mobile-show {
