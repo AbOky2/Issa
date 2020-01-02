@@ -8,6 +8,7 @@
     padding: 10px;
     width: 50%;
     box-sizing: border-box;
+    color: #c7cfd6;
 }
 .radio-container label:nth-child(1) {
     border-top-right-radius: 0;
@@ -38,4 +39,10 @@
 .no-left-right-padding {
     padding-left: 0!important;
     padding-right: 0!important;
+}
+form .form-element-row input {
+    color: #708093;
+}
+form .label-container {
+    padding-bottom: 5px;
 }

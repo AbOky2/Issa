@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid } from '@material-ui/core'
-import { useAuth } from '../../../../context/auth';
 import Logo from '../../../../assets/img/picture.png'
 import { Link } from "react-router-dom";
 import EmailIcon from '../../../../assets/img/icons/email.png'

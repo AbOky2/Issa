@@ -14,11 +14,11 @@ import '../header.css'
 const LogOUtInfo = ({ logOut, className = '' }) => (
     <Grid container className={`help ${className}`} justify='flex-end'>
         <div>
-            <img src={HelpIcon} />
+            <img src={HelpIcon} alt='' />
             <span>Aide</span>
         </div>
         <div onClick={logOut} className='pointer'>
-            <img src={LogoutIcon} />
+            <img src={LogoutIcon} alt='' />
 
             <span>Déconnexion</span>
         </div>

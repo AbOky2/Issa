@@ -8,7 +8,7 @@ const defaultDimension = { xs: 12, ms: 12 }
 
 const IconDisplay = ({ src, fullIcon, withGrayScaleIcon }) => (
     <div className={`${fullIcon ? 'fullIcon' : ''} ${withGrayScaleIcon ? 'withGrayScaleIcon' : ''}`}>
-        <img src={src} className='elem-icon' />
+        <img src={src} className='elem-icon' alt='' />
 
         <style jsx>{`
             .fullIcon {
@@ -30,10 +30,12 @@ const LableWrapper = ({ value, label, labelPosition = '', icon, fullIcon, withGr
         labelDimension.xs = 12
     if (labelPosition.includes && labelPosition.includes('left'))
         className = 'text-left'
+    // for all mobile
+    labelDimension.xs = 12
 
     return (
         <Grid container justify="space-between" alignItems="center" alignContent='center'>
-            <Grid item {...labelDimension} className={className}>
+            <Grid item {...labelDimension} className={`label-container ${className}`}>
                 {icon && <IconDisplay src={icon} fullIcon={fullIcon} withGrayScaleIcon={withGrayScaleIcon && !value} />}
                 {label}
             </Grid>

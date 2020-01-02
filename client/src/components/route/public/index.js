@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
@@ -16,17 +16,6 @@ const publicRouteList = [
 ]
 
 const PublicRoute = () => (publicRouteList.map(({ path, component }, i) => (<Route key={i} exact path={path} component={component} />)))
-// const PublicRoute = () => (
-//     <>
-//         <Route exact path="/">
-//             <PageHome />
-//         </Route>
-//         <Route exact path="/login">
-//             <PageLogin />
-//         </Route>
-//         <Route path='*' component={NoMatch} />
-//     </>
-// );
 
 export default () => (
     <Router>

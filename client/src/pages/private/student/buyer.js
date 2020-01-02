@@ -7,6 +7,8 @@ import Card from '../../../components/private/admin/student/card'
 import CustomTable from '../../../components/elements/table'
 import Btn from '../../../components/elements/btn'
 import FormSimulation from '../../../components/form/simulation'
+import WenIcon from '../../../assets/img/icons/wen.png'
+import ClapIcon from '../../../assets/img/icons/clap.png'
 import './index.css'
 
 const ListStyle = ({ index, children }) => (
@@ -15,7 +17,16 @@ const ListStyle = ({ index, children }) => (
         <Grid item className='list-style-content'>{children}</Grid>
     </Grid>
 )
-
+const TitleWithImage = ({ text, img }) => (
+    <Grid container className='title-with-image mobile-reverse'>
+        <Grid item className='img-container fullwidth'>
+            <img src={img} className='mobile-fullwidth' />
+        </Grid>
+        <Grid item className='text-container fullwidth'>
+            <h2 className='text-center mobile-text-left fullwidth'>{text}</h2>
+        </Grid>
+    </Grid>
+)
 const Dashboard = () => {
     const [state, setState] = useState({
         properties: [],
@@ -60,7 +71,10 @@ const Dashboard = () => {
             <Grid container direction="row" justify="space-between" alignItems='stretch'>
                 <Grid item container xs={12} sm={7}>
                     <Grid item xs={12} sm={5} className='steps-container'>
-                        <h2 className='text-center fullwidth'>Votre demande est prise en compte !</h2>
+                        <TitleWithImage
+                            text={<span>Votre demande <br />est prise en compte !</span>}
+                            img={ClapIcon}
+                        />
                         {infoLists.map((elem, index) =>
                             <ListStyle key={index} index={index + 1}>
                                 <p>{elem}</p>
@@ -68,11 +82,17 @@ const Dashboard = () => {
                         )}
                     </Grid>
                     <Grid item container xs={12} sm={7} className='subscription-container'>
-                        <div>
-                            <h2 className='text-center fullwidth'>Ma demande de logement</h2>
+                        <Grid item container>
+                            {/* <h2 className='text-center fullwidth'>Ma demande de logement</h2> */}
+                            <TitleWithImage
+                                text='Ma demande de logement'
+                                img={WenIcon}
+                            />
                             <CustomTable data={data} />
-                            <Btn text='Mettre à jour ma demande' greenColor />
-                        </div>
+                            <Grid item container alignItems='flex-end'>
+                                <Btn text='Mettre à jour ma demande' greenColor />
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid container item xs={12} sm={5} className='simulation-container'>
@@ -89,7 +109,7 @@ const Dashboard = () => {
                     </Grid>
                 )}
             </Grid>
-        </AdminContentWrapper>
+        </AdminContentWrapper >
     )
 }
 

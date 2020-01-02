@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import Sidebar from '../components/private/admin/sidebar'
 import StudentSidebar from '../components/private/admin/student/sidebar'
 import AdminHeader from '../components/private/admin/header'

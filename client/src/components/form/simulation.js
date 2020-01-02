@@ -14,10 +14,10 @@ export default () => {
 
     const handleChange = (name, value) => setState({ ...state, [name]: value });
 
-    const resetState = () => setState(defaultState);
+    // const resetState = () => setState(defaultState);
 
     const errors = FormValidator({ fields: forData.create.field, state });
-    const submitable = errors.length == 0;
+    const submitable = errors.length === 0;
     const onClick = async () => {
         if (!submitable)
             return handleChange('errors', errors);

@@ -51,7 +51,7 @@
     border-radius: 9px;
     border: solid 1px #c7cfd6;
     background-color: #e9eaee;
-    padding: 40px 25px;
+    padding: 25px 40px;
 }
 .buyer .subscription-container h2 {
     margin-top: 0;
@@ -104,7 +104,7 @@
     color: var(--dusk);
 }
 .buyer .simulation-container {
-    padding: 40px 25px;
+    padding: 25px 40px;
     border-radius: 9px;
     border: solid 1px #c7cfd6;
     background-color: #ffffff;
@@ -125,5 +125,24 @@
     }
     div.update-profile {
         margin-bottom: 20px;
+    }
+    .buyer .subscription-container {
+        padding: 0;
+    }
+    .buyer .steps-container {
+        margin: 16px 0;
+    }
+    .buyer .simulation-container {
+        margin-bottom: 16px;
+    }
+    .title-with-image {
+        align-items: center;
+    }
+    .title-with-image .img-container {
+        width: 35px;
+    }
+    .title-with-image .text-container {
+        width: calc(100% - 35px);
+        padding-right: 10px;
     }
 }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid } from '@material-ui/core'
-import ReactPaginate from 'react-paginate';
+// import ReactPaginate from 'react-paginate';
 import './user-list.css'
-import moment from 'moment'
+// import moment from 'moment'
 
 const Header = ({ headerList = [] }) => (
     <Grid container item alignItems="center" justify="center" className='user-list-header spacing'>
@@ -79,7 +79,7 @@ const UserList = ({ contentList = [], headerList }) => {
                             <span className='tiny-icon icon-circle'></span>
                         </Grid>
                         <Grid item>
-                            <span>{`${elem.studiesLevel}an${elem.studiesLevel == 1 ? '' : 's'}`}</span>
+                            <span>{`${elem.studiesLevel}an${elem.studiesLevel === '1' ? '' : 's'}`}</span>
                         </Grid>
                     </Grid>
                 </Grid>

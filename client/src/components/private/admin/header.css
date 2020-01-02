@@ -79,6 +79,8 @@ header .help span {
   }
   .help > div img {
     display: inline-block;
+    width: auto;
+    height: 12px;
     padding-right: 8px;
   }
 }

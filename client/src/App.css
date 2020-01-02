@@ -142,7 +142,7 @@ div.btn-container {
   color: #06ae88;
 }
 .btn-container.disable {
-  opacity: .7;
+  opacity: .5;
   cursor: not-allowed;
 }
 
@@ -153,7 +153,12 @@ div.btn-container {
   .mobile-auto {
     width: auto;
   }
-  
+  .mobile-fullwidth {
+    width: 100%;
+  }
+  .mobile-text-left {
+    text-align: left;
+  }
   .mobile-none, .mobile-hide {
     display: none!important;
   }
@@ -162,5 +167,11 @@ div.btn-container {
   }
   .mobile-text-left {
     text-align: left!important;
+  }
+  .mobile-reverse {
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
+    display: flex;
+    flex-direction: row-reverse;
   }
 }
