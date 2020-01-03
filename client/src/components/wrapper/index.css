@@ -12,6 +12,9 @@
   display: flex;
   flex-direction: row-reverse;
 }
+.public-content-container {
+  min-height: calc(100vh - 100px);
+}
 
 
 @media screen and (max-width: 400px) {

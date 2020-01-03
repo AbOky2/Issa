@@ -5,5 +5,8 @@ import './index.css'
 const AdminContentWrapper = ({ children, className = '' }) => (
     <Grid className={`admin-content-container ${className}`}>{children}</Grid>
 )
+const PublicContentWrapper = ({ children, className = '' }) => (
+    <Grid className={`public-content-container ${className}`}>{children}</Grid>
+)
 
-export { AdminContentWrapper }
+export { AdminContentWrapper, PublicContentWrapper }

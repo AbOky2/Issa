@@ -6,10 +6,14 @@ export default ({ menus, contents, clickableMenu = false }) => {
     const [activeStep, setActiveStep] = useState(0);
 
     const handleNext = () => {
+        if (activeStep == menus.length - 1)
+            return;
         setActiveStep(prevActiveStep => prevActiveStep + 1);
     };
 
-    const handleBack = () => {
+    const handlePrev = () => {
+        if (activeStep == 0)
+            return;
         setActiveStep(prevActiveStep => prevActiveStep - 1);
     };
 
@@ -18,16 +22,13 @@ export default ({ menus, contents, clickableMenu = false }) => {
     };
 
     const CustomComp = contents[activeStep] || contents[0];
-
     return (
         <Grid>
             <Grid className='stepper-header'>
                 <DisplayMenu menus={menus} active={activeStep} onClick={clickableMenu ? handleNavigate : false} />
             </Grid>
 
-            <Grid className='stepper-content'>
-                <CustomComp handleBack={handleBack} handleNext={handleNext} />
-            </Grid>
+            <CustomComp handlePrev={handlePrev} handleNext={handleNext} />
         </Grid>
     )
 }

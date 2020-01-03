@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="186px" height="120px" viewBox="0 0 186 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>middle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="99.9764318%" x2="50%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-3">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-4">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-5">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-6">
+            <stop stop-color="#808080" stop-opacity="0.25" offset="0%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.12" offset="54%"></stop>
+            <stop stop-color="#808080" stop-opacity="0.1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Formulaire-sign-up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Formulaire_loc_logement3" transform="translate(-480.000000, -439.000000)" fill-rule="nonzero">
+            <g id="middle" transform="translate(480.000000, 439.000000)">
+                <g id="Group" opacity="0.7" transform="translate(9.428571, 34.285714)" fill="url(#linearGradient-1)">
+                    <polygon id="Path" points="166.285714 84.8571429 0 84.8571429 1.15123484 7.78941332 48.7073916 0 115.941763 0 165.134479 5.51680313"></polygon>
+                </g>
+                <polygon id="Path" fill="#EEEEEE" points="174 120 12 120 13.1535079 43.8914405 58.6492147 36 126.68356 36 172.846492 41.5890632"></polygon>
+                <g id="Group" opacity="0.7" transform="translate(61.714286, 6.000000)" fill="url(#linearGradient-2)">
+                    <rect id="Rectangle" x="0" y="0.857142857" width="12" height="24.8571429"></rect>
+                </g>
+                <g id="Group" opacity="0.7" transform="translate(0.000000, 36.000000)" fill="url(#linearGradient-3)">
+                    <polygon id="Path" points="62.2353293 25.6563065 62.2353293 0 9.03480387 0 0 25.6563065 0 28.2857143 62.5714286 28.2857143 62.5714286 25.6563065"></polygon>
+                </g>
+                <polygon id="Path" fill="#38D39F" points="61.7142857 61.7142857 0 61.7142857 8.95742038 36 61.7142857 36"></polygon>
+                <polygon id="Path" fill="#000000" opacity="0.1" points="61.7142857 61.7142857 0 61.7142857 8.95742038 36 61.7142857 36"></polygon>
+                <rect id="Rectangle" fill="#38D39F" x="0" y="61.7142857" width="61.7142857" height="1.71428571"></rect>
+                <g id="Group" opacity="0.7" transform="translate(121.714286, 35.142857)" fill="url(#linearGradient-4)">
+                    <polygon id="Path" points="54.3899712 0.857142857 1.19232665 0.857142857 1.19232665 25.7327225 0.857142857 25.7327225 0.857142857 28.2857143 63.4285714 28.2857143 63.4285714 25.7327225"></polygon>
+                </g>
+                <polygon id="Path" fill="#38D39F" points="121.714286 61.7142857 183.428571 61.7142857 174.471151 36 121.714286 36"></polygon>
+                <polygon id="Path" fill="#000000" opacity="0.1" points="121.714286 61.7142857 183.428571 61.7142857 174.471151 36 121.714286 36"></polygon>
+                <rect id="Rectangle" fill="#38D39F" transform="translate(152.571429, 62.571429) rotate(-180.000000) translate(-152.571429, -62.571429) " x="121.714286" y="61.7142857" width="61.7142857" height="1.71428571"></rect>
+                <rect id="Rectangle" fill="#38D39F" opacity="0.5" x="17.1428571" y="73.7142857" width="33.4285714" height="20.5714286"></rect>
+                <rect id="Rectangle" fill="#000000" opacity="0.1" x="16.2857143" y="93.4285714" width="36" height="3.42857143"></rect>
+                <rect id="Rectangle" fill="#535461" x="16.2857143" y="93.4285714" width="36" height="3.42857143"></rect>
+                <g id="Group" opacity="0.1" transform="translate(17.142857, 72.000000)" fill="#000000">
+                    <rect id="Rectangle" x="0" y="0" width="32.5714286" height="10.2857143"></rect>
+                </g>
+                <rect id="Rectangle" fill="#38D39F" opacity="0.5" x="133.714286" y="73.7142857" width="34.2857143" height="20.5714286"></rect>
+                <rect id="Rectangle" fill="#000000" opacity="0.1" x="132.857143" y="93.4285714" width="36.8571429" height="3.42857143"></rect>
+                <rect id="Rectangle" fill="#535461" x="132.857143" y="93.4285714" width="36.8571429" height="3.42857143"></rect>
+                <g id="Group" opacity="0.1" transform="translate(133.714286, 72.000000)" fill="#000000">
+                    <rect id="Rectangle" x="0.857142857" y="0" width="33.4285714" height="10.2857143"></rect>
+                </g>
+                <g id="Group" opacity="0.7" transform="translate(50.571429, 0.000000)" fill="url(#linearGradient-5)">
+                    <polygon id="Path" points="82.7355675 37.7142857 42.6709694 6.28193454 3.89733554 37.6916073 0.857142857 33.8305987 42.6262607 0 85.7142857 33.8079203"></polygon>
+                </g>
+                <rect id="Rectangle" fill="#000000" opacity="0.1" x="12" y="64.2857143" width="44.5714286" height="1"></rect>
+                <rect id="Rectangle" fill="#000000" opacity="0.1" x="127.714286" y="64.2857143" width="44.5714286" height="1"></rect>
+                <rect id="Rectangle" fill="#535461" x="61.7142857" y="7.71428571" width="11.1428571" height="24"></rect>
+                <g id="Group" opacity="0.7" transform="translate(54.000000, 28.285714)" fill="url(#linearGradient-6)">
+                    <polygon id="Path" points="72.8571429 91.7142857 0 91.7142857 0 1.67700008 36.7419836 0.857142857 72.8571429 1.67700008"></polygon>
+                </g>
+                <polygon id="Path" fill="#FFFFFF" points="127.714286 120 56.5714286 120 56.5714286 29.7985958 92.1456649 4.28571429 127.714286 29.7985958"></polygon>
+                <rect id="Rectangle" fill="#535461" x="84" y="90" width="17.1428571" height="30"></rect>
+                <rect id="Rectangle" fill="#000000" opacity="0.1" x="73.7142857" y="62.5714286" width="36.8571429" height="3.42857143"></rect>
+                <rect id="Rectangle" fill="#38D39F" opacity="0.5" x="76.2857143" y="42.8571429" width="33.4285714" height="20.5714286"></rect>
+                <rect id="Rectangle" fill="#535461" x="73.7142857" y="62.5714286" width="36.8571429" height="3.42857143"></rect>
+                <g id="Group" opacity="0.1" transform="translate(76.285714, 42.000000)" fill="#000000">
+                    <rect id="Rectangle" x="0.857142857" y="0" width="32.5714286" height="10.2857143"></rect>
+                </g>
+                <polygon id="Path" fill="#38D39F" points="133.276908 37.7142857 92.807617 6.28193454 53.6423303 37.6916073 50.5714286 33.8305987 92.7624567 0 136.285714 33.8079203"></polygon>
+                <ellipse id="Oval" fill="#E0E0E0" cx="98.5714286" cy="105" rx="1" ry="1.28571429"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>
