@@ -15,15 +15,31 @@
 .public-content-container {
   min-height: calc(100vh - 100px);
 }
-
+.public-header {
+  height: 100px;
+  padding: 0 20px;
+}
 
 @media screen and (max-width: 400px) {
   .admin-content-container {
-      width: 100%;
-      padding: 15px 10px;
-      box-sizing: border-box;
+    width: 100%;
+    padding: 15px 10px;
+    box-sizing: border-box;
   }
   .admin-content-container .student-section-title:nth-of-type(1) {
     margin-top: 0;
+  }
+  .public-header {
+    height: 60px;
+  }
+  .public-header svg {
+    display: block;
+    margin: auto;
+  }
+  .public-header path#kitlenid {
+    display: none;
+  }
+  .public-header image#logo {
+    width: 100%;
   }
 }

@@ -26,6 +26,9 @@
 .no-box-shadow {
   box-shadow: initial;
 }
+.no-margin {
+  margin: auto!important;
+}
 .fullwidth {
   width: 100%;
 }
@@ -73,7 +76,9 @@
 /* app */
 .App {
   text-align: center;
-  min-height: 100vh;
+}
+html, body, #root, .App {
+  height: 100%;
 }
 
 /* other */
