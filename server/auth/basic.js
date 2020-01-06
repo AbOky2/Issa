@@ -7,7 +7,7 @@ const { jwtTokenize } = require('../utils/jwt')
 const auth = ({ app }) => {
     const verify = async (req, email, password, cb) => {
         const {
-            body: { firstName, lastName, role },
+            body: { firstName, lastName, role, budget, housing_type, housing_objective, school, studiesLevel },
         } = req;
 
         try {
@@ -17,6 +17,11 @@ const auth = ({ app }) => {
                 email,
                 password,
                 role,
+                budget,
+                housing_type,
+                housing_objective,
+                school,
+                studiesLevel
             });
 
             cb(null, user);

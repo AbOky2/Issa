@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BlueSearchIcon from '../assets/img/icons/blue-search.png'
 import BlueHouseIcon from '../assets/img/icons/blue-house.png'
 import BlueGraduateIcon from '../assets/img/icons/blue-graduate.png'
@@ -9,16 +9,24 @@ import { BudgetComp, SearchComp, SchoolComp, HouseComp, SignUpComp } from '../co
 import { PublicContentWrapper } from '../components/wrapper/index'
 
 const menus = [
-    { name: 'Recherche', icon: BlueSearchIcon },
+    // { name: 'Recherche', icon: BlueSearchIcon },
     { name: 'Logement', icon: BlueHouseIcon },
-    { name: 'Superficie', icon: DimensionsIcon },
+    // { name: 'Superficie', icon: DimensionsIcon },
     { name: 'Mon école', icon: BlueGraduateIcon },
     { name: 'Budget', icon: BudgetIcon },
 ];
-const contents = [SignUpComp, SearchComp, HouseComp, SchoolComp, SearchComp, BudgetComp];
+const contents = [HouseComp, SchoolComp, BudgetComp, SignUpComp,];
 
-export default () => (
-    <PublicContentWrapper>
-        <Stepper menus={menus} contents={contents} clickableMenu />
-    </PublicContentWrapper>
-)
+export default () => {
+    const [state, setState] = useState({
+        housing_type: null,
+        budget: 0
+    });
+    const handleChange = (name, value) => setState({ ...state, [name]: value })
+    console.log(state)
+    return (
+        <PublicContentWrapper>
+            <Stepper menus={menus} data={state} handleChange={handleChange} contents={contents} clickableMenu />
+        </PublicContentWrapper>
+    )
+}

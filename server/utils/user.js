@@ -7,11 +7,16 @@ const studentRoleList = [Roomer, Buyer];
 const RoleList = [Admin, Student, ...studentRoleList];
 
 
+const housing_type_List = ['studio', 't2', 't3', 'all'];
+const housing_objectiveList = ['rental_investment', 'main_residence', 'other'];
 // Roles
 
 const Active = 'active';
 const Inactive = 'inactive';
-const StatusList = [Active, Inactive];
+const YoungGraduate = 'young-graduate';
+const LastYearStudent = 'last-year-student';
+const YoungActive = 'young active';
+const StatusList = [Active, Inactive, YoungGraduate, LastYearStudent, YoungActive];
 
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
@@ -51,6 +56,8 @@ module.exports = {
     RoleList,
     StatusList,
     studentRoleList,
+    housing_type_List,
+    housing_objectiveList,
 
 
     // Methods

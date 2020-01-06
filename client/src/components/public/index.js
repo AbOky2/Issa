@@ -9,10 +9,10 @@ import './index.css'
 
 const CardList = ({ list, onClick, selected }) => (
     <Grid container className='card-list-container'>
-        {list && list.map(({ img, text, alt }, i) => {
-            const isSelected = isArray(selected) && selected.includes(i);
+        {list && list.map(({ img, text, alt, slug }, i) => {
+            const isSelected = isArray(selected) && selected.includes(slug);
             return (
-                <Grid container item key={i} className={`same-width card-list ${isSelected ? 'selected' : ''}`} onClick={() => onClick(i)}>
+                <Grid container item key={i} className={`same-width card-list ${isSelected ? 'selected' : ''}`} onClick={() => onClick(slug)}>
                     <Grid item xs={12}>
                         <img src={img} alt={alt} />
                     </Grid>
@@ -25,18 +25,15 @@ const CardList = ({ list, onClick, selected }) => (
     </Grid>
 )
 
-const ListCardWrapper = ({ handlePrev, handleNext, isMultiple = false, list = [], img, alt, title }) => {
+const ListCardWrapper = ({ handlePrev, handleNext, name, isMultiple = false, list = [], img, alt, title }) => {
     const [selected, setSelected] = useState([]);
 
     const handleNextClick = () => {
         if (!selected.length)
             return;
-
-        handleNext && handleNext()
+        handleNext && handleNext(name, isMultiple ? selected : selected[0])
     }
-    const handleChange = (id) => {
-        setSelected(isMultiple ? toggleArray(selected, id) : [id])
-    };
+    const handleChange = (id) => setSelected(isMultiple ? toggleArray(selected, id) : [id]);
 
     return (
         <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={img} alt={alt} title={title}>

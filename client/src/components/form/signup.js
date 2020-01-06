@@ -15,9 +15,10 @@ const defaultState = {
     email: 'mail@mail.mail',
     password: 'email@email.email',
     phone: 'phone',
-    role: 'buyer',
+    role: 'roomer',
     errors: [],
 }
+
 export default ({ handlePrev }) => {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [state, setState] = useState(defaultState);

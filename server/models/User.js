@@ -6,6 +6,8 @@ const DBModel = require('./index')
 const {
     RoleList,
     StatusList,
+    housing_type_List,
+    housing_objectiveList,
     isStudent,
     Student,
     Active,
@@ -30,6 +32,11 @@ const mongoSchema = new Schema({
         type: String,
         required: true,
     },
+    phone: {
+        type: String,
+        unique: true,
+        required: () => isStudent(this.role)
+    },
     email: {
         type: String,
         required: true,
@@ -52,6 +59,9 @@ const mongoSchema = new Schema({
         required: true,
         unique: true,
     },
+    age: {
+        type: Number,
+    },
     status: {
         type: String,
         enum: StatusList,
@@ -61,6 +71,19 @@ const mongoSchema = new Schema({
         type: String,
         enum: RoleList,
         required: true,
+    },
+    housing_type: {
+        type: String,
+        enum: housing_type_List,
+        required: () => isStudent(this.role)
+    },
+    housing_objective: {
+        type: String,
+        enum: housing_objectiveList,
+        required: () => isStudent(this.role)
+    },
+    budget: {
+        type: Number,
     },
     provider: {
         type: String,
@@ -90,6 +113,10 @@ class UserClass extends DBModel {
             'status',
             'address',
             'dateOfBirth',
+            'age',
+            'budget',
+            'housing_type',
+            'housing_objective'
         ];
     }
 
@@ -213,7 +240,7 @@ class UserClass extends DBModel {
         return _.pick(user, this.publicFields());
     }
 
-    static async signInOrSignUpViaEmail({ email, password, avatarUrl, firstName, lastName, role }) {
+    static async signInOrSignUpViaEmail({ email, password, avatarUrl, firstName, lastName, role, budget, housing_type, housing_objective, school, studiesLevel }) {
         let user = await this.findOne({ email });
 
         if (!user) {
@@ -227,6 +254,11 @@ class UserClass extends DBModel {
                 lastName,
                 role,
                 picture: avatarUrl,
+                budget,
+                housing_type,
+                housing_objective,
+                school,
+                studiesLevel
             })).user;
             user = user.toObject();
             return _.pick(user, this.publicFields());
