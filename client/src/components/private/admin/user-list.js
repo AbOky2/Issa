@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { /* useState */ } from "react";
 import { Grid } from '@material-ui/core'
 // import ReactPaginate from 'react-paginate';
+import Avatar from '../../../assets/img/icons/profile.png'
+
 import './user-list.css'
 // import moment from 'moment'
 
@@ -16,12 +18,12 @@ const Header = ({ headerList = [] }) => (
     </Grid>
 )
 const UserList = ({ contentList = [], headerList }) => {
-    const [state, setState] = useState({
-        contentList,
-        currentPage: 0,
-        offset: 0,
-        limit: contentList.length
-    })
+    // const [state, setState] = useState({
+    //     contentList,
+    //     currentPage: 0,
+    //     offset: 0,
+    //     limit: contentList.length
+    // })
 
     // const handlePageClick = (data) => {
     //     const selectedPage = data.selected;
@@ -36,7 +38,7 @@ const UserList = ({ contentList = [], headerList }) => {
                 <Grid container item key={index} alignItems="center" justify="center" className='user-list spacing'>
                     <Grid item container alignItems='center' xs={4}>
                         <Grid item>
-                            <img src={elem.avatar} alt='Avatar' />
+                            <img src={elem.avatar || Avatar} alt='Avatar' />
                         </Grid>
                         <Grid item>
                             <span>{`${elem.firstName} ${elem.lastName}`}</span>

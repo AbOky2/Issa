@@ -28,7 +28,7 @@ const menuList = [
         ]
     }
 ]
-const Sidebar = ({ notifications = { locations: 1 } }) => {
+const Sidebar = ({ notifications = {} }) => {
     return (
         <div id='sidebar'>
             <div className='logo_container'>

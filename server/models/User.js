@@ -217,6 +217,9 @@ class UserClass extends DBModel {
         let user = await this.findOne({ email });
 
         if (!user) {
+            if (!isStudent({ role }))
+                throw new Error('Please field a valid role.');
+
             user = (await this.add({
                 email,
                 password,

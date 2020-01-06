@@ -20,6 +20,10 @@
 }
 .list-menu h3 {
     padding-left: 15px;
+    cursor: initial;
+}
+.pointer h3 {
+    cursor: pointer;
 }
 .list-menu img {
     width: 24px;

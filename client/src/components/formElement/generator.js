@@ -64,7 +64,7 @@ const styles = theme => ({
 
 const FormGenerator = ({ children, fields, classes, state, onChange, settings = {}, errors = [] }) => {
 
-    const textTypes = ['input', 'text', 'password', 'email', 'number', 'textarea', 'date', 'datetime-local'],
+    const textTypes = ['input', 'text', 'password', 'email', 'number', 'phone', 'textarea', 'date', 'datetime-local'],
         selectTypes = ['select'],
         spacing = 4,
         defaultDimension = { xs: 12 };
@@ -82,8 +82,8 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
                         const elemProps = elem.props;
                         const inputDefaultProps = elemProps && elemProps.defaultValue ? elemProps.defaultValue : '';
                         const error = state.errors && state.errors.includes(elem.name);
-                        const elemSettings = settings
-                        let containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : { paddingTop: 10, paddingBottom: 10 }
+                        const elemSettings = settings;
+                        let containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : elem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
 
                         return (
                             <Grid key={key} item {...dimentions} style={containerStyle} className='form-element-row no-left-right-padding'>

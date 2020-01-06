@@ -1,30 +1,15 @@
 import React, { useState } from 'react'
 import { Grid } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
 import HousingIcon from '../../assets/img/illustrations/budget.svg';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Wrapper from './index'
-import Btn from '../elements/btn'
+import GraduateIcon from '../../assets/img/illustrations/draduate.svg';
+import StudentRoomIcon from '../../assets/img/illustrations/student-room.svg';
+import StudioIcon from '../../assets/img/illustrations/studio.svg';
+import Wrapper, { ListCardWrapper, CustomNumerber } from './index'
+import SearchInput from '../../components/formElement/search'
+import SignupForm from '../../components/form/signup';
 
-const CustomNumerber = ({ value, handleChange, handleDown, handleUp }) => (
-    <Grid container justify='center' alignItems='stretch' className='fullwidth'>
-        <Grid><Btn text='-' onClick={handleDown} className='no-margin fullheight custom-btn moins' /></Grid>
-        <Grid>
-            <TextField
-                type='number'
-                variant="outlined"
-                className='custom-input'
-                value={value}
-                InputProps={{ endAdornment: <InputAdornment>€</InputAdornment> }}
-                onChange={({ target: { value } }) => handleChange(value)}
-            />
-        </Grid>
 
-        <Grid><Btn text='+' onClick={handleUp} className='no-margin fullheight custom-btn plus' /></Grid>
-    </Grid>
-)
-
-export default ({ handlePrev, handleNext }) => {
+const BudgetComp = ({ handlePrev, handleNext }) => {
     const [budget, setBudget] = useState(500);
     const increment = 10;
     const handleNextClick = () => {
@@ -45,3 +30,54 @@ export default ({ handlePrev, handleNext }) => {
         </Wrapper>
     )
 }
+
+const SignUpComp = ({ handlePrev, handleNext }) => {
+    const handleNextClick = () => {
+        handleNext && handleNext()
+    }
+    return (
+        <Wrapper title='Remplis tes informations'>
+            <Grid container justify='center'>
+                <Grid item xs={12} sm={6}>
+                    <SignupForm handlePrev={handlePrev} handleNext={handleNextClick} />
+                </Grid>
+            </Grid>
+        </Wrapper>
+    )
+}
+
+const SearchComp = ({ handlePrev, handleNext }) => {
+    const handleNextClick = () => {
+        handleNext && handleNext()
+    }
+    return (
+        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={HousingIcon} alt='Buget' title='Quelle est ta zone de recherche ?'>
+            <SearchInput />
+        </Wrapper>
+    )
+}
+
+const HouseComp = ({ handlePrev, handleNext }) => (
+    <ListCardWrapper
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        list={[
+            { img: StudentRoomIcon, text: 'Une chambre étudiante', alt: 'Une chambre étudiante', slug: 'student-room' },
+            { img: StudioIcon, text: 'Un studio', alt: 'Un studio', slug: 'studio' },
+            { img: StudentRoomIcon, text: 'Un T2', alt: 'Un T2', slug: 't2' },
+            { img: StudioIcon, text: 'Tout m’intéresse !', alt: 'Tout m’intéresse !', slug: 'all' },
+        ]}
+        title='Sélectionne ton type de location'
+    />
+)
+
+const SchoolComp = ({ handlePrev, handleNext }) => {
+    const handleNextClick = () => {
+        handleNext && handleNext()
+    }
+    return (
+        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={GraduateIcon} alt='Buget' title='Quelle est ta zone de recherche ?'>
+        </Wrapper>
+    )
+}
+export { HouseComp, BudgetComp, SearchComp, SchoolComp, SignUpComp }

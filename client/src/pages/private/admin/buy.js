@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from '@material-ui/core'
-import Avatar from '../../../assets/img/picture.png'
 import { ReactComponent as HouseIcon } from '../../../assets/img/svg/house.svg'
 import { Roomer, Buyer } from '../../../utils/user'
 import './index.css';

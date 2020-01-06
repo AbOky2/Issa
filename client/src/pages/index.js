@@ -1,19 +1,21 @@
 import React from 'react'
-import ClapIcon from '../assets/img/icons/clap.png'
+import BlueSearchIcon from '../assets/img/icons/blue-search.png'
+import BlueHouseIcon from '../assets/img/icons/blue-house.png'
+import BlueGraduateIcon from '../assets/img/icons/blue-graduate.png'
+import DimensionsIcon from '../assets/img/icons/dimensions.png'
 import BudgetIcon from '../assets/img/icons/budget.png'
 import Stepper from '../components/elements/stepper'
-import Housing from '../components/public/buyer'
+import { BudgetComp, SearchComp, SchoolComp, HouseComp, SignUpComp } from '../components/public/buyer'
 import { PublicContentWrapper } from '../components/wrapper/index'
 
 const menus = [
-    { name: 'Garant', icon: ClapIcon },
-    { name: 'Recherche', icon: ClapIcon },
-    { name: 'Logement', icon: ClapIcon },
-    { name: 'Superficie', icon: ClapIcon },
-    { name: 'Mon école', icon: ClapIcon },
+    { name: 'Recherche', icon: BlueSearchIcon },
+    { name: 'Logement', icon: BlueHouseIcon },
+    { name: 'Superficie', icon: DimensionsIcon },
+    { name: 'Mon école', icon: BlueGraduateIcon },
     { name: 'Budget', icon: BudgetIcon },
 ];
-const contents = [Housing, Housing, Housing, Housing];
+const contents = [SignUpComp, SearchComp, HouseComp, SchoolComp, SearchComp, BudgetComp];
 
 export default () => (
     <PublicContentWrapper>

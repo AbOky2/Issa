@@ -1,7 +1,6 @@
 const passport = require('passport');
 const { Strategy } = require('passport-local');
 const UserModel = require('../models/User');
-const { Admin } = require('../utils/user')
 const { jwtTokenize } = require('../utils/jwt')
 
 
@@ -17,7 +16,7 @@ const auth = ({ app }) => {
                 lastName,
                 email,
                 password,
-                role: Admin,
+                role,
             });
 
             cb(null, user);

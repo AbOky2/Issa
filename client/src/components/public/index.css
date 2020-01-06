@@ -11,11 +11,11 @@
     letter-spacing: normal;
     text-align: center;
     color: #1f263e;
-    margin-top: 0;
+    margin-top: 25px;
     margin-bottom: 40px;
 }
 .public-slider-wrapper .img-container {
-    margin-bottom: 50px;
+    margin: 25px 0;
 }
 .public-slider-wrapper img {
     display: inline-block;
@@ -73,7 +73,48 @@
     border-bottom-left-radius: 0;
     border-left: none;
 }
-
+.public-slider-wrapper .card-list {
+    position: relative;
+}
+.public-slider-wrapper .card-list.selected {
+    border-color: #06ae88;
+}
+.public-slider-wrapper .card-list.selected::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../../assets/img/icons/check.png');
+}
+.public-slider-wrapper .card-list h3 {
+    width: 100%;
+    padding: 40px 0 0;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #2f2e41;
+    text-align: center;
+}
+.public-slider-wrapper .card-list.selected h3 {
+    color: #06ae88;
+}
+.public-slider-wrapper .card-list {
+    margin: 0 18px;
+    padding: 50px 20px 25px;
+    border-radius: 6px;
+    border: solid 4px #f2f2f2;
+    background-color: #ffffff;
+    cursor: pointer;
+}
 @media screen and (max-width: 400px) {
     .public-slider-wrapper {
         min-height: calc(100vh - 120px);

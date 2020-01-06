@@ -25,7 +25,7 @@ export default ({ menus, contents, clickableMenu = false }) => {
     return (
         <Grid>
             <Grid className='stepper-header'>
-                <DisplayMenu menus={menus} active={activeStep} onClick={clickableMenu ? handleNavigate : false} />
+                <DisplayMenu menus={menus} active={activeStep} clickableMenu={clickableMenu} onClick={handleNavigate} />
             </Grid>
 
             <CustomComp handlePrev={handlePrev} handleNext={handleNext} />

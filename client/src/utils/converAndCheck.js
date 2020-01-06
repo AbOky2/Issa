@@ -1,3 +1,4 @@
+const isArray = (arr) => Array.isArray(arr);
 const isFn = (functionToCheck) => functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 
 const buildFromArray = (datas, label, value) => datas && datas.map(elem => ({ label: elem[label], value: elem[value] }));
@@ -13,7 +14,7 @@ const buildToArray = (datas) => {
 const toggleArray = (array, name) => {
     let found = false, data;
 
-    if (!array || !name)
+    if (!isArray(array) || (!name && name != '0'))
         return array;
 
     data = array.filter((elem) => {
@@ -39,4 +40,4 @@ const toFormData = (form = {}) => {
 }
 
 
-export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail, toFormData }
+export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail, toFormData, isArray }
