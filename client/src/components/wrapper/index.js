@@ -1,11 +1,12 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import { ReactComponent as Logo } from '../../assets/img/svg/logo.svg'
+import { Link } from "react-router-dom";
 import './index.css'
 
 const PublicHeader = () => (
     <Grid container className='public-header' alignItems='center'>
-        <Logo />
+        <a href='http://kitlenid.fr'><Logo /></a>
     </Grid>
 )
 

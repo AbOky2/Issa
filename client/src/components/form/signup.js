@@ -24,7 +24,6 @@ export default ({ handlePrev }) => {
     const [state, setState] = useState(defaultState);
     const { setAuthTokens, setAuthUser } = useAuth();
 
-
     const handleChange = (name, value) => setState({ ...state, [name]: value });
 
 

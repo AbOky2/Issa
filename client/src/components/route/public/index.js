@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
-import PageLogin from '../../../pages/login'
-import PageHome from '../../../pages'
+import PageLogin from '../../../pages/public/login'
+import PageRoomer from '../../../pages/public/roomer'
+import PageBuyer from '../../../pages/public/buyer'
 
 const NoMatch = ({ location }) => (
     <div>
@@ -11,7 +12,8 @@ const NoMatch = ({ location }) => (
     </div>
 )
 const publicRouteList = [
-    { path: '/', component: PageHome },
+    { path: '/roomer', component: PageRoomer },
+    { path: '/buyer', component: PageBuyer },
     { path: '/login', component: PageLogin },
 ]
 

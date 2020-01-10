@@ -31,7 +31,7 @@ const LableWrapper = ({ value, label, labelPosition = '', icon, fullIcon, withGr
     if (labelPosition.includes && labelPosition.includes('left'))
         className = 'text-left'
     // for all mobile
-    labelDimension.xs = 12
+    // labelDimension.xs = 12
 
     return (
         <Grid container justify="space-between" alignItems="center" alignContent='center'>

@@ -9,6 +9,7 @@ router.get('/', handleErrors((req, res) => {
 
 sameQueries.forEach(({ name: { plural }, model }) => {
     router.get(`/${plural}`, listCollection(async ({ offset, limit }) => {
+        console.log('okk')
         let { list } = await model.list({ offset, limit });
         list.sort((a, b) => a.position - b.position);
         return { list }

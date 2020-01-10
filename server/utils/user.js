@@ -1,22 +1,35 @@
 const _ = require('lodash');
 const Admin = 'admin';
-const Student = 'student';
 const Roomer = 'roomer';
 const Buyer = 'buyer';
+const Student = 'student';
 const studentRoleList = [Roomer, Buyer];
-const RoleList = [Admin, Student, ...studentRoleList];
+const RoleList = [Admin, ...studentRoleList];
 
+// House types
+const T2 = 't2';
+const T3 = 't3';
+const StudentHouse = 'student-house';
+const allHomeSize = 'all';
+const studio = 'studio';
+const housing_type_List = [T2, T3, StudentHouse, allHomeSize, studio];
 
-const housing_type_List = ['studio', 't2', 't3', 'all'];
-const housing_objectiveList = ['rental_investment', 'main_residence', 'other'];
-// Roles
+// housing objective
+const rental_investment = 'rental_investment';
+const main_residence = 'main_residence';
+const otherObjective = 'other';
+const housing_objectiveList = [rental_investment, main_residence, otherObjective];
 
+// student status
+const youngActive = 'young-active';
+const lastYearStudent = 'last-year-student';
+const StudentStatusList = [lastYearStudent, youngActive];
+
+// status
 const Active = 'active';
 const Inactive = 'inactive';
-const YoungGraduate = 'young-graduate';
-const LastYearStudent = 'last-year-student';
-const YoungActive = 'young active';
-const StatusList = [Active, Inactive, YoungGraduate, LastYearStudent, YoungActive];
+const StatusList = [Active, Inactive];
+
 
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
@@ -55,6 +68,7 @@ module.exports = {
 
     RoleList,
     StatusList,
+    StudentStatusList,
     studentRoleList,
     housing_type_List,
     housing_objectiveList,

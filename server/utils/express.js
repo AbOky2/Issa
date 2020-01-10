@@ -1,6 +1,6 @@
 const logger = require('../logs');
 const User = require('../models/User');
-const { RoleList, studentRoleList, Admin, Student } = require('../utils/user')
+const { RoleList, Student, isStudent } = require('../utils/user')
 const { wrongInfo, notAuthorized } = require('../utils/message')
 const propertieSchema = require('../middleware/schema')
 const requestMiddleware = require('../middleware/request')
@@ -52,27 +52,28 @@ const listCollection = (listFn) =>
         })
     ];
 
-const authCheck = (role) => handleErrors((req, res, next) => {
+const authCheck = (roleName) => handleErrors((req, res, next) => {
     let authenticated = false,
         user = req.user,
         message = null;
 
     if (!user)
         message = notAuthorized;
-    else if (!role)
+    else if (!roleName || (roleName === '*' && !RoleList.includes(user.role)))
         message = wrongInfo('role');
-    else if (role === '*' && !RoleList.includes(user.role))
-        message = wrongInfo('role');
-    else if (role !== '*') {
-        if (!RoleList.includes(role) || (role == Student && !studentRoleList.includes(user.role)) || (role === Admin && user.role !== Admin))
+    else if (roleName !== '*') {
+        if (roleName == Student) {
+            if (!isStudent(user))
+                message = wrongInfo('role');
+        }
+        else if (!RoleList.includes(roleName) && (user.role !== roleName))
             message = wrongInfo('role');
     }
 
-    if (message) {
+    if (message)
         res.status(401).json({ authenticated, message });
-    } else {
+    else
         next();
-    }
 });
 
 module.exports = {

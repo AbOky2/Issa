@@ -1,12 +1,29 @@
 import React, { useState } from 'react'
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
 import { Grid } from '@material-ui/core'
 import { isArray } from '../../utils/converAndCheck'
 import { toggleArray } from '../../utils/converAndCheck'
 import Btn from '../elements/btn'
+import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import './index.css'
 
+const useStyles = makeStyles(theme => ({
+    formControl: {
+        minWidth: 200,
+        borderRadius: '4px',
+        border: 'solid 4px #f2f2f2',
+        backgroundColor: ' #ffffff',
+        ['&:focus']: {
+            backgroundColor: 'none'
+        }
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
 const CardList = ({ list, onClick, selected }) => (
     <Grid container className='card-list-container'>
         {list && list.map(({ img, text, alt, slug }, i) => {
@@ -36,7 +53,7 @@ const ListCardWrapper = ({ handlePrev, handleNext, name, isMultiple = false, lis
     const handleChange = (id) => setSelected(isMultiple ? toggleArray(selected, id) : [id]);
 
     return (
-        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={img} alt={alt} title={title}>
+        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={img} alt={alt || title} title={title}>
             <CardList list={list} onClick={handleChange} selected={selected} />
         </Wrapper>
     )
@@ -73,5 +90,23 @@ const CustomNumerber = ({ value, handleChange, handleDown, handleUp }) => (
         <Grid><Btn text='+' onClick={handleUp} className='no-margin fullheight custom-btn plus' /></Grid>
     </Grid>
 )
+const CustomSelect = ({ children, value, onChange }) => {
+    const classes = useStyles();
+
+    return (
+        <FormControl variant="filled" className={classes.formControl}>
+            <Select
+                native
+                value={value}
+                onChange={onChange}
+                variant="outlined"
+                inputProps={{
+                    name: 'age',
+                    id: 'filled-age-native-simple',
+                }}
+            >{children}</Select>
+        </FormControl>
+    )
+}
 export default Wrapper
-export { ListCardWrapper, CustomNumerber }
+export { ListCardWrapper, CustomNumerber, CustomSelect }

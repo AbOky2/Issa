@@ -6,6 +6,7 @@ const DBModel = require('./index')
 const {
     RoleList,
     StatusList,
+    StudentStatusList,
     housing_type_List,
     housing_objectiveList,
     isStudent,
@@ -67,6 +68,11 @@ const mongoSchema = new Schema({
         enum: StatusList,
         required: true,
     },
+    student_status: {
+        type: String,
+        enum: StudentStatusList,
+        required: true,
+    },
     role: {
         type: String,
         enum: RoleList,
@@ -116,7 +122,8 @@ class UserClass extends DBModel {
             'age',
             'budget',
             'housing_type',
-            'housing_objective'
+            'housing_objective',
+            'StudentStatusList'
         ];
     }
 
