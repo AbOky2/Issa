@@ -22,6 +22,7 @@ export default {
                 props: {
                     adornment: { value: 'ans', position: 'end' }
                 },
+                containerClassName: 'form-container-spacing-right'
             },
             {
                 label: "Ville",
@@ -29,6 +30,8 @@ export default {
                 type: 'input',
                 required: true,
                 dimension: { xs: 8 },
+                containerClassName: 'form-container-spacing-left'
+
 
             },
             {
@@ -37,6 +40,8 @@ export default {
                 type: 'email',
                 required: true,
                 dimension: { xs: 6 },
+                containerClassName: 'form-container-spacing-right'
+
             },
             {
                 label: "Téléphone",
@@ -44,6 +49,8 @@ export default {
                 type: 'phone',
                 required: true,
                 dimension: { xs: 6 },
+                containerClassName: 'form-container-spacing-left'
+
             },
             {
                 label: "Mot de passe",
@@ -57,6 +64,6 @@ export default {
                 required: true,
             },
         ],
-        settings: { unableUnderline: false, unableBoxShadow: true, variant: 'outlined', showLabel: true, labelPosition: 'left' }
+        settings: { unableUnderline: false, unableBoxShadow: true, variant: 'outlined', showLabel: true, labelPosition: 'top|left' }
     }
 }

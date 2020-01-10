@@ -5,20 +5,21 @@ import { FormElementWrapper } from './index'
 import { makeStyles } from '@material-ui/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-const useStyles = makeStyles(theme => ({
+const newBorder = {
+    borderRadius: '3px',
+    border: 'solid 1px #c7cfd6',
+}
+
+const useStyles = makeStyles({
     textField: {
-        [`& fieldset`]: {
-            borderRadius: '3px',
-            border: 'solid 1px #c7cfd6',
-            // border: 0,
-            // boxShadow: '0px 2px 5px #bfbfbf',
-        },
+        [`& fieldset`]: newBorder,
+        [`&:hover`]: { fieldset: newBorder }
     }
-}))
+})
 
 const strinkTypes = ['date', 'datetime', 'time'];
 
-const TextFieldComp = ({ name, label, type, value, onChange, showLabel, unableUnderline = false, unableBoxShadow = true, error = true, labelPosition = {}, icon, fullIcon, withGrayScaleIcon, ...elemProps }) => {
+const TextFieldComp = ({ name, label, type, value, onChange, showLabel, labelStyle, unableUnderline = false, unableBoxShadow = true, error = true, labelPosition = {}, icon, fullIcon, withGrayScaleIcon, ...elemProps }) => {
     const classes = useStyles();
     const variant = unableUnderline ? "standard" : "outlined";
     let inputProps = {}
@@ -30,7 +31,7 @@ const TextFieldComp = ({ name, label, type, value, onChange, showLabel, unableUn
     }
 
     return (
-        <FormElementWrapper value={value} label={label} showLabel={showLabel} labelPosition={labelPosition} icon={icon} fullIcon={fullIcon} withGrayScaleIcon={withGrayScaleIcon}>
+        <FormElementWrapper value={value} label={label} showLabel={showLabel} labelStyle={labelStyle} labelPosition={labelPosition} icon={icon} fullIcon={fullIcon} withGrayScaleIcon={withGrayScaleIcon}>
             <TextField
                 error={error}
                 multiple
@@ -42,7 +43,7 @@ const TextFieldComp = ({ name, label, type, value, onChange, showLabel, unableUn
                 value={value}
                 onChange={onChange(name)}
                 InputProps={inputProps}
-                className={unableBoxShadow ? classes.textField : ''}
+                className={classes.textField}
                 rows={8}
                 variant={variant}
                 {...elemProps}

@@ -15,7 +15,7 @@ const menus = [
     { name: 'Mon école', icon: BlueGraduateIcon },
     { name: 'Budget', icon: BudgetIcon },
 ];
-const contents = [HouseComp, SchoolComp, BudgetComp, SignUpComp,];
+const contents = [SignUpComp, HouseComp, SchoolComp, BudgetComp, ,];
 
 export default () => {
     const [state, setState] = useState({

@@ -46,3 +46,9 @@ form .form-element-row input {
 form .label-container {
     padding-bottom: 5px;
 }
+form .form-container-spacing-right {
+    padding-right: 10px!important;
+}
+form .form-container-spacing-left {
+    padding-left: 10px!important;
+}

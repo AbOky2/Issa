@@ -83,10 +83,11 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
                         const inputDefaultProps = elemProps && elemProps.defaultValue ? elemProps.defaultValue : '';
                         const error = state.errors && state.errors.includes(elem.name);
                         const elemSettings = settings;
-                        let containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : elem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
+                        const containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : elem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
+                        const containerClassName = elem.containerClassName || '';
 
                         return (
-                            <Grid key={key} item {...dimentions} style={containerStyle} className='form-element-row no-left-right-padding'>
+                            <Grid key={key} item {...dimentions} style={containerStyle} className={`form-element-row no-left-right-padding ${containerClassName}`}>
                                 {textTypes.includes(elem.type) && (
                                     <TextField
                                         error={error}

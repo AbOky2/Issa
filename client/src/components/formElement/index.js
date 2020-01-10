@@ -29,7 +29,7 @@ const LableWrapper = ({ value, label, labelPosition = '', icon, fullIcon, withGr
     if (labelPosition.includes && labelPosition.includes('top'))
         labelDimension.xs = 12
     if (labelPosition.includes && labelPosition.includes('left'))
-        className = 'text-left'
+        className = 'text-left';
     // for all mobile
     // labelDimension.xs = 12
 
@@ -37,7 +37,7 @@ const LableWrapper = ({ value, label, labelPosition = '', icon, fullIcon, withGr
         <Grid container justify="space-between" alignItems="center" alignContent='center'>
             <Grid item {...labelDimension} className={`label-container ${className}`}>
                 {icon && <IconDisplay src={icon} fullIcon={fullIcon} withGrayScaleIcon={withGrayScaleIcon && !value} />}
-                {label}
+                <span className='form-label-container' style={{ ...props.labelStyle }}>{label}</span>
             </Grid>
             <Grid item {...labelDimension}>{props.children}</Grid>
         </Grid>
