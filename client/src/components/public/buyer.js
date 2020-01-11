@@ -6,6 +6,9 @@ import ActifAchatSituation from '../../assets/img/illustrations/actif_achat_situ
 import StudentRoomIcon from '../../assets/img/illustrations/student-room.svg';
 import AllLotIcon from '../../assets/img/illustrations/all-lots.svg';
 import T2Icon from '../../assets/img/illustrations/t2.svg';
+import T3Icon from '../../assets/img/illustrations/3pieces_achat_logement.svg';
+import BedIcon from '../../assets/img/illustrations/bed_achat_logement.svg';
+import CouchIcon from '../../assets/img/illustrations/couch_achat_log.svg';
 import StudioIcon from '../../assets/img/illustrations/studio_objectif_achat.svg';
 import Wrapper, { ListCardWrapper, CustomNumerber, CustomSelect } from './index'
 import SearchInput from '../../components/formElement/search'
@@ -97,6 +100,20 @@ const BuyerStatusComp = ({ handlePrev, handleNext }) => (
     />
 )
 
+const BuyerHouseComp = ({ handlePrev, handleNext }) => (
+    <ListCardWrapper
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        name='housing_type'
+        list={[
+            { img: CouchIcon, text: 'Un studio', slug: studio },
+            { img: BedIcon, text: 'Un T2 ( 2 pièces )', slug: T2 },
+            { img: T3Icon, text: 'T3 et + ( 3 pièces et + )', slug: T3 },
+        ]}
+        title='Sélectionne ton type de location'
+    />
+)
+
 
 // Other
 const SignUpComp = ({ handlePrev, handleNext, data }) => {
@@ -112,4 +129,4 @@ const SignUpComp = ({ handlePrev, handleNext, data }) => {
         </Wrapper>
     )
 }
-export { HouseComp, BudgetComp, SearchComp, SchoolComp, SignUpComp, BuyerStatusComp }
+export { HouseComp, BudgetComp, SearchComp, SchoolComp, SignUpComp, BuyerStatusComp, BuyerHouseComp }

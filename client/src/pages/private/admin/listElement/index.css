@@ -119,7 +119,28 @@
     max-width: 128px;
     margin: auto;
 }
-
+.agencies .row-container {
+    min-height: 30px;
+}
+.agencies .list {
+    background-color: rgba(0, 0, 0, 0.04)
+}
+.agencies .name-container {
+    width: calc(100% - 50px);
+}
+.agencies .actions-container {
+    width: 50px;
+}
+.agencies .actions-container > div {
+    width: 25px;
+    text-align: center;
+}
+.agencies .actions-container > div:hover {
+    background-color: rgba(0, 0, 0, 0.04)
+}
+.agencies .active, .agencies .list:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
 @media screen and (max-width: 400px) {
     div.content-container .content {
         padding: 16px 7px;

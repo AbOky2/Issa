@@ -8,12 +8,13 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 const newBorder = {
     borderRadius: '3px',
     border: 'solid 1px #c7cfd6',
+    borderColor: '#c7cfd6',
 }
 
 const useStyles = makeStyles({
     textField: {
         [`& fieldset`]: newBorder,
-        [`&:hover`]: { fieldset: newBorder }
+        [`&:hover`]: { fieldset: newBorder },
     }
 })
 

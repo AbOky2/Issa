@@ -14,7 +14,7 @@ export default {
                 required: true,
             },
             {
-                label: "Age",
+                label: "Âge",
                 name: "age",
                 type: 'number',
                 required: true,

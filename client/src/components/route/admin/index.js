@@ -6,6 +6,7 @@ import PrivateRoute from '../privateRoute'
 import PageBuy from '../../../pages/private/admin/buy'
 import PageProperties from '../../../pages/private/admin/listElement/properties'
 import PagePartners from '../../../pages/private/admin/listElement/partners'
+import NexityPartners from '../../../pages/private/admin/listElement/nexity'
 import { PublicRoute } from '../public'
 
 
@@ -16,6 +17,7 @@ export default () => (
             <PrivateRoute exact path="/dashboard/buy" component={() => <PageBuy role='buyer' />} />
             <PrivateRoute exact path="/dashboard/properties" component={PageProperties} />
             <PrivateRoute exact path="/dashboard/partners" component={PagePartners} />
+            <PrivateRoute exact path="/dashboard/nexity" component={NexityPartners} />
             <PublicRoute />
         </Switch>
     </Router>

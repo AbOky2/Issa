@@ -10,9 +10,9 @@ import { useAuth } from "../../context/auth";
 const defaultState = {
     firstName: 'firstName',
     lastName: 'lastName',
-    age: 'age',
+    age: '23',
     city: 'city',
-    email: 'mail@mail.mail',
+    email: 'email@email.email',
     password: 'email@email.email',
     phone: 'phone',
     role: 'roomer',
@@ -50,7 +50,7 @@ export default ({ handlePrev }) => {
     }
 
     return (
-        <Grid container item xs={12} justify="flex-start">
+        <Grid container item xs={12} justify="flex-start" className='signup'>
             <FormGenerator
                 fields={forData.create.field}
                 state={state}

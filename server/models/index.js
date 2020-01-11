@@ -69,7 +69,6 @@ class DBModel {
     }
     static async delete(_id) {
         try {
-
             (await this.deleteOne({ _id }));
             return (await this.list());
         } catch (error) {

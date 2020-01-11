@@ -157,6 +157,9 @@ div.btn-container {
 .mobile-show {
   display: none;
 }
+.relative {
+  position: relative;
+}
 @media screen and (max-width: 400px) {
   .mobile-auto {
     width: auto;

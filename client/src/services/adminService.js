@@ -153,6 +153,68 @@ async function swapParnersPosition(form, cb) {
     }
 }
 
+async function getZones(cb) {
+    try {
+        const query = await axios.get(`${API_URL}/admin/agency-zone`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function addZone(form, cb) {
+
+    try {
+        const query = await axios.post(`${API_URL}/admin/agency-zone`, form, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function addAgency(form, cb) {
+
+    try {
+        const query = await axios.post(`${API_URL}/admin/agency`, form, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function deleteZone(id, cb) {
+    try {
+        const query = await axios.delete(`${API_URL}/admin/agency-zone/${id}`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
+async function deleteAgency(id, cb) {
+    try {
+        const query = await axios.delete(`${API_URL}/admin/agency/${id}`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+
 export {
     getData,
 
@@ -170,4 +232,11 @@ export {
     addPartner,
     updatePartner,
     swapParnersPosition,
+
+    // Partners
+    getZones,
+    addZone,
+    addAgency,
+    deleteAgency,
+    deleteZone
 };

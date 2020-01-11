@@ -30,7 +30,6 @@ const updateCollection = (middleware = defautlMiddleware, listFn) =>
         requestMiddleware(propertieSchema.update, 'params'),
         middleware,
         handleErrors(async (req, res) => res.json(await listFn({ id: req.params.id, data: req.body })))
-
     ];
 
 const deleteCollection = (listFn) =>
