@@ -4,7 +4,7 @@ const { authCheck } = require('../utils/express');
 const { Admin, Student } = require('../utils/user');
 
 function api(app) {
-    app.use('/api/v1/currentUser', authCheck('*'), ({ user }, res) => res.json({ user }));
+    app.use('/api/v1/public/', authCheck('*'), ({ user }, res) => res.json({ user }));
 
     // Role Routes
     app.use(`/api/v1/${Student}`, authCheck(Student), studentApi);

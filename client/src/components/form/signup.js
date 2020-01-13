@@ -19,13 +19,12 @@ const defaultState = {
     errors: [],
 }
 
-export default ({ handlePrev }) => {
+export default ({ handlePrev, data }) => {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [state, setState] = useState(defaultState);
     const { setAuthTokens, setAuthUser } = useAuth();
 
     const handleChange = (name, value) => setState({ ...state, [name]: value });
-
 
     const errors = FormValidator({ fields: forData.create.field, state });
     const submitable = errors.length === 0;
@@ -37,7 +36,8 @@ export default ({ handlePrev }) => {
         if (!submitable)
             return handleChange('errors', errors);
         try {
-            basicAuth(LeanForm({ fields: forData.create.field, state }), ({ token, user }) => {
+            let toPost = { ...LeanForm({ fields: forData.create.field, state }), ...data };
+            basicAuth(toPost, ({ token, user }) => {
                 setLoggedIn(true);
                 setAuthTokens(token);
                 setAuthUser(user)

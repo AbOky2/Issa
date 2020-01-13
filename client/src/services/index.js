@@ -1,7 +1,5 @@
 import { getToken } from '../utils/storage'
 
-
-
 const getRequestConfig = (extra = {}) => ({
     headers: {
         Authorization: "Bearer " + getToken(),

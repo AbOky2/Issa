@@ -1,6 +1,5 @@
 import axios from "axios";
 import { API_URL } from '../config'
-import { setUser, clearUser } from '../utils/storage'
 import { getRequestConfig } from './index'
 
 async function studentGetData(cb) {

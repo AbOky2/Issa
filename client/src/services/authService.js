@@ -45,7 +45,7 @@ async function socialAuth(socialName, cb) {
 
 async function getCurrentUser() {
     try {
-        const data = await axios.get(`${API_URL}/currentUser`, getRequestConfig());
+        const data = await axios.get(`${API_URL}/public/currentUser`, getRequestConfig());
         const { data: { user, token } } = data;
 
         return { user, token }

@@ -11,15 +11,17 @@ import BedIcon from '../../assets/img/illustrations/bed_achat_logement.svg';
 import CouchIcon from '../../assets/img/illustrations/couch_achat_log.svg';
 import StudioIcon from '../../assets/img/illustrations/studio_objectif_achat.svg';
 import Wrapper, { ListCardWrapper, CustomNumerber, CustomSelect } from './index'
-import SearchInput from '../../components/formElement/search'
-import SignupForm from '../../components/form/signup';
+import SearchInput from '../formElement/search'
+import ReactSelect from '../elements/react-select'
+import SignupForm from '../form/signup';
+import { extractValidObjectData } from '../../utils/converAndCheck'
+
 import { T2, T3, allHomeSize, studio, StudentHouse, rental_investment, main_residence, otherObjective, youngActive, lastYearStudent } from '../../utils/user'
 
 const BudgetComp = ({ handlePrev, handleNext }) => {
     const [budget, setBudget] = useState(500);
     const increment = 10;
     const handleNextClick = () => {
-        console.log('okk')
         handleNext && handleNext('budget', budget)
     }
     const updateChange = (value) => setBudget(value);
@@ -38,13 +40,21 @@ const BudgetComp = ({ handlePrev, handleNext }) => {
     )
 }
 
-const SearchComp = ({ handlePrev, handleNext }) => {
-    const handleNextClick = () => {
-        handleNext && handleNext()
-    }
+const SearchComp = ({ handlePrev, handleNext, handleChange, data: { zones, zoneList } = {} }) => {
+    const handleNextClick = () => zones.length && handleNext && handleNext()
+
     return (
-        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={HousingIcon} alt='Buget' title='Quelle est ta zone de recherche ?'>
-            <SearchInput />
+        <Wrapper
+            handlePrev={handlePrev}
+            handleNext={handleNextClick}
+            img={HousingIcon}
+            alt='Buget'
+            title='Quelle est ta zone de recherche ?'
+        >
+            <ReactSelect
+                options={zoneList}
+                value={zones}
+                handleChange={(value) => handleChange('zones', value)} />
         </Wrapper>
     )
 }
@@ -71,7 +81,7 @@ const SchoolComp = ({ handlePrev, handleNext }) => {
         handleNext && handleNext('school', school)
     }
     return (
-        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={GraduateIcon} alt='Buget' title='Quelle est ta zone de recherche ?'>
+        <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={GraduateIcon} alt='Buget' title='Sélectionne ton école'>
             <Grid className='custom-input select' xs={12}>
                 <CustomSelect
                     value={school}
@@ -118,12 +128,14 @@ const BuyerHouseComp = ({ handlePrev, handleNext }) => (
 // Other
 const SignUpComp = ({ handlePrev, handleNext, data }) => {
     const handleNextClick = () => handleNext && handleNext()
+    const leanData = extractValidObjectData(data, data.post_fields);
+    console.log(data, leanData);
 
     return (
         <Wrapper title='Remplis tes informations'>
             <Grid container justify='center'>
                 <Grid item xs={12} sm={6}>
-                    <SignupForm data={data} handlePrev={handlePrev} handleNext={handleNextClick} />
+                    <SignupForm data={leanData} handlePrev={handlePrev} handleNext={handleNextClick} />
                 </Grid>
             </Grid>
         </Wrapper>
