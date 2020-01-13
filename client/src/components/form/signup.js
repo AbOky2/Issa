@@ -15,7 +15,6 @@ const defaultState = {
     email: 'email@email.email',
     password: 'email@email.email',
     phone: 'phone',
-    role: 'roomer',
     errors: [],
 }
 

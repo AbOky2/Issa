@@ -13,7 +13,9 @@ const {
     Student,
     Active,
     generateSlug,
+    isBuyer,
     ucFirst,
+    isValidateEmail,
 } = require('../utils/user');
 
 const bcrypt = require('../utils/bcrypt');
@@ -71,7 +73,8 @@ const mongoSchema = new Schema({
     student_status: {
         type: String,
         enum: StudentStatusList,
-        required: true,
+        required: () => isBuyer(this.role)
+
     },
     role: {
         type: String,
@@ -127,6 +130,7 @@ class UserClass extends DBModel {
         ];
     }
 
+
     static async getId(where) {
         const user = await this.findOne(where)
             .select('_id')
@@ -137,14 +141,17 @@ class UserClass extends DBModel {
         return { userId: user._id };
     }
 
+
     static async getIdBySlug({ slug }) {
         return this.getId({ slug });
     }
+
 
     static async listStudents(options) {
         const { users: students } = await this.list({ role: Student }, options);
         return { students };
     }
+
 
     static async add({ email, password, firstName, lastName, school, role, picture }) {
         const slug = await generateSlug(this, firstName + lastName);
@@ -220,6 +227,7 @@ class UserClass extends DBModel {
         return { user };
     }
 
+
     static async signInOrSignUpViaSocialMedia({
         role,
         email,
@@ -247,32 +255,16 @@ class UserClass extends DBModel {
         return _.pick(user, this.publicFields());
     }
 
-    static async signInOrSignUpViaEmail({ email, password, avatarUrl, firstName, lastName, role, budget, housing_type, housing_objective, school, studiesLevel }) {
+
+    static async signIn(options) {
+        const { email, password } = options;
         let user = await this.findOne({ email });
 
-        if (!user) {
-            if (!isStudent({ role }))
-                throw new Error('Please field a valid role.');
-
-            user = (await this.add({
-                email,
-                password,
-                firstName,
-                lastName,
-                role,
-                picture: avatarUrl,
-                budget,
-                housing_type,
-                housing_objective,
-                school,
-                studiesLevel
-            })).user;
-            user = user.toObject();
-            return _.pick(user, this.publicFields());
-        }
-        if (!user.password) {
+        if (!user)
+            throw new Error('User not found.');
+        if (!user.password)
             throw new Error('Account has no password.');
-        }
+
         const isMatch = await bcrypt.compare(password, user.password);
         user = user.toObject();
         if (isMatch)
@@ -280,18 +272,16 @@ class UserClass extends DBModel {
         throw new Error('Invalid password');
     }
 
-    static async signInOrSignUp(options) {
-        const { email, password, provider, socialUserId, token } = options;
 
-        if (provider && socialUserId && token) {
-            return this.signInOrSignUpViaSocialMedia(options);
-        }
-        if (email && password) {
-            return this.signInOrSignUpViaEmail(options);
-        }
-        throw new Error(
-            'Invalid SignIn/Up method, either use email + password or use social media login.',
-        );
+    static async signUp(options) {
+        let user = null;
+
+        if (await this.findOne({ email: options.email }))
+            throw new Error('Account already exist.');
+
+        user = (await this.add(options)).user;
+        user = user.toObject();
+        return _.pick(user, this.publicFields());
     }
 }
 mongoSchema.loadClass(UserClass);
@@ -299,6 +289,8 @@ mongoSchema.loadClass(UserClass);
 mongoSchema.pre('save', async function userPreSavePassword() {
     const user = this;
 
+    if (!isValidateEmail(user.email))
+        throw 'Invalid email';
     user.firstName = ucFirst(user.firstName)
     user.lastName = ucFirst(user.lastName)
     if (!user.password || !user.isModified('password')) {

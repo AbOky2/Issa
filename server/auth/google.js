@@ -3,7 +3,7 @@ const Strategy = require('passport-google-oauth').OAuth2Strategy;
 // const { google } = require('googleapis');
 
 const User = require('../models/User');
-const { Student } = require('../utils/user')
+const { Roomer } = require('../utils/user')
 // const { redirecAfterAuth } = require('./index');
 const { jwtTokenize } = require('../utils/jwt')
 const { notFound } = require('../utils/message')
@@ -33,10 +33,10 @@ function auth({ ROOT_URL, app }) {
             firstName = profile.displayName;
         }
         try {
-            const user = await User.signInOrSignUp({
+            const user = await User.signInOrSignUpViaSocialMedia({
                 provider: profile.provider,
                 socialUserId: profile.id,
-                role: Student,
+                role: Roomer,
                 email,
                 token: accessToken,
                 firstName,

@@ -33,6 +33,7 @@ const StatusList = [Active, Inactive];
 
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
+const isBuyer = (user) => user && user.role === Buyer;
 
 
 // Slug
@@ -58,7 +59,11 @@ const generateSlug = async (Model, name, filter = {}) => {
 
     return createUniqueSlug(Model, origSlug, 1);
 }
-const ucFirst = (name) => name.charAt(0).toUpperCase() + name.slice(1)
+const ucFirst = (name) => name.charAt(0).toUpperCase() + name.slice(1);
+const isValidateEmail = (email) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 module.exports = {
     // Vars
     Admin,
@@ -77,6 +82,9 @@ module.exports = {
     // Methods
     isAdmin,
     isStudent,
+    Roomer,
+    isBuyer,
     generateSlug,
     ucFirst,
+    isValidateEmail,
 };
