@@ -6,10 +6,12 @@ const User = require('../models/User');
 
 const jwtMiddleware = (req, res, next) => {
     // check header or url parameters or post parameters for token
-    var token = req.headers['authorization'],
-        not_loged_user_acess_page = ['/auth/basic'];
+    const not_loged_user_acess_page = ['/auth/signin', '/auth/signup'];
+    const publicApiV1 = '/api/v1/public';
+    const originalUrl = req.originalUrl;
+    let token = req.headers['authorization'];
 
-    if (not_loged_user_acess_page.includes(req.originalUrl))
+    if (not_loged_user_acess_page.includes(originalUrl) || originalUrl.substring(0, publicApiV1.length) === publicApiV1)
         return next();
 
     if (!token)
@@ -21,8 +23,15 @@ const jwtMiddleware = (req, res, next) => {
         if (err)
             return res.status(401).json({ success: false, message: invalidToken });
         else {
-            user = await User.getById(user._id);
-            req.user = user; //set the user to req so other routes can use it
+            if (user) {
+                try {
+                    user = await User.getById(user._id);
+                    req.user = user; //set the user to req so other routes can use it
+                } catch (err) {
+                    req.logout();
+                    req.session.destroy();
+                }
+            }
             next();
         }
     });

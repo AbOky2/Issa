@@ -16,6 +16,30 @@ async function basicAuth(form, cb) {
         console.error(`error => ${err}`)
     }
 }
+async function signUp(form, cb) {
+    try {
+        const res = await axios.post(ROOT_URL + "/auth/signup", form, getRequestConfig());
+        const user = res.data.user;
+        setUser(user);
+        if (cb)
+            cb(res.data);
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+async function signIn(form, cb) {
+    try {
+        const res = await axios.post(ROOT_URL + "/auth/signin", form, getRequestConfig());
+        const user = res.data.user;
+        setUser(user);
+        if (cb)
+            cb(res.data);
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
 
 async function logout(cb) {
     try {
@@ -55,4 +79,4 @@ async function getCurrentUser() {
     }
 }
 
-export { basicAuth, logout, socialAuth, getCurrentUser };
+export { basicAuth, signUp, signIn, logout, socialAuth, getCurrentUser };

@@ -4,7 +4,7 @@ import { getRequestConfig } from './index'
 
 async function getZones(cb) {
     try {
-        const query = await axios.get(`${API_URL}/admin/agency-zone`, getRequestConfig());
+        const query = await axios.get(`${API_URL}/public/agency-zone`, getRequestConfig());
         const { data } = query
 
         return cb ? cb(data) : data

@@ -15,24 +15,21 @@ import SearchInput from '../formElement/search'
 import ReactSelect from '../elements/react-select'
 import SignupForm from '../form/signup';
 import { extractValidObjectData } from '../../utils/converAndCheck'
-
 import { T2, T3, allHomeSize, studio, StudentHouse, rental_investment, main_residence, otherObjective, youngActive, lastYearStudent } from '../../utils/user'
 
-const BudgetComp = ({ handlePrev, handleNext }) => {
-    const [budget, setBudget] = useState(500);
+const BudgetComp = ({ handlePrev, handleNext, handleChange, data: { budget } }) => {
+    const budgetKey = 'budget';
     const increment = 10;
-    const handleNextClick = () => {
-        handleNext && handleNext('budget', budget)
-    }
-    const updateChange = (value) => setBudget(value);
-    const handleUp = () => setBudget(budget => budget + increment);
-    const handleDown = () => budget - increment >= 0 && setBudget(budget => budget - increment);
+
+    const handleNextClick = () => handleNext && handleNext()
+    const handleUp = () => handleChange(budgetKey, budget + increment);
+    const handleDown = () => budget - increment >= 0 && handleChange(budgetKey, budget - increment);
 
     return (
         <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={HousingIcon} alt='Buget' title='Saisis ton budget maximum / mois'>
             <CustomNumerber
                 value={budget}
-                handleChange={updateChange}
+                handleChange={(value) => handleChange(budgetKey, value)}
                 handleUp={handleUp}
                 handleDown={handleDown}
             />
@@ -59,8 +56,10 @@ const SearchComp = ({ handlePrev, handleNext, handleChange, data: { zones, zoneL
     )
 }
 
-const HouseComp = ({ handlePrev, handleNext }) => (
+const HouseComp = ({ handlePrev, handleNext, handleChange, data: { housing_type } }) => (
     <ListCardWrapper
+        selected={housing_type}
+        handleChange={(data) => handleChange('housing_type', data)}
         handlePrev={handlePrev}
         handleNext={handleNext}
         name='housing_type'
@@ -74,18 +73,15 @@ const HouseComp = ({ handlePrev, handleNext }) => (
     />
 )
 
-const SchoolComp = ({ handlePrev, handleNext }) => {
-    const [school, setSchool] = useState(null);
+const SchoolComp = ({ handlePrev, handleNext, handleChange, data: { school } }) => {
 
-    const handleNextClick = () => {
-        handleNext && handleNext('school', school)
-    }
+    const handleNextClick = () => handleNext && handleNext();
     return (
         <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={GraduateIcon} alt='Buget' title='Sélectionne ton école'>
-            <Grid className='custom-input select' xs={12}>
+            <Grid className='custom-input select' item xs={12}>
                 <CustomSelect
                     value={school}
-                    onChange={(e) => setSchool(e.target.value)}
+                    onChange={(e) => handleChange('school', e.target.value)}
                 >
                     <option value="" />
                     <option value='hec'>HEC</option>

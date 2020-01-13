@@ -31,6 +31,7 @@ const UserList = ({ contentList = [], headerList }) => {
     //     setState({ ...state, currentPage: selectedPage, offset: offset });
     // }
     const list = contentList/*.splice(state.offset, state.limit)*/;
+    console.log(list)
     return (
         <Grid container item>
             <Header headerList={headerList} />
@@ -77,12 +78,13 @@ const UserList = ({ contentList = [], headerList }) => {
                         </Grid>
                     </Grid>
                     <Grid item container alignItems='center' xs={1}>
-                        <Grid item>
+                        {elem.studiesLevel ? <><Grid item>
                             <span className='tiny-icon icon-circle'></span>
                         </Grid>
-                        <Grid item>
-                            <span>{`${elem.studiesLevel}an${elem.studiesLevel === '1' ? '' : 's'}`}</span>
-                        </Grid>
+                            <Grid item>
+                                <span>{`${elem.studiesLevel}an${elem.studiesLevel === '1' ? '' : 's'}`}</span>
+                            </Grid>
+                        </> : ''}
                     </Grid>
                 </Grid>
             ))}

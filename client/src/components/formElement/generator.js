@@ -85,6 +85,7 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
                         const elemSettings = settings;
                         const containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : elem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
                         const containerClassName = elem.containerClassName || '';
+                        delete elem.containerClassName;
 
                         return (
                             <Grid key={key} item {...dimentions} style={containerStyle} className={`form-element-row no-left-right-padding ${containerClassName}`}>

@@ -31,8 +31,6 @@ export default {
                 required: true,
                 dimension: { xs: 8 },
                 containerClassName: 'form-container-spacing-left'
-
-
             },
             {
                 label: "Email",
@@ -41,7 +39,6 @@ export default {
                 required: true,
                 dimension: { xs: 6 },
                 containerClassName: 'form-container-spacing-right'
-
             },
             {
                 label: "Téléphone",
@@ -50,19 +47,13 @@ export default {
                 required: true,
                 dimension: { xs: 6 },
                 containerClassName: 'form-container-spacing-left'
-
             },
             {
                 label: "Mot de passe",
                 name: "password",
                 type: 'password',
                 required: true,
-            },
-            {
-                name: "role",
-                type: 'hidden',
-                required: true,
-            },
+            }
         ],
         settings: { unableUnderline: false, unableBoxShadow: true, variant: 'outlined', showLabel: true, labelPosition: 'top|left' }
     }

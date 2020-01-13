@@ -4,7 +4,7 @@ import FormGenerator, { FormValidator, LeanForm } from '../formElement/generator
 import forData from './data/signup'
 import { Redirect } from "react-router-dom";
 import Btn from '../elements/btn'
-import { basicAuth } from '../../services/authService'
+import { signUp } from '../../services/authService'
 import { useAuth } from "../../context/auth";
 
 const defaultState = {
@@ -36,7 +36,7 @@ export default ({ handlePrev, data }) => {
             return handleChange('errors', errors);
         try {
             let toPost = { ...LeanForm({ fields: forData.create.field, state }), ...data };
-            basicAuth(toPost, ({ token, user }) => {
+            signUp(toPost, ({ token, user }) => {
                 setLoggedIn(true);
                 setAuthTokens(token);
                 setAuthUser(user)

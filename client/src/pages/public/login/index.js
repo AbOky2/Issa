@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Grid, TextField, Button } from '@material-ui/core';
-import { basicAuth } from '../../../services/authService'
+import { signIn } from '../../../services/authService'
 import { useAuth } from "../../../context/auth";
 
 import './login.css';
 
 const LoginTab = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
-    const [state] = useState({ email: 'test@test.test', password: 'test' });
-    // const [state] = useState({ email: 'test@admin.admin', password: 'test' });
+    // const [state] = useState({ email: 'test@test.test', password: 'test' });
+    const [state] = useState({ email: 'test@admin.admin', password: 'test' });
     const { setAuthTokens, setAuthUser } = useAuth();
     const referer = '/dashboard';
 
@@ -18,7 +18,7 @@ const LoginTab = () => {
 
 
     const onClick = () => {
-        basicAuth(state, ({ token, user }) => {
+        signIn(state, ({ token, user }) => {
             setLoggedIn(true);
             setAuthTokens(token);
             setAuthUser(user)

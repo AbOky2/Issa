@@ -1,7 +1,7 @@
 const isArray = (arr) => Array.isArray(arr);
 const isObject = (obj) => typeof obj === 'object';
 const isFn = (functionToCheck) => functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
-
+const isEmpty = (obj) => Object.keys(obj).length === 0 && obj.constructor === Object
 const buildFromArray = (datas, label, value) => datas && datas.map(elem => ({ label: elem[label], value: elem[value] }));
 const buildToArray = (datas) => {
     const newData = [];
@@ -68,4 +68,4 @@ const extractValidObjectData = (data, keys) => {
     return obj;
 }
 
-export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail, toFormData, isArray, isObject, renameObjectKeys, extractValidObjectData }
+export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail, toFormData, isArray, isObject, renameObjectKeys, extractValidObjectData, isEmpty }

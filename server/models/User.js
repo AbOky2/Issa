@@ -153,21 +153,12 @@ class UserClass extends DBModel {
     }
 
 
-    static async add({ email, password, firstName, lastName, school, role, picture }) {
+    static async add(options) {
+        const { email, firstName, lastName } = options;
         const slug = await generateSlug(this, firstName + lastName);
         const status = Active; // Change to Enum Value
 
-        const user = await this.create({
-            email,
-            password,
-            slug,
-            school,
-            firstName,
-            lastName,
-            status,
-            role,
-            picture
-        });
+        const user = await this.create({ ...options, status, slug });
 
         if (email) {
             // Send Email
@@ -197,12 +188,15 @@ class UserClass extends DBModel {
      * @param {String} params.slug - The slug of the User to get
      */
     static async getById(_id) {
-        const userDoc = await this.findOne({ _id })
-            .select(this.publicFields());
-        if (!userDoc) {
-            throw new Error('User not found');
+        let userDoc = null;
+
+        try {
+            if (!_id || !(userDoc = await this.findOne({ _id }).select(this.publicFields())))
+                throw new Error('User not found');
+            return userDoc.toObject();
+        } catch (err) {
+            throw err
         }
-        return userDoc.toObject();
     }
 
     /**

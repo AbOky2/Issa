@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/partials/header/header'
 import './App.css';
 import { AuthContext } from './context/auth';
-import { getToken, getUser, setUser, setToken } from './utils/storage'
+import { getToken, getUser, setUser, clearUser, setToken, clearToken } from './utils/storage'
 import { getCurrentUser, logout } from './services/authService'
 
 
@@ -22,17 +22,19 @@ const App = () => {
     setAuth(data);
   }
   const logOut = (redirect = true) => {
-    console.log('---')
     if (redirect)
       window.location = '/login'
     setAuthTokens(null);
     setAuthUser(null);
+    clearToken();
+    clearUser();
   };
   const isAuth = authTokens && authUser ? true : false;
   (async () => {
     try {
-      if (!(await getCurrentUser()))
+      if (!(await getCurrentUser())) {
         logOut(false)
+      }
 
     } catch (error) {
       console.error('--', error)
