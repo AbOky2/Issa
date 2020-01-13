@@ -35,7 +35,11 @@ router.post('/agency-zone', requestMiddleware(zoneSchema.admin.post), handleErro
 router.put('/agency-zone/:id', updateCollection(requestMiddleware(zoneSchema.admin.update),
     async ({ id, data }) => await Zone.update(id, data))
 );
-router.delete('/agency-zone/:id', deleteCollection(async ({ id }) => await Zone.delete(id)));
+router.delete('/agency-zone/:id', deleteCollection(async ({ id }) => {
+    await Zone.delete(id);
+    const list = await Zone.list();
+    return list;
+}));
 
 
 // Agency
@@ -46,8 +50,9 @@ router.post('/agency', requestMiddleware(agencySchema.admin.post), handleErrors(
         await Zone.get(body.id);
         const { elem } = await Agency.add(req.body);
 
-        const list = await Zone.addAgency(body.id, elem._id);
+        await Zone.addAgency(body.id, elem._id);
 
+        const list = await Zone.list();
         res.json(list);
     } catch (error) {
         res.json({ 'errors': 'Error while adding', error })
@@ -57,7 +62,11 @@ router.post('/agency', requestMiddleware(agencySchema.admin.post), handleErrors(
 router.put('/agency/:id', updateCollection(requestMiddleware(agencySchema.admin.update),
     async ({ id, data }) => await Agency.update(id, data))
 );
-router.delete('/agency/:id', deleteCollection(async ({ id }) => await Agency.delete(id)));
+router.delete('/agency/:id', deleteCollection(async ({ id }) => {
+    await Agency.delete(id);
+    const list = await Zone.list();
+    return list;
+}));
 
 
 

@@ -120,10 +120,7 @@
     margin: auto;
 }
 .agencies .row-container {
-    min-height: 30px;
-}
-.agencies .list {
-    background-color: rgba(0, 0, 0, 0.04)
+    min-height: 62px;
 }
 .agencies .name-container {
     width: calc(100% - 50px);
@@ -136,10 +133,21 @@
     text-align: center;
 }
 .agencies .actions-container > div:hover {
-    background-color: rgba(0, 0, 0, 0.04)
+    /* background-color: rgba(0, 0, 0, 0.04) */
 }
 .agencies .active, .agencies .list:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #f3f5f8;
+    border-radius: 5px;
+}
+.agencies .add-btn {
+    margin: 1rem auto;
+}
+.agencies .list-container {
+    overflow: scroll;
+}
+.agencies .zone-list-container {
+    padding-right: 10px;
+
 }
 @media screen and (max-width: 400px) {
     div.content-container .content {

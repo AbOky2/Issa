@@ -68,6 +68,7 @@
 .pointer {
   cursor: pointer;
 }
+.header-icon img,
 .header-icon svg {
   width: 18px;
 }

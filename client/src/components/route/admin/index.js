@@ -6,7 +6,7 @@ import PrivateRoute from '../privateRoute'
 import PageBuy from '../../../pages/private/admin/buy'
 import PageProperties from '../../../pages/private/admin/listElement/properties'
 import PagePartners from '../../../pages/private/admin/listElement/partners'
-import NexityPartners from '../../../pages/private/admin/listElement/nexity'
+import NexityPartners from '../../../pages/private/admin/nexity'
 import { PublicRoute } from '../public'
 
 
