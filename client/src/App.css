@@ -124,13 +124,13 @@ div.btn-container {
   letter-spacing: normal;
   cursor: pointer;
 }
-.btn-container.full {
-  width: 100%;
-}
 .btn-container.auto {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+}
+.btn-container.full {
+  width: 100%;
 }
 .btn-container.grayColor {
   color: #475f7b;

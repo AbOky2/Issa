@@ -1,15 +1,22 @@
 import React, { useState } from "react";
+
 import { Redirect } from "react-router-dom";
-import { Grid, TextField, Button } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { signIn } from '../../../services/authService'
 import { useAuth } from "../../../context/auth";
-
+import { Link } from 'react-router-dom'
+import Btn from '../../../components/elements/btn'
+import Logo from '../../../assets/img/logo.png'
 import './login.css';
 
 const LoginTab = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
     // const [state] = useState({ email: 'test@test.test', password: 'test' });
-    const [state] = useState({ email: 'test@admin.admin', password: 'test' });
+    const [state, setState] = useState({
+        email: 'test@admin.admin',
+        password: 'test'
+    });
+
     const { setAuthTokens, setAuthUser } = useAuth();
     const referer = '/dashboard';
 
@@ -24,25 +31,25 @@ const LoginTab = () => {
             setAuthUser(user)
         })
     }
+    const handleChange = (name, value) => setState({ ...state, [name]: value });
     return (
         <div id='login'>
-            <Grid container spacing={8} alignItems="flex-end">
-                <Grid item>
-                    {/* <Face /> */}
-                </Grid>
-                <Grid item md={true} sm={true} xs={true}>
-                    <TextField id="email" label="email" type="email" value={state.email} fullWidth autoFocus required />
-                </Grid>
-            </Grid>
-            <Grid container spacing={8} alignItems="flex-end">
-                <Grid item>
-                    {/* <Fingerprint /> */}
-                </Grid>
-                <Grid item md={true} sm={true} xs={true}>
-                    <TextField id="password" label="Password" type="password" value={state.password} fullWidth required />
-                </Grid>
-                <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button variant="outlined" color="primary" style={{ textTransform: "none" }} onClick={onClick}>Login</Button>
+            <Grid container alignItems="center" className='form-container-parent'>
+                <Grid container item justify="center" className='form-container'>
+                    <Grid>
+                        <img src={Logo} />
+                        <h2>Admin</h2>
+                    </Grid>
+                    <Grid container item>
+                        <Grid className='input-container fullwidth'><input value={state.email} onChange={(e) => handleChange('email', e.target.value)} type='email' placeholder='Email' /></Grid>
+                        <Grid className='input-container fullwidth'><input value={state.password} onChange={(e) => handleChange('password', e.target.value)} type='password' placeholder='Mot de passe' /></Grid>
+                    </Grid>
+                    <Grid item>
+                        <Btn text='Connexion' onClick={onClick} className='greenColor full' />
+                    </Grid>
+                    <Grid item className='fullwidth'>
+                        <p>Tu n’as pas de compte ? <Link to='/'>Créer mon compte</Link></p>
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
