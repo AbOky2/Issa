@@ -23,7 +23,9 @@ const schemas = {
                 role: Joi.string().valid(...studentRoleList),
 
                 // Housing
-                zones: Joi.array().items(Joi.string().required()).required(),
+                zones: Joi.array().items(
+                    Joi.object().keys({ zone: Joi.string().required() }).optional()
+                ),
                 budget: Joi.number().min(0).required(),
                 housing_type: Joi.string().valid(...housing_type_List),
                 school: Joi.string().optional(),

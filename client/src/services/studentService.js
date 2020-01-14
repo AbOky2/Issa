@@ -39,4 +39,16 @@ async function getProperties(cb) {
         console.error(`error => ${err}`)
     }
 }
-export { studentGetData, getPartners, getProperties };
+
+async function getZones(cb) {
+    try {
+        const query = await axios.get(`${API_URL}/student/agency-zone`, getRequestConfig());
+        const { data } = query
+
+        return cb ? cb(data) : data
+    }
+    catch (err) {
+        console.error(`error => ${err}`)
+    }
+}
+export { studentGetData, getPartners, getProperties, getZones };

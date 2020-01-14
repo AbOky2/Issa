@@ -65,10 +65,9 @@ const authCheck = (roleName) => handleErrors((req, res, next) => {
             if (!isStudent(user))
                 message = wrongInfo('role');
         }
-        else if (!RoleList.includes(roleName) && (user.role !== roleName))
+        else if (!RoleList.includes(roleName) || (user.role !== roleName))
             message = wrongInfo('role');
     }
-
     if (message)
         res.status(401).json({ authenticated, message });
     else

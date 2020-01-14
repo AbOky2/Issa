@@ -27,7 +27,7 @@ export default () => {
         role: 'roomer',
         zoneList: [],
 
-        post_fields: ['housing_type', 'budget', 'school', 'role', { name: 'zones', validate: (data) => data ? data.map(data => data.value) : [] }]
+        post_fields: ['housing_type', 'budget', 'school', 'role', { name: 'zones', validate: (data) => data ? data.map(data => ({ zone: data.value })) : [] }]
     });
     useEffect(() => {
         (async () => {

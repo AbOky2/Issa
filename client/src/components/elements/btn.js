@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from '@material-ui/core';
 import { Link } from "react-router-dom";
 
-export default ({ onClick, text = '', redirect = false, href = null, full = true, auto = true, grayColor = false, greenColor = false, opaqueGreenColor, className = '' }) => {
+export default ({ onClick, text = '', redirect = false, href = null, full = false, auto = true, grayColor = false, greenColor = false, opaqueGreenColor, className = '' }) => {
     let fields = { full, auto, grayColor, greenColor, opaqueGreenColor },
         elem;
 

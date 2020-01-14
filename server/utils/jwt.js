@@ -7,7 +7,7 @@ const User = require('../models/User');
 const jwtMiddleware = (req, res, next) => {
     // check header or url parameters or post parameters for token
     const not_loged_user_acess_page = ['/auth/signin', '/auth/signup'];
-    const publicApiV1 = '/api/v1/publicsss';
+    const publicApiV1 = '/api/v1/public';
     const originalUrl = req.originalUrl;
     let token = req.headers['authorization'];
 
@@ -23,7 +23,7 @@ const jwtMiddleware = (req, res, next) => {
         if (err) {
             if (originalUrl.substring(0, publicApiV1.length) === publicApiV1)
                 return next();
-            return res.status(401).json({ success: false, message: invalidToken });
+            return res.status(403).json({ success: false, message: invalidToken });
         }
         else {
             if (user) {

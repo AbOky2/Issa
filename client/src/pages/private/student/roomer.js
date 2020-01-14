@@ -5,21 +5,24 @@ import { AdminContentWrapper } from '../../../components/wrapper'
 import { getPartners } from '../../../services/studentService'
 import Card from '../../../components/private/admin/student/card'
 import UpdateCard from '../../../components/private/admin/student/update-profile'
+import { getZones } from '../../../services/studentService'
 import Offers from '../../../components/private/admin/student/viewCard'
 
 import './index.css'
 
 const Dashboard = () => {
     const [state, setState] = useState({
-        partners: [],
+        partnersList: [],
+        agenciesList: [],
     })
 
     useEffect(() => {
         (async () => {
             try {
-                const partners = await getPartners()
-                handleChange('partners', partners.list)
+                const agenciesList = await getZones() || {};
+                const partnersList = await getPartners() || {};
 
+                setState({ agenciesList: agenciesList.list, partnersList: partnersList.list })
             } catch (error) {
                 console.error(error)
             }
@@ -27,21 +30,12 @@ const Dashboard = () => {
     }, [])
 
     const handleChange = (name, value) => setState({ ...state, [name]: value });
+    let data = [];
+    state.agenciesList && state.agenciesList.forEach(elem => {
+        if (elem.zone && elem.zone.agencies)
+            elem.zone.agencies.forEach(e => data.push({ ...e, status: elem.status }))
+    });
 
-    const data = [
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-        { name: 'Mathieu Bourgouin - Agences Century 21', address: '137 Rue de rome 75017 Paris', status: 'waiting' },
-    ];
     return (
         <AdminContentWrapper className='no-bg no-box-shadow'>
             <Grid><h2 className='student-section-title text-left'>VOTRE DOSSIER</h2></Grid>
@@ -57,8 +51,8 @@ const Dashboard = () => {
 
             <Grid><h2 className='student-section-title text-left'>NOS OFFRES PARTENAIRES</h2></Grid>
             <Grid item container className='content-container'>
-                {state.partners.map((e, i) =>
-                    <Grid item container index={i} xs={6} sm={3} className='list'>
+                {state.partnersList && state.partnersList.map((e, i) =>
+                    <Grid item container key={i} xs={6} sm={3} className='list'>
                         <Card data={e} />
                     </Grid>
                 )}

@@ -8,6 +8,7 @@ import InfoIcon from '../../../../assets/img/icons/info.png'
 import './card.css'
 
 const status = {
+    none: 'En attente',
     waiting: 'En attente',
     done: 'Matché'
 }
@@ -23,14 +24,14 @@ export default ({ data = [] }) => (
     <Grid container className='offers'>
         <h2>Nous avons transmis ta demande aux agences imobiliaire les plus proches !</h2>
         <Grid container item className='list-container'>
-            {data.map((e, i) => (
+            {data && data.map((e = {}, i) => (
                 <Grid container item key={i} className='list text-left' direction='row'>
                     <Grid item className='location-container'>
                         <h3>{e.name}</h3>
                         <span>{e.address}</span>
                     </Grid>
                     <Grid container item alignItems="center" className='info-container-container'>
-                        <Grid item className='info-container text-center' direction='column' justify="space-between">
+                        <Grid item className='info-container text-center'>
                             <Grid item><img src={InfoIcon} /></Grid>
                             <Grid item><span>Info</span></Grid>
                         </Grid>

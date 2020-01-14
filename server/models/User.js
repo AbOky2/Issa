@@ -1,8 +1,9 @@
+"use strict";
 
 const mongoose = require('mongoose');
 const _ = require('lodash');
 const DBModel = require('./index')
-
+const { sendMail } = require('../services/mail')
 const {
     RoleList,
     StatusList,
@@ -16,6 +17,8 @@ const {
     isBuyer,
     ucFirst,
     isValidateEmail,
+    zoneStatusList,
+    None
 } = require('../utils/user');
 
 const bcrypt = require('../utils/bcrypt');
@@ -74,7 +77,6 @@ const mongoSchema = new Schema({
         type: String,
         enum: StudentStatusList,
         required: () => isBuyer(this.role)
-
     },
     role: {
         type: String,
@@ -89,6 +91,16 @@ const mongoSchema = new Schema({
     housing_objective: {
         type: String,
         enum: housing_objectiveList,
+        required: () => isStudent(this.role)
+    },
+    zones: {
+        type: [{
+            zone: { type: Schema.Types.ObjectId, ref: 'Zone' },
+            status: {
+                type: String,
+                enum: zoneStatusList
+            }
+        }],
         required: () => isStudent(this.role)
     },
     budget: {
@@ -126,7 +138,7 @@ class UserClass extends DBModel {
             'budget',
             'housing_type',
             'housing_objective',
-            'StudentStatusList'
+            'StudentStatusList',
         ];
     }
 
@@ -139,6 +151,21 @@ class UserClass extends DBModel {
             return { userId: null };
         }
         return { userId: user._id };
+    }
+
+
+    static async getUserZones(_id) {
+        const list = await this.findOne(_id)
+            .select('zones')
+            .populate({
+                path: 'zones.zone',
+                populate: {
+                    path: 'agencies',
+                    model: 'Agency'
+                }
+            })
+            .lean();
+        return { list };
     }
 
 
@@ -158,6 +185,10 @@ class UserClass extends DBModel {
         const slug = await generateSlug(this, firstName + lastName);
         const status = Active; // Change to Enum Value
 
+        if (options.zones)
+            options.zones = options.zones.map(({ zone }) => ({ zone, status: None }))
+        // console.log(options);
+        // return;
         const user = await this.create({ ...options, status, slug });
 
         if (email) {

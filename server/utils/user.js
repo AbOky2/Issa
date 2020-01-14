@@ -30,6 +30,12 @@ const Active = 'active';
 const Inactive = 'inactive';
 const StatusList = [Active, Inactive];
 
+// status
+const None = 'none';
+const Waiting = 'waiting';
+const Done = 'done';
+const zoneStatusList = [Waiting, Done, None];
+
 
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
@@ -70,12 +76,14 @@ module.exports = {
     Student,
     Active,
     Inactive,
+    None,
 
     RoleList,
     StatusList,
     StudentStatusList,
     studentRoleList,
     housing_type_List,
+    zoneStatusList,
     housing_objectiveList,
 
 

@@ -11,11 +11,8 @@ import './login.css';
 
 const LoginTab = () => {
     const [isLoggedIn, setLoggedIn] = useState(false);
-    // const [state] = useState({ email: 'test@test.test', password: 'test' });
-    const [state, setState] = useState({
-        email: 'test@admin.admin',
-        password: 'test'
-    });
+    const [state, setState] = useState({ email: 'test@test.test', password: 'test' });
+    // const [state, setState] = useState({ email: 'test@admin.admin', password: 'test' });
 
     const { setAuthTokens, setAuthUser } = useAuth();
     const referer = '/dashboard';
