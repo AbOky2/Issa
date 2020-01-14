@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const { studentRoleList, housing_type_List } = require('../../utils/user')
+const { studentRoleList, housing_type_List, StudentStatusList } = require('../../utils/user')
 
 const schemas = {
     admin: {
@@ -26,8 +26,9 @@ const schemas = {
                 zones: Joi.array().items(
                     Joi.object().keys({ zone: Joi.string().required() }).optional()
                 ),
-                budget: Joi.number().min(0).required(),
+                budget: Joi.number().min(0).optional(),
                 housing_type: Joi.string().valid(...housing_type_List),
+                student_status: Joi.string().valid(...StudentStatusList),
                 school: Joi.string().optional(),
             },
             signIn: {

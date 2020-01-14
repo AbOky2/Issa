@@ -8,13 +8,13 @@ import { signUp } from '../../services/authService'
 import { useAuth } from "../../context/auth";
 
 const defaultState = {
-    firstName: 'firstName',
-    lastName: 'lastName',
-    age: '23',
-    city: 'city',
-    email: 'email@email.email',
-    password: 'email@email.email',
-    phone: 'phone',
+    firstName: '',
+    lastName: '',
+    age: '',
+    city: '',
+    email: '',
+    password: '',
+    phone: '',
     errors: [],
 }
 

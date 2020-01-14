@@ -20,7 +20,12 @@ const contents = [BuyerStatusComp, BuyerHouseComp, SignUpComp,];
 export default () => {
     const [state, setState] = useState({
         housing_type: null,
-        budget: 0
+        student_status: null,
+        role: 'buyer',
+
+        post_fields: ['housing_type', 'student_status', 'role']
+        // { name: 'zones', validate: (data) => data ? data.map(data => ({ zone: data.value })) : [] }]
+
     });
     const handleChange = (name, value) => setState({ ...state, [name]: value })
 

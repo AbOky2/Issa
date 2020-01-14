@@ -93,21 +93,25 @@ const SchoolComp = ({ handlePrev, handleNext, handleChange, data: { school } }) 
 }
 
 // Buyer
-const BuyerStatusComp = ({ handlePrev, handleNext }) => (
+const BuyerStatusComp = ({ handlePrev, handleNext, handleChange, data: { student_status } }) => (
     <ListCardWrapper
+        selected={student_status}
+        handleChange={(data) => handleChange('student_status', data)}
         handlePrev={handlePrev}
         handleNext={handleNext}
-        name='status'
+        name='student_status'
         list={[
             { img: GraduateIcon, text: 'Étudiant(e) en dernière année', slug: lastYearStudent },
-            { img: ActifAchatSituation, text: 'Jeune actif', slug: 'studio' },
+            { img: ActifAchatSituation, text: 'Jeune actif', slug: youngActive },
         ]}
         title='Je suis :'
     />
 )
 
-const BuyerHouseComp = ({ handlePrev, handleNext }) => (
+const BuyerHouseComp = ({ handlePrev, handleNext, handleChange, data: { housing_type } }) => (
     <ListCardWrapper
+        selected={housing_type}
+        handleChange={(data) => handleChange('housing_type', data)}
         handlePrev={handlePrev}
         handleNext={handleNext}
         name='housing_type'
