@@ -6,7 +6,7 @@ const User = require('../models/User');
 const { Roomer } = require('../utils/user')
 // const { redirecAfterAuth } = require('./index');
 const { jwtTokenize } = require('../utils/jwt')
-const { notFound } = require('../utils/message')
+const msg = require('../utils/message')
 
 function auth({ ROOT_URL, app }) {
     const verify = async (accessToken, refreshToken, profile, verified) => {
@@ -85,7 +85,7 @@ function auth({ ROOT_URL, app }) {
                 const token = jwtTokenize(user);
                 return res.redirect(`http://localhost:3000/login?token=${token}&user=${user}`)
             }
-            return res.status(401).json({ authenticate: false, message: notFound('user') });
+            return res.status(401).json({ authenticate: false, message: msg.notFound('user') });
         },
     );
 }

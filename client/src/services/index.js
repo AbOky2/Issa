@@ -12,7 +12,7 @@ const getFormDataRequestConfig = () => getRequestConfig({ 'Content-Type': 'multi
 
 const handleHttpErrors = (fn) => async function () {
     try {
-        await fn(...arguments);
+        return await fn(...arguments);
     } catch (err) {
         const { response } = err;
         let msg = null

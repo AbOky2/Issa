@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const { invalidToken } = require('../utils/message')
+const msg = require('../utils/message')
 const User = require('../models/User');
 
 
@@ -23,7 +23,7 @@ const jwtMiddleware = (req, res, next) => {
         if (err) {
             if (originalUrl.substring(0, publicApiV1.length) === publicApiV1)
                 return next();
-            return res.status(403).json({ success: false, message: invalidToken });
+            return res.status(403).json({ success: false, message: msg.invalidToken });
         }
         else {
             if (user) {

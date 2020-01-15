@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 const DBModel = require('./index')
 const { sendMail } = require('../services/mail')
+const msg = require('../utils/message')
 const {
     RoleList,
     StatusList,
@@ -207,7 +208,7 @@ class UserClass extends DBModel {
         const userDoc = await this.findOne({ slug })
             .select(this.publicFields());
         if (!userDoc) {
-            throw new Error('User not found');
+            throw new Error(msg.notFound('User'));
         }
         const user = userDoc.toObject();
         return { user };
@@ -223,35 +224,12 @@ class UserClass extends DBModel {
 
         try {
             if (!_id || !(userDoc = await this.findOne({ _id }).select(this.publicFields())))
-                throw new Error('User not found');
+                throw new Error(msg.notFound('User'));
             return userDoc.toObject();
         } catch (err) {
             throw err
         }
     }
-
-    /**
-     * Update a User by its slug
-     * @param {Object} params
-     * @param {String} params.slug - The slug of the User to get
-     * @param {...Object} params.updates - The updates to apply
-     * @todo Validate updates
-     */
-    static async updateBySlug({ slug, ...updates }) {
-        const userDoc = await this.findOne({ slug });
-        if (!userDoc) {
-            throw new Error('User not found');
-        }
-        Object.entries(updates)
-            .filter(([key, value]) => value !== undefined && !['influencer'].includes(key))
-            .forEach(([key, value]) => {
-                userDoc[key] = value;
-            });
-        await userDoc.save();
-        const user = _.pick(userDoc.toObject(), this.publicFields());
-        return { user };
-    }
-
 
     static async signInOrSignUpViaSocialMedia({
         role,
@@ -286,7 +264,7 @@ class UserClass extends DBModel {
         let user = await this.findOne({ email });
 
         if (!user)
-            throw new Error('User not found.');
+            throw new Error(msg.notFound('Email'));
         if (!user.password)
             throw new Error('Account has no password.');
 
@@ -294,7 +272,7 @@ class UserClass extends DBModel {
         user = user.toObject();
         if (isMatch)
             return _.pick(user, this.publicFields());
-        throw new Error('Invalid password');
+        throw new Error(msg.invalidInfo('password'));
     }
 
 
@@ -302,7 +280,7 @@ class UserClass extends DBModel {
         let user = null;
 
         if (await this.findOne({ email: options.email }))
-            throw new Error('Account already exist.');
+            throw new Error(msg.alreadyExist('Account'));
 
         user = (await this.add(options)).user;
         user = user.toObject();

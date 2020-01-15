@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { listCollection } = require('../utils/express');
-const { invalidToken } = require('../utils/message')
+const msg = require('../utils/message')
 const Zone = require('../models/Zone')
 const { sendMail } = require('../services/mail')
 
@@ -9,7 +9,7 @@ const { sendMail } = require('../services/mail')
 // User
 router.get('/currentUser', ({ user }, res) => {
     if (!user)
-        return res.status(401).json({ success: false, message: invalidToken });
+        return res.status(401).json({ success: false, message: msg.invalidToken });
 
     res.json({ user });
 });
