@@ -4,14 +4,14 @@ import './App.css';
 import { AuthContext } from './context/auth';
 import { getToken, getUser, setUser, clearUser, setToken, clearToken } from './utils/storage'
 import { getCurrentUser, logout } from './services/authService'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
   const [state, setState] = useState({})
   const [authTokens, setAuthTokens] = useState(getToken());
   const [authUser, setAuth] = useState(getUser());
-
   const handleChange = (name) => (value) => setState({ ...state, [name]: value });
   const setTokens = (data) => {
     setToken(data)
@@ -22,24 +22,20 @@ const App = () => {
     setAuth(data);
   }
   const logOut = (redirect = true) => {
-    if (redirect)
+    if (redirect) {
       window.location = '/login'
+    }
     setAuthTokens(null);
     setAuthUser(null);
     clearToken();
     clearUser();
   };
   const isAuth = authTokens && authUser ? true : false;
-  (async () => {
-    try {
-      if (!(await getCurrentUser())) {
-        logOut(false)
-      }
 
-    } catch (error) {
-      console.error('--', error)
-    }
+  (async () => {
+    await getCurrentUser()
   })()
+
   return (
     <AuthContext.Provider value={{
       ...state,
@@ -49,11 +45,15 @@ const App = () => {
       isAuth,
       authUser,
       setAuthUser,
-      logOut
+      logOut,
     }}>
       <div className="App">
         <Header user={authUser} isAuth={isAuth} logOut={logOut} />
       </div>
+      <ToastContainer
+        autoClose={3000}
+        position={toast.POSITION.TOP_CENTER}
+      />
     </AuthContext.Provider>
   );
 }

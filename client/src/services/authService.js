@@ -4,79 +4,59 @@ import { ROOT_URL, API_URL } from '../config'
 import { setUser, clearUser, clearToken } from '../utils/storage'
 import { getRequestConfig, handleHttpErrors } from './index'
 
-async function basicAuth(form, cb) {
-    try {
-        const res = await axios.post(ROOT_URL + "/auth/basic", form, getRequestConfig());
-        const user = res.data.user;
-        setUser(user);
-        if (cb)
-            cb(res.data);
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
-async function signUp(form, cb) {
-    try {
-        const res = await axios.post(ROOT_URL + "/auth/signup", form, getRequestConfig());
-        const user = res.data.user;
-        setUser(user);
-        if (cb)
-            cb(res.data);
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
-async function signIn(form, cb) {
-    try {
-        const res = await axios.post(ROOT_URL + "/auth/signin", form, getRequestConfig());
-        const user = res.data.user;
-        setUser(user);
-        if (cb)
-            cb(res.data);
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function logout(cb) {
-    try {
-        (await axios.get(ROOT_URL + "/auth/logout", getRequestConfig()));
-        clearUser();
-        clearToken();
+const basicAuth = handleHttpErrors(async (form, cb) => {
+    const res = await axios.post(ROOT_URL + "/auth/basic", form, getRequestConfig());
+    const user = res.data.user;
+    setUser(user);
+    if (cb)
+        cb(res.data);
+})
 
-        if (cb)
-            cb();
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function socialAuth(socialName, cb) {
-    try {
-        (await axios.get(`${ROOT_URL}/auth/${socialName}`, getRequestConfig()));
+const signUp = handleHttpErrors(async (form, cb) => {
+    const res = await axios.post(ROOT_URL + "/auth/signup", form, getRequestConfig());
+    const user = res.data.user;
+    setUser(user);
+    if (cb)
+        cb(res.data);
+})
 
-        if (cb)
-            cb();
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function getCurrentUser() {
-    try {
-        const data = await axios.get(`${API_URL}/public/currentUser`, getRequestConfig());
-        const { data: { user, token } } = data;
+const signIn = handleHttpErrors(async (form, cb) => {
+    const res = await axios.post(ROOT_URL + "/auth/signin", form, getRequestConfig());
+    const user = res.data.user;
 
-        return { user, token }
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+    setUser(user);
+    if (cb)
+        cb(res.data);
+})
 
-export { basicAuth, signUp, signIn, logout, socialAuth, getCurrentUser };
+
+const logout = handleHttpErrors(async (cb) => {
+    (await axios.get(ROOT_URL + "/auth/logout", getRequestConfig()));
+    clearUser();
+    clearToken();
+
+    if (cb)
+        cb();
+})
+
+
+const socialAuth = handleHttpErrors(async (socialName, cb) => {
+    (await axios.get(`${ROOT_URL}/auth/${socialName}`, getRequestConfig()));
+
+    if (cb)
+        cb();
+})
+
+
+const getCurrentUser = handleHttpErrors(async () => {
+    const data = await axios.get(`${API_URL}/public/currentUser`, getRequestConfig());
+    const { data: { user, token } } = data;
+
+    return { user, token }
+})
+
+
+export { basicAuth, signUp, signIn, logout, socialAuth, getCurrentUser }

@@ -1,219 +1,150 @@
 import axios from "axios";
 import { API_URL } from '../config'
 import { toFormData } from '../utils/converAndCheck'
-import { getRequestConfig, getFormDataRequestConfig } from './index'
+import { getRequestConfig, getFormDataRequestConfig, handleHttpErrors } from './index'
 
-async function getData(cb) {
-    try {
-        const query = await axios.get(`${API_URL}/admin`, getRequestConfig());
-        const { data } = query
-        if (cb) {
-            cb(data);
-        }
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function getUsers(role, cb) {
-    try {
-        const query = await axios.get(`${API_URL}/admin/users/${role}`, getRequestConfig());
-        const { data } = query
+const getData = handleHttpErrors(async (cb) => {
+    const query = await axios.get(`${API_URL}/admin`, getRequestConfig());
+    const { data } = query
+    if (cb) {
+        cb(data);
+    }
+})
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+
+const getUsers = handleHttpErrors(async (role, cb) => {
+    const query = await axios.get(`${API_URL}/admin/users/${role}`, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
 
 
 // Properties
-async function getProperties(cb) {
-    try {
-        const query = await axios.get(`${API_URL}/admin/properties`, getRequestConfig());
-        const { data } = query
+const getProperties = handleHttpErrors(async (cb) => {
+    const query = await axios.get(`${API_URL}/admin/properties`, getRequestConfig());
+    const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+    return cb ? cb(data) : data
+})
 
-async function deletePropertie(id, cb) {
-    try {
-        const query = await axios.delete(`${API_URL}/admin/propertie/${id}`, getRequestConfig());
-        const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+const deletePropertie = handleHttpErrors(async (id, cb) => {
+    const query = await axios.delete(`${API_URL}/admin/propertie/${id}`, getRequestConfig());
+    const { data } = query
 
-async function addPropertie(form, cb) {
+    return cb ? cb(data) : data
+})
 
-    try {
-        const query = await axios.post(`${API_URL}/admin/propertie`, toFormData(form), getFormDataRequestConfig());
-        const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+const addPropertie = handleHttpErrors(async (form, cb) => {
 
-async function updatePropertie(id, form, cb) {
-    try {
-        const query = await axios.put(`${API_URL}/admin/propertie/${id}`, form, getRequestConfig());
-        const { data } = query
+    const query = await axios.post(`${API_URL}/admin/propertie`, toFormData(form), getFormDataRequestConfig());
+    const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+    return cb ? cb(data) : data
+})
 
-async function swapPosition(form, cb) {
-    try {
-        const query = await axios.put(`${API_URL}/admin/properties/swapPosition`, form, getRequestConfig());
-        const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+const updatePropertie = handleHttpErrors(async (id, form, cb) => {
+    const query = await axios.put(`${API_URL}/admin/propertie/${id}`, form, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
+
+
+const swapPosition = handleHttpErrors(async (form, cb) => {
+    const query = await axios.put(`${API_URL}/admin/properties/swapPosition`, form, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
+
 
 // Partners
-async function getPartners(cb) {
-    try {
-        const query = await axios.get(`${API_URL}/admin/partners`, getRequestConfig());
-        const { data } = query
+const getPartners = handleHttpErrors(async (cb) => {
+    const query = await axios.get(`${API_URL}/admin/partners`, getRequestConfig());
+    const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+    return cb ? cb(data) : data
+})
 
-async function deletePartner(id, cb) {
-    try {
-        const query = await axios.delete(`${API_URL}/admin/partner/${id}`, getRequestConfig());
-        const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+const deletePartner = handleHttpErrors(async (id, cb) => {
+    const query = await axios.delete(`${API_URL}/admin/partner/${id}`, getRequestConfig());
+    const { data } = query
 
-async function addPartner(form, cb) {
+    return cb ? cb(data) : data
+})
 
-    try {
-        const query = await axios.post(`${API_URL}/admin/partner`, toFormData(form), getFormDataRequestConfig());
-        const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+const addPartner = handleHttpErrors(async (form, cb) => {
 
-async function updatePartner(id, form, cb) {
-    try {
-        const query = await axios.put(`${API_URL}/admin/partner/${id}`, form, getRequestConfig());
-        const { data } = query
+    const query = await axios.post(`${API_URL}/admin/partner`, toFormData(form), getFormDataRequestConfig());
+    const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+    return cb ? cb(data) : data
+})
 
-async function swapParnersPosition(form, cb) {
-    try {
-        const query = await axios.put(`${API_URL}/admin/partners/swapPosition`, form, getRequestConfig());
-        const { data } = query
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+const updatePartner = handleHttpErrors(async (id, form, cb) => {
+    const query = await axios.put(`${API_URL}/admin/partner/${id}`, form, getRequestConfig());
+    const { data } = query
 
-async function getZones(cb) {
-    try {
-        const query = await axios.get(`${API_URL}/admin/agency-zone`, getRequestConfig());
-        const { data } = query
+    return cb ? cb(data) : data
+})
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function addZone(form, cb) {
+const swapParnersPosition = handleHttpErrors(async (form, cb) => {
+    const query = await axios.put(`${API_URL}/admin/partners/swapPosition`, form, getRequestConfig());
+    const { data } = query
 
-    try {
-        const query = await axios.post(`${API_URL}/admin/agency-zone`, form, getRequestConfig());
-        const { data } = query
+    return cb ? cb(data) : data
+})
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function addAgency(form, cb) {
+const getZones = handleHttpErrors(async (cb) => {
+    const query = await axios.get(`${API_URL}/admin/agency-zone`, getRequestConfig());
+    const { data } = query
 
-    try {
-        const query = await axios.post(`${API_URL}/admin/agency`, form, getRequestConfig());
-        const { data } = query
+    return cb ? cb(data) : data
+})
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
 
-async function deleteZone(id, cb) {
-    try {
-        const query = await axios.delete(`${API_URL}/admin/agency-zone/${id}`, getRequestConfig());
-        const { data } = query
+const addZone = handleHttpErrors(async (form, cb) => {
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+    const query = await axios.post(`${API_URL}/admin/agency-zone`, form, getRequestConfig());
+    const { data } = query
 
-async function deleteAgency(id, cb) {
-    try {
-        const query = await axios.delete(`${API_URL}/admin/agency/${id}`, getRequestConfig());
-        const { data } = query
+    return cb ? cb(data) : data
+})
 
-        return cb ? cb(data) : data
-    }
-    catch (err) {
-        console.error(`error => ${err}`)
-    }
-}
+
+const addAgency = handleHttpErrors(async (form, cb) => {
+
+    const query = await axios.post(`${API_URL}/admin/agency`, form, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
+
+
+const deleteZone = handleHttpErrors(async (id, cb) => {
+    const query = await axios.delete(`${API_URL}/admin/agency-zone/${id}`, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
+
+
+const deleteAgency = handleHttpErrors(async (id, cb) => {
+    const query = await axios.delete(`${API_URL}/admin/agency/${id}`, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
 
 export {
     getData,

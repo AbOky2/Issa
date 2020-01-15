@@ -13,12 +13,12 @@ module.exports =
         const pass = process.env.MAIL_PASS;
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            host: "SSL0.ovh.net",
+            host: "smtp.mailtrap.io",
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: from,
-                pass // generated ethereal password
+                user: 'f85124e380596e',
+                pass: 'f957e847aedf1b' // generated ethereal password
             }
         });
 
