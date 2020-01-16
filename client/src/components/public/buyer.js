@@ -37,6 +37,7 @@ const BudgetComp = ({ handlePrev, handleNext, handleChange, data: { budget } }) 
     )
 }
 
+
 const SearchComp = ({ handlePrev, handleNext, handleChange, data: { zones, zoneList } = {} }) => {
     const handleNextClick = () => zones.length && handleNext && handleNext()
 
@@ -51,7 +52,9 @@ const SearchComp = ({ handlePrev, handleNext, handleChange, data: { zones, zoneL
             <ReactSelect
                 options={zoneList}
                 value={zones}
-                handleChange={(value) => handleChange('zones', value)} />
+                isClearable={false}
+                handleChange={(value) => handleChange('zones', value)}
+            />
         </Wrapper>
     )
 }

@@ -12,7 +12,7 @@
     background-color: #f2f2f4;
 }
 .react-select-container > div  {
-    min-width: 200px;
+    min-width: 300px;
 }
 .react-select-container > div:focus  {
     border: none;

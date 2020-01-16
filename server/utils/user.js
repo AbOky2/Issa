@@ -37,6 +37,18 @@ const Waiting = 'waiting';
 const Done = 'done';
 const zoneStatusList = [Waiting, Done, None];
 
+// student studies level
+const levelList = {
+    firstYear: '1ère année',
+    secondYear: '2em année',
+    thirdYear: '3em année',
+    fourthYear: '4em année',
+    fiveYear: '5em année',
+    sixYearAndMore: '6em année et +'
+}
+const studiesLevelList = Object.keys(levelList);
+const studiesLevelOBjList = studiesLevelList.map(name => ({ [name]: levelList[name] }));
+
 
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
@@ -78,6 +90,7 @@ module.exports = {
     Active,
     Inactive,
     None,
+    studiesLevelList,
 
     RoleList,
     StatusList,

@@ -7,16 +7,16 @@ import BudgetIcon from '../../assets/img/icons/budget.png'
 import Stepper from '../../components/elements/stepper'
 import { BudgetComp, SearchComp, SchoolComp, HouseComp, SignUpComp } from '../../components/public/buyer'
 import { PublicContentWrapper } from '../../components/wrapper/index'
-import { getZones } from '../../services/publicService'
 import { renameObjectKeys } from '../../utils/converAndCheck'
+import { getCities } from '../../services/externalService'
 
 const menus = [
-    { name: 'Recherche', icon: BlueSearchIcon },
     { name: 'Logement', icon: BlueHouseIcon },
+    { name: 'Recherche', icon: BlueSearchIcon },
     { name: 'Mon école', icon: BlueGraduateIcon },
     { name: 'Budget', icon: BudgetIcon },
 ];
-const contents = [SearchComp, HouseComp, SchoolComp, BudgetComp, SignUpComp];
+const contents = [HouseComp, SearchComp, SchoolComp, BudgetComp, SignUpComp];
 
 export default () => {
     const [state, setState] = useState({
@@ -28,17 +28,16 @@ export default () => {
         role: 'roomer',
         zoneList: [],
 
-        post_fields: ['housing_type', 'budget', 'school', 'studiesLevel', 'role', { name: 'zones', validate: (data) => data ? data.map(data => ({ zone: data.value })) : [] }]
+        post_fields: ['housing_type', 'budget', 'school', 'studiesLevel', 'role', { name: 'zones', validate: (data) => data ? data.map(data => ({ zoneName: data.label, zoneValue: data.value })) : [] }]
     });
     useEffect(() => {
         (async () => {
-            const zones = await getZones();
+            const zones = await getCities();
             if (zones)
-                handleChange('zoneList', zones.list.map(e => renameObjectKeys(e, [['_id', 'value'], ['name', 'label']])));
+                handleChange('zoneList', zones.map(e => renameObjectKeys(e, [['code', 'value'], ['nom', 'label']])));
         })()
     }, [])
     const handleChange = (name, value) => setState({ ...state, [name]: value })
-
     return (
         <PublicContentWrapper>
             <Stepper menus={menus} data={state} handleChange={handleChange} contents={contents} clickableMenu={true} />

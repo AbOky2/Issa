@@ -12,6 +12,7 @@ const {
     StudentStatusList,
     housing_type_List,
     housing_objectiveList,
+    studiesLevelList,
     isStudent,
     Student,
     Active,
@@ -56,7 +57,8 @@ const mongoSchema = new Schema({
         required: () => isStudent(this.role)
     },
     studiesLevel: {
-        type: Number,
+        type: String,
+        enum: studiesLevelList,
         required: () => isStudent(this.role)
     },
     password: {
@@ -102,7 +104,8 @@ const mongoSchema = new Schema({
     },
     zones: {
         type: [{
-            zone: { type: Schema.Types.ObjectId, ref: 'Zone' },
+            zoneName: String,
+            zoneValue: String,
             status: {
                 type: String,
                 enum: zoneStatusList
@@ -164,13 +167,6 @@ class UserClass extends DBModel {
     static async getUserZones(_id) {
         const list = await this.findOne(_id)
             .select('zones')
-            .populate({
-                path: 'zones.zone',
-                populate: {
-                    path: 'agencies',
-                    model: 'Agency'
-                }
-            })
             .lean();
         return { list };
     }
