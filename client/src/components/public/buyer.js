@@ -143,7 +143,6 @@ const BuyerHouseComp = ({ handlePrev, handleNext, handleChange, data: { housing_
 const SignUpComp = ({ handlePrev, handleNext, data }) => {
     const handleNextClick = () => handleNext && handleNext()
     const leanData = extractValidObjectData(data, data.post_fields);
-    console.log(data, leanData);
 
     return (
         <Wrapper title='Remplis tes informations'>

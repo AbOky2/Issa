@@ -16,12 +16,9 @@ export default {
             {
                 label: "Âge",
                 name: "age",
-                type: 'number',
+                type: 'date',
                 required: true,
                 dimension: { xs: 4 },
-                props: {
-                    adornment: { value: 'ans', position: 'end' }
-                },
                 containerClassName: 'form-container-spacing-right'
             },
             {

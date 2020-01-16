@@ -46,6 +46,24 @@ form .form-element-row input {
 form .label-container {
     padding-bottom: 5px;
 }
+form .phone-container.phone-parent input:focus,
+form .phone-container.phone-parent input {
+    border: none;
+    box-shadow: none;
+}
+form .phone-container.phone-parent .flag-dropdown::before, 
+form .phone-container.phone-parent .flag-dropdown::after
+{
+    display: none;
+}
+form .phone-container {
+    border: solid 1px #c7cfd6;
+    border-radius: 3px;
+}
+form .phone-container.error{
+    border: solid 1px #f44336;
+
+}
 .signup form .label-container {
     padding-left: 10px;
     font-family: Rubik;

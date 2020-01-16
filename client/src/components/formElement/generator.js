@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Wysiwyg from './wysiwyg'
 import Select from './select';
 import Radio from './radio';
+import Phone from './phone';
 import Upload from './upload';
 import Checkbox from './checkbox';
 import Date from './date';
@@ -64,7 +65,7 @@ const styles = theme => ({
 
 const FormGenerator = ({ children, fields, classes, state, onChange, settings = {}, errors = [] }) => {
 
-    const textTypes = ['input', 'text', 'password', 'email', 'number', 'phone', 'textarea', 'date', 'datetime-local'],
+    const textTypes = ['input', 'text', 'password', 'email', 'number', 'textarea', 'date', 'datetime-local'],
         selectTypes = ['select'],
         spacing = 4,
         defaultDimension = { xs: 12 };
@@ -85,7 +86,6 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
                         const elemSettings = settings;
                         const containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : elem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
                         const containerClassName = elem.containerClassName || '';
-                        delete elem.containerClassName;
 
                         return (
                             <Grid key={key} item {...dimentions} style={containerStyle} className={`form-element-row no-left-right-padding ${containerClassName}`}>
@@ -100,6 +100,15 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
                                 )
                                     || elem.type == 'dateYear' && (
                                         <Date
+                                            error={error}
+                                            value={state[elem.name]}
+                                            onChange={onChange}
+                                            showLabel={showLabel}
+                                            {...elem}
+                                        />
+                                    )
+                                    || elem.type == 'phone' && (
+                                        <Phone
                                             error={error}
                                             value={state[elem.name]}
                                             onChange={onChange}

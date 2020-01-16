@@ -43,7 +43,7 @@ const CardList = ({ list, onClick, selected }) => (
 )
 
 const ListCardWrapper = ({ handlePrev, handleNext, handleChange, name, selected, isMultiple = false, list = [], img, alt, title }) => {
-    const handleNextClick = () => selected.length && handleNext && handleNext(name, selected)
+    const handleNextClick = () => selected && selected.length && handleNext && handleNext(name, selected)
     const onClick = (id) => handleChange && handleChange(isMultiple ? toggleArray(selected, id) : id);
 
     return (

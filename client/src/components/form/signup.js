@@ -47,7 +47,7 @@ export default ({ handlePrev, data }) => {
             handleChange('errors', errors);
         }
     }
-
+    console.log(state)
     return (
         <Grid container item xs={12} justify="flex-start" className='signup'>
             <FormGenerator

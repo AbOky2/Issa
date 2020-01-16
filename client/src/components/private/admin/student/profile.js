@@ -38,7 +38,7 @@ export default ({ authUser }) => {
             <Grid item className='profile-heading-container'>
                 <img src={Logo} alt='User' />
                 <h1 className='bold'>{`${firstName} ${lastName}`}</h1>
-                <p style={{ minWidth: '100vw' }}>{age}</p>
+                <p style={{ minWidth: '100%' }}>{age} ans</p>
             </Grid>
             <CustomTable data={tableData} />
             <Btn onClick={() => handleChange('openModal', true)} text='Modifier mon profile' grayColor auto={true} />
