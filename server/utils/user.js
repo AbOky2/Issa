@@ -32,10 +32,9 @@ const Inactive = 'inactive';
 const StatusList = [Active, Inactive];
 
 // status
-const None = 'none';
 const Waiting = 'waiting';
 const Done = 'done';
-const zoneStatusList = [Waiting, Done, None];
+const zoneStatusList = [Waiting, Done];
 
 // student studies level
 const levelList = {
@@ -49,10 +48,12 @@ const levelList = {
 const studiesLevelList = Object.keys(levelList);
 const studiesLevelOBjList = studiesLevelList.map(name => ({ [name]: levelList[name] }));
 
-
+// Methods
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
 const isBuyer = (user) => user && user.role === Buyer;
+
+// Other
 
 
 // Slug
@@ -89,7 +90,7 @@ module.exports = {
     Student,
     Active,
     Inactive,
-    None,
+    Waiting,
     studiesLevelList,
 
     RoleList,

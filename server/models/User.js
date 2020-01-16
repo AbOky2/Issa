@@ -21,7 +21,7 @@ const {
     ucFirst,
     isValidateEmail,
     zoneStatusList,
-    None
+    Waiting,
 } = require('../utils/user');
 
 const bcrypt = require('../utils/bcrypt');
@@ -108,7 +108,8 @@ const mongoSchema = new Schema({
             zoneValue: String,
             status: {
                 type: String,
-                enum: zoneStatusList
+                enum: zoneStatusList,
+                default: Waiting
             }
         }],
         required: () => isStudent(this.role)
@@ -188,8 +189,6 @@ class UserClass extends DBModel {
         const slug = await generateSlug(this, firstName + lastName);
         const status = Active; // Change to Enum Value
 
-        if (options.zones)
-            options.zones = options.zones.map(({ zone }) => ({ zone, status: None }))
         // console.log(options);
         // return;
         const user = await this.create({ ...options, status, slug });
