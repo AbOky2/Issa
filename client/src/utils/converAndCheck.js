@@ -70,7 +70,16 @@ const extractValidObjectData = (data, keys) => {
     return obj;
 }
 
-const isMajor = (age) => moment().diff(age, 'years') >= 18
+const isMajor = (age) => dateToYear(age, true) >= 18
+const dateToYear = (age, onlyYear = false) => {
+    let years = null;
+
+    if (!age || !(years = moment().diff(age, 'years')))
+        return
+    if (onlyYear)
+        return years;
+    return `${years} an${years > 1 ? 's' : ''}`;
+};
 
 export {
     isFn,
@@ -84,5 +93,6 @@ export {
     renameObjectKeys,
     extractValidObjectData,
     isEmpty,
+    dateToYear,
     isMajor
 }

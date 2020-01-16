@@ -6,6 +6,8 @@ const DBModel = require('./index')
 const { sendMail } = require('../services/mail')
 const msg = require('../utils/message')
 const { isMajor } = require('../utils/convertAndCheck')
+require('dotenv').config();
+
 const {
     RoleList,
     StatusList,
@@ -31,6 +33,7 @@ const { Schema } = mongoose;
 const mongoSchema = new Schema({
     picture: {
         type: String,
+        default: `${process.env.ROOT_URL}/public/img/default-picture.png`
         // required: true,
     },
     firstName: {
@@ -127,13 +130,13 @@ const mongoSchema = new Schema({
         country: String,
         postalCode: String,
     },
-    dateOfBirth: Date,
 });
 
 class UserClass extends DBModel {
     static publicFields() {
         return [
             '_id',
+            'picture',
             'firstName',
             'lastName',
             'school',

@@ -30,7 +30,7 @@ const StudentSidebarComp = ({ children, authUser }) => (
             </Hidden>
             <Grid item xs={12} sm={10}>{children}</Grid>
         </Grid>
-        <Grid item xs={12}><StudentFooter userAgent={authUser} /></Grid>
+        <Grid item xs={12}><StudentFooter authUser={authUser} /></Grid>
     </Grid>
 )
 export default (OriginalComponent) => (class BaseComponent extends Component {

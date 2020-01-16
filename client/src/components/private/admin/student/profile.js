@@ -5,13 +5,14 @@ import './profile.css'
 import CustomTable from '../../../elements/table'
 import Modal from '../../../elements/modal'
 import Btn from '../../../elements/btn'
+import { dateToYear } from '../../../../utils/converAndCheck'
 
 const Variables = {
     'school': 'École',
 }
 
 export default ({ authUser }) => {
-    const { firstName = '', lastName = '', age = '', school = '' } = authUser;
+    const { picture, firstName = '', lastName = '', age = '', school = '' } = authUser;
     const [state, setState] = useState({
         openModal: false
     });
@@ -36,9 +37,9 @@ export default ({ authUser }) => {
     return (
         <Grid container>
             <Grid item className='profile-heading-container'>
-                <img src={Logo} alt='User' />
+                <img src={picture} alt='User' />
                 <h1 className='bold'>{`${firstName} ${lastName}`}</h1>
-                <p style={{ minWidth: '100%' }}>{age} ans</p>
+                <p style={{ minWidth: '100%' }}>{dateToYear(age)}</p>
             </Grid>
             <CustomTable data={tableData} />
             <Btn onClick={() => handleChange('openModal', true)} text='Modifier mon profile' grayColor auto={true} />
