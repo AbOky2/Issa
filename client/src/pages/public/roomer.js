@@ -22,12 +22,13 @@ export default () => {
     const [state, setState] = useState({
         housing_type: null,
         school: '',
+        studiesLevel: '',
         budget: 500,
         zones: [],
         role: 'roomer',
         zoneList: [],
 
-        post_fields: ['housing_type', 'budget', 'school', 'role', { name: 'zones', validate: (data) => data ? data.map(data => ({ zone: data.value })) : [] }]
+        post_fields: ['housing_type', 'budget', 'school', 'studiesLevel', 'role', { name: 'zones', validate: (data) => data ? data.map(data => ({ zone: data.value })) : [] }]
     });
     useEffect(() => {
         (async () => {
@@ -40,7 +41,7 @@ export default () => {
 
     return (
         <PublicContentWrapper>
-            <Stepper menus={menus} data={state} handleChange={handleChange} contents={contents} clickableMenu />
+            <Stepper menus={menus} data={state} handleChange={handleChange} contents={contents} clickableMenu={true} />
         </PublicContentWrapper>
     )
 }

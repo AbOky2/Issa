@@ -121,6 +121,13 @@ const addZone = handleHttpErrors(async (form, cb) => {
     return cb ? cb(data) : data
 })
 
+const updateZone = handleHttpErrors(async (id, form, cb) => {
+    console.log(form)
+    const query = await axios.put(`${API_URL}/admin/agency-zone/${id}`, form, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
 
 const addAgency = handleHttpErrors(async (form, cb) => {
 
@@ -130,6 +137,12 @@ const addAgency = handleHttpErrors(async (form, cb) => {
     return cb ? cb(data) : data
 })
 
+const updateAgency = handleHttpErrors(async (id, form, cb) => {
+    const query = await axios.put(`${API_URL}/admin/agency/${id}`, form, getRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
 
 const deleteZone = handleHttpErrors(async (id, cb) => {
     const query = await axios.delete(`${API_URL}/admin/agency-zone/${id}`, getRequestConfig());
@@ -167,7 +180,9 @@ export {
     // Partners
     getZones,
     addZone,
+    updateZone,
     addAgency,
+    updateAgency,
     deleteAgency,
-    deleteZone
+    deleteZone,
 };

@@ -21,7 +21,20 @@ const housing_objectiveList = [rental_investment, main_residence, otherObjective
 // student status
 const youngActive = 'young-active';
 const lastYearStudent = 'last-year-student';
-const StudentStatusList = [lastYearStudent, youngActive];
+const youngGraduate = 'young-graduate';
+const StudentStatusList = [lastYearStudent, youngActive, youngGraduate];
+
+// student studies level
+const firstYear = '1ère année';
+const secondYear = '2em année';
+const thirdYear = '3em année';
+const fourthYear = '4em année';
+const fiveYear = '5em année';
+const sixYearAndMore = '6em année et +';
+const studiesLevelOBjList = [{ firstYear }, { secondYear }, { thirdYear }, { fourthYear }, { fiveYear }, { sixYearAndMore }];
+
+// student school
+const studiesSchoolOBjList = [{ hec: 'HEC' }, { epitec: 'Epitec' }];
 
 // status
 const Active = 'active';
@@ -48,6 +61,9 @@ export {
     otherObjective,
     youngActive,
     lastYearStudent,
+    youngGraduate,
+    studiesLevelOBjList,
+    studiesSchoolOBjList,
 
 
     // Methods

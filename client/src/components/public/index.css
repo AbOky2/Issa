@@ -58,6 +58,9 @@
     border: 0;
     border-radius: 0;
 }
+.public-slider-wrapper .studies-level {
+    margin-top: 1rem;
+}
 
 .public-slider-wrapper .custom-btn {
     width: 88px;

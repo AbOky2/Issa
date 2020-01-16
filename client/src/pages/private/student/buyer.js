@@ -27,6 +27,13 @@ const TitleWithImage = ({ text, img }) => (
         </Grid>
     </Grid>
 )
+
+const fields = [
+    { name: 'Ville', field: 'city' },
+    { name: 'Type', field: 'type' },
+    { name: 'Nombre', field: 'nb_appart' },
+];
+
 const Dashboard = () => {
     const [state, setState] = useState({
         properties: [],
@@ -34,8 +41,6 @@ const Dashboard = () => {
             city: 'Paris, Saint-Ouen, Montreuil',
             type: 'Appartement, Maison',
             nb_appart: 'À définir',
-            surface: '50 m² à 70 m²',
-            age: 'Neuf',
         }
     })
 
@@ -51,14 +56,6 @@ const Dashboard = () => {
     }, [])
 
     const handleChange = (name, value) => setState({ ...state, [name]: value });
-
-    const fields = [
-        { name: 'Ville', field: 'city' },
-        { name: 'Type', field: 'type' },
-        { name: 'Nombre', field: 'nb_appart' },
-        { name: 'Surface', field: 'surface' },
-        { name: 'Neuf', field: 'age' }
-    ];
 
     const data = fields.map(({ name, field }) => [name, state.user[field]])
 

@@ -23,7 +23,8 @@ const housing_objectiveList = [rental_investment, main_residence, otherObjective
 // student status
 const youngActive = 'young-active';
 const lastYearStudent = 'last-year-student';
-const StudentStatusList = [lastYearStudent, youngActive];
+const youngGraduate = 'young-graduate';
+const StudentStatusList = [lastYearStudent, youngActive, youngGraduate];
 
 // status
 const Active = 'active';

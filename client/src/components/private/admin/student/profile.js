@@ -6,15 +6,21 @@ import CustomTable from '../../../elements/table'
 import Modal from '../../../elements/modal'
 import Btn from '../../../elements/btn'
 
-export default ({ authUser: { firstName = '', lastName = '', age = '', school = '' } = {} }) => {
+const Variables = {
+    'school': 'École',
+}
+
+export default ({ authUser }) => {
+    const { firstName = '', lastName = '', age = '', school = '' } = authUser;
     const [state, setState] = useState({
         openModal: false
-    })
-    const tableData = [
-        ['École', school],
+    });
+    let tableData = [
         ['Profession', 'Chef de projet'],
         ["Période d'essai", <span className='icon-valide'></span>]
     ];
+    Object.entries(Variables).forEach(([name, value]) => authUser[name] ? tableData.push([authUser[name], value]) : '');
+
     const onClick = () => {
         console.log('onClick')
 

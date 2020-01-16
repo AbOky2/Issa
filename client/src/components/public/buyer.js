@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Grid } from '@material-ui/core';
 import HousingIcon from '../../assets/img/illustrations/budget.svg';
 import GraduateIcon from '../../assets/img/illustrations/draduate.svg';
 import ActifAchatSituation from '../../assets/img/illustrations/actif_achat_situation.svg';
+import YoungGraduateIcon from '../../assets/img/illustrations/diplome.svg';
 import StudentRoomIcon from '../../assets/img/illustrations/student-room.svg';
 import AllLotIcon from '../../assets/img/illustrations/all-lots.svg';
 import T2Icon from '../../assets/img/illustrations/t2.svg';
@@ -11,11 +12,10 @@ import BedIcon from '../../assets/img/illustrations/bed_achat_logement.svg';
 import CouchIcon from '../../assets/img/illustrations/couch_achat_log.svg';
 import StudioIcon from '../../assets/img/illustrations/studio_objectif_achat.svg';
 import Wrapper, { ListCardWrapper, CustomNumerber, CustomSelect } from './index'
-import SearchInput from '../formElement/search'
 import ReactSelect from '../elements/react-select'
 import SignupForm from '../form/signup';
 import { extractValidObjectData } from '../../utils/converAndCheck'
-import { T2, T3, allHomeSize, studio, StudentHouse, rental_investment, main_residence, otherObjective, youngActive, lastYearStudent } from '../../utils/user'
+import { T2, T3, allHomeSize, studio, StudentHouse, studiesSchoolOBjList, studiesLevelOBjList, youngActive, lastYearStudent, youngGraduate } from '../../utils/user'
 
 const BudgetComp = ({ handlePrev, handleNext, handleChange, data: { budget } }) => {
     const budgetKey = 'budget';
@@ -73,9 +73,14 @@ const HouseComp = ({ handlePrev, handleNext, handleChange, data: { housing_type 
     />
 )
 
-const SchoolComp = ({ handlePrev, handleNext, handleChange, data: { school } }) => {
+const optionDisplay = (list) => list.map(obj => Object.entries(obj).map(([value, name]) => (
+    <option key={value} value={value}>{name}</option>
+)))
 
-    const handleNextClick = () => handleNext && handleNext();
+const SchoolComp = ({ handlePrev, handleNext, handleChange, data: { school, studiesLevel } }) => {
+
+    const handleNextClick = () => school && studiesLevel && handleNext && handleNext();
+
     return (
         <Wrapper handlePrev={handlePrev} handleNext={handleNextClick} img={GraduateIcon} alt='Buget' title='Sélectionne ton école'>
             <Grid className='custom-input select' item xs={12}>
@@ -83,9 +88,17 @@ const SchoolComp = ({ handlePrev, handleNext, handleChange, data: { school } }) 
                     value={school}
                     onChange={(e) => handleChange('school', e.target.value)}
                 >
-                    <option value="" />
-                    <option value='hec'>HEC</option>
-                    <option value='epitec'>Epitec</option>
+                    <option value="" disabled>Ecole</option>
+                    {optionDisplay(studiesSchoolOBjList)}
+                </CustomSelect>
+            </Grid>
+            <Grid className='studies-level custom-input select' item xs={12}>
+                <CustomSelect
+                    value={studiesLevel}
+                    onChange={(e) => handleChange('studiesLevel', e.target.value)}
+                >
+                    <option value="" disabled>Année d'etude</option>
+                    {optionDisplay(studiesLevelOBjList)}
                 </CustomSelect>
             </Grid>
         </Wrapper>
@@ -102,6 +115,7 @@ const BuyerStatusComp = ({ handlePrev, handleNext, handleChange, data: { student
         name='student_status'
         list={[
             { img: GraduateIcon, text: 'Étudiant(e) en dernière année', slug: lastYearStudent },
+            { img: YoungGraduateIcon, text: 'Jeune diplômé(e) en recherche d’emploi', slug: youngGraduate },
             { img: ActifAchatSituation, text: 'Jeune actif', slug: youngActive },
         ]}
         title='Je suis :'
