@@ -5,6 +5,7 @@ const _ = require('lodash');
 const DBModel = require('./index')
 const { sendMail } = require('../services/mail')
 const msg = require('../utils/message')
+const { isMajor } = require('../utils/convertAndCheck')
 const {
     RoleList,
     StatusList,
@@ -67,7 +68,12 @@ const mongoSchema = new Schema({
         unique: true,
     },
     age: {
-        type: Number,
+        type: Date,
+        validate: {
+            validator: (v) => isMajor(v),
+            message: 'is not Major!'
+        },
+        required: true
     },
     status: {
         type: String,
