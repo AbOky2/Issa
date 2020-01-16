@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import Btn from '../elements/btn'
 import { signUp } from '../../services/authService'
 import { useAuth } from "../../context/auth";
+import { isMajor } from '../../utils/converAndCheck'
 
 const defaultState = {
     firstName: '',
@@ -34,6 +35,8 @@ export default ({ handlePrev, data }) => {
     const onClick = () => {
         if (!submitable)
             return handleChange('errors', errors);
+        if (!isMajor(state.age))
+            return handleChange('errors', ['age'])
         try {
             let toPost = { ...LeanForm({ fields: forData.create.field, state }), ...data };
             signUp(toPost, ({ token, user }) => {
@@ -47,7 +50,7 @@ export default ({ handlePrev, data }) => {
             handleChange('errors', errors);
         }
     }
-    console.log(state)
+
     return (
         <Grid container item xs={12} justify="flex-start" className='signup'>
             <FormGenerator

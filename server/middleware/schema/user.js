@@ -15,7 +15,7 @@ const schemas = {
                 // user info
                 firstName: Joi.string().min(1).required(),
                 lastName: Joi.string().min(1).required(),
-                age: Joi.number().min(18).required(),
+                age: Joi.date().required(),
                 city: Joi.string().required(),
                 email: Joi.string().email().required(),
                 password: Joi.string().min(4).required(),

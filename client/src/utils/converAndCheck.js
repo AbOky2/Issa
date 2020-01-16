@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 const isArray = (arr) => Array.isArray(arr);
 const isObject = (obj) => typeof obj === 'object';
 const isFn = (functionToCheck) => functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
@@ -68,4 +70,19 @@ const extractValidObjectData = (data, keys) => {
     return obj;
 }
 
-export { isFn, buildFromArray, buildToArray, toggleArray, isValideEmail, toFormData, isArray, isObject, renameObjectKeys, extractValidObjectData, isEmpty }
+const isMajor = (age) => moment().diff(age, 'years') >= 18
+
+export {
+    isFn,
+    buildFromArray,
+    buildToArray,
+    toggleArray,
+    isValideEmail,
+    toFormData,
+    isArray,
+    isObject,
+    renameObjectKeys,
+    extractValidObjectData,
+    isEmpty,
+    isMajor
+}
