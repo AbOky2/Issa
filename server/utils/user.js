@@ -52,6 +52,7 @@ const studiesLevelOBjList = studiesLevelList.map(name => ({ [name]: levelList[na
 const isAdmin = (user) => user && user.role === Admin;
 const isStudent = (user) => user && studentRoleList.includes(user.role);
 const isBuyer = (user) => user && user.role === Buyer;
+const isRoomer = (user) => user && user.role === Roomer;
 
 // Other
 
@@ -110,4 +111,5 @@ module.exports = {
     generateSlug,
     ucFirst,
     isValidateEmail,
+    isRoomer
 };

@@ -14,11 +14,11 @@ const studio = 'studio';
 const housing_type_List = [T2, T3, StudentHouse, allHomeSize, studio];
 
 // housing objective
-const rental_investment = 'rental_investment';
-const main_residence = 'main_residence';
-const otherObjective = 'other';
-const housing_objectiveList = [rental_investment, main_residence, otherObjective];
-
+const housingObjective = {
+    rental_investment: { text: 'Un investissement locatif', icon: 'studio' },
+    main_residence: { text: 'Une résidence principale', icon: 't2' },
+    other: { text: 'Je ne sais pas', icon: 'allLots' },
+}
 // student status
 const youngActive = 'young-active';
 const lastYearStudent = 'last-year-student';
@@ -57,9 +57,7 @@ export {
     StudentHouse,
     allHomeSize,
     studio,
-    rental_investment,
-    main_residence,
-    otherObjective,
+    housingObjective,
     youngActive,
     lastYearStudent,
     youngGraduate,

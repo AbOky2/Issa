@@ -6,6 +6,8 @@ const DBModel = require('./index')
 const { sendMail } = require('../services/mail')
 const msg = require('../utils/message')
 const { isMajor } = require('../utils/convertAndCheck')
+const logger = require('../logs');
+
 require('dotenv').config();
 
 const {
@@ -20,6 +22,7 @@ const {
     Active,
     generateSlug,
     isBuyer,
+    isRoomer,
     ucFirst,
     isValidateEmail,
     zoneStatusList,
@@ -119,16 +122,11 @@ const mongoSchema = new Schema({
     },
     budget: {
         type: Number,
+        required: () => isRoomer(this.role)
+
     },
     provider: {
         type: String,
-    },
-
-    address: {
-        streetName: String,
-        city: String,
-        country: String,
-        postalCode: String,
     },
 });
 
@@ -146,13 +144,11 @@ class UserClass extends DBModel {
             'slug',
             'role',
             'status',
-            'address',
-            'dateOfBirth',
             'age',
             'budget',
             'housing_type',
             'housing_objective',
-            'StudentStatusList',
+            'student_status',
         ];
     }
 
@@ -284,7 +280,7 @@ class UserClass extends DBModel {
         let user = null;
 
         if (await this.findOne({ email: options.email }))
-            throw new Error(msg.alreadyExist('Account'));
+            throw new Error(msg.alreadyExist('Email'));
 
         user = (await this.add(options)).user;
         user = user.toObject();
@@ -294,8 +290,8 @@ class UserClass extends DBModel {
 mongoSchema.loadClass(UserClass);
 
 mongoSchema.pre('save', async function userPreSavePassword() {
-    const user = this;
 
+    const user = this;
     if (!isValidateEmail(user.email))
         throw 'Invalid email';
     user.firstName = ucFirst(user.firstName)

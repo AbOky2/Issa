@@ -19,9 +19,8 @@ const mongoSchema = new Schema({
     },
 });
 
-class AgencyClass extends DBModel {
-    static name = modelName;
-}
+class AgencyClass extends DBModel { static name = modelName; }
+
 mongoSchema.loadClass(AgencyClass);
 
 const Agency = mongoose.model(modelName, mongoSchema);

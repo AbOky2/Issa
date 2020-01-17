@@ -92,4 +92,5 @@ class DBModel {
     }
 }
 
+
 module.exports = DBModel

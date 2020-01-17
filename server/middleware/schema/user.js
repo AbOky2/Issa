@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const { studentRoleList, housing_type_List, StudentStatusList, studiesLevelList } = require('../../utils/user')
+const { studentRoleList, housing_type_List, housing_objectiveList, StudentStatusList, studiesLevelList } = require('../../utils/user')
 
 const schemas = {
     admin: {
@@ -32,6 +32,7 @@ const schemas = {
                 budget: Joi.number().min(0).optional(),
                 studiesLevel: Joi.string().valid(...studiesLevelList),
                 housing_type: Joi.string().valid(...housing_type_List),
+                housing_objective: Joi.string().valid(...housing_objectiveList),
                 student_status: Joi.string().valid(...StudentStatusList),
                 school: Joi.string().optional(),
             },

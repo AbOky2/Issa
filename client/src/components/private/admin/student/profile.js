@@ -12,13 +12,12 @@ const Variables = {
 }
 
 export default ({ authUser }) => {
-    const { picture, firstName = '', lastName = '', age = '', school = '' } = authUser;
+    const { picture, firstName = '', lastName = '', age = '', student_status } = authUser;
     const [state, setState] = useState({
         openModal: false
     });
     let tableData = [
-        ['Profession', 'Chef de projet'],
-        ["Période d'essai", <span className='icon-valide'></span>]
+        ["Status", student_status]
     ];
     Object.entries(Variables).forEach(([name, value]) => authUser[name] ? tableData.push([authUser[name], value]) : '');
 

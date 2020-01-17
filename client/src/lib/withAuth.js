@@ -33,9 +33,9 @@ const StudentSidebarComp = ({ children, authUser }) => (
         <Grid item xs={12}><StudentFooter authUser={authUser} /></Grid>
     </Grid>
 )
-export default (OriginalComponent) => (class BaseComponent extends Component {
-    render() {
-        return (
+export default
+    (OriginalComponent) =>
+        props => (
             <AuthContext.Consumer>
                 {({ authUser }) => {
                     let CustomComp = null;
@@ -46,12 +46,9 @@ export default (OriginalComponent) => (class BaseComponent extends Component {
                         CustomComp = StudentSidebarComp;
                     return (
                         <CustomComp authUser={authUser}>
-                            <OriginalComponent {...this.props} />
+                            <OriginalComponent {...props} />
                         </CustomComp>
                     )
                 }}
             </AuthContext.Consumer>
         );
-    }
-})
-

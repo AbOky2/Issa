@@ -60,10 +60,6 @@ class ZoneClass extends DBModel {
         }
     }
 }
-mongoSchema.pre('remove', function (next) {
-    console.log(this)
-    next();
-});
 mongoSchema.loadClass(ZoneClass);
 
 const Zone = mongoose.model(modelName, mongoSchema);

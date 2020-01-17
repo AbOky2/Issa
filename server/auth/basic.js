@@ -2,6 +2,7 @@ const passport = require('passport');
 const { Strategy } = require('passport-local');
 const UserModel = require('../models/User');
 const { jwtTokenize } = require('../utils/jwt')
+const { convertHttpErrors } = require('../utils/message')
 const userSchema = require('../middleware/schema/user')
 const requestMiddleware = require('../middleware/request');
 
@@ -28,7 +29,8 @@ const auth = ({ app }) => {
                 throw 'wrong path';
 
             cb(null, user);
-        } catch (err) {
+        } catch (error) {
+            const err = convertHttpErrors(error)
             if (err.message)
                 return cb(null, null, err);
             cb(err, null);

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const DBModel = require('./index')
 const { Schema } = mongoose;
 const { removeFiles } = require('../utils/upload');
+
 const modelName = 'Partner'
 
 const mongoSchema = new Schema({

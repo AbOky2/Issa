@@ -10,12 +10,19 @@ import T2Icon from '../../assets/img/illustrations/t2.svg';
 import T3Icon from '../../assets/img/illustrations/3pieces_achat_logement.svg';
 import BedIcon from '../../assets/img/illustrations/bed_achat_logement.svg';
 import CouchIcon from '../../assets/img/illustrations/couch_achat_log.svg';
-import StudioIcon from '../../assets/img/illustrations/studio_objectif_achat.svg';
+import NormalHouseIcon from '../../assets/img/illustrations/studio_objectif_achat.svg';
 import Wrapper, { ListCardWrapper, CustomNumerber, CustomSelect } from './index'
 import ReactSelect from '../elements/react-select'
 import SignupForm from '../form/signup';
 import { extractValidObjectData } from '../../utils/converAndCheck'
-import { T2, T3, allHomeSize, studio, StudentHouse, studiesSchoolOBjList, studiesLevelOBjList, youngActive, lastYearStudent, youngGraduate } from '../../utils/user'
+import { housingObjective, T2, T3, allHomeSize, studio, StudentHouse, studiesSchoolOBjList, studiesLevelOBjList, youngActive, lastYearStudent, youngGraduate } from '../../utils/user'
+
+const Imgs = {
+    t2: NormalHouseIcon,
+    studio: StudentRoomIcon,
+    allLots: AllLotIcon
+}
+const dataList = obj => Object.entries(obj).map(elem => ({ img: Imgs[elem[1].icon], slug: elem[0], text: elem[1].text }))
 
 const BudgetComp = ({ handlePrev, handleNext, handleChange, data: { budget } }) => {
     const budgetKey = 'budget';
@@ -68,7 +75,7 @@ const HouseComp = ({ handlePrev, handleNext, handleChange, data: { housing_type 
         name='housing_type'
         list={[
             { img: StudentRoomIcon, text: 'Une chambre étudiante', slug: StudentHouse },
-            { img: StudioIcon, text: 'Un studio', slug: studio },
+            { img: NormalHouseIcon, text: 'Un studio', slug: studio },
             { img: T2Icon, text: 'Un T2', slug: T2 },
             { img: AllLotIcon, text: 'Tout m’intéresse !', slug: allHomeSize },
         ]}
@@ -141,6 +148,17 @@ const BuyerHouseComp = ({ handlePrev, handleNext, handleChange, data: { housing_
     />
 )
 
+const BuyerObjectifComp = ({ handlePrev, handleNext, handleChange, data: { housing_objective } }) => (
+    <ListCardWrapper
+        selected={housing_objective}
+        handleChange={(data) => handleChange('housing_objective', data)}
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        name='housing_objective'
+        list={dataList(housingObjective)}
+        title='Sélectionne ton type de location'
+    />
+)
 
 // Other
 const SignUpComp = ({ handlePrev, handleNext, data }) => {
@@ -157,4 +175,4 @@ const SignUpComp = ({ handlePrev, handleNext, data }) => {
         </Wrapper>
     )
 }
-export { HouseComp, BudgetComp, SearchComp, SchoolComp, SignUpComp, BuyerStatusComp, BuyerHouseComp }
+export { HouseComp, BudgetComp, SearchComp, SchoolComp, SignUpComp, BuyerStatusComp, BuyerHouseComp, BuyerObjectifComp }
