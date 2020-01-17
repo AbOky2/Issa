@@ -15,12 +15,14 @@ import './index.css'
 
 const Variables = {
     'school': 'École',
+    'phone': 'Téléphone',
+    'email': 'Email'
 }
 
 export default ({ authUser }) => {
     const { picture, firstName = '', lastName = '', age = '', student_status } = authUser;
     const [state, setState] = useState({
-        openModal: true,
+        openModal: false,
         errors: [],
         ...authUser
     });

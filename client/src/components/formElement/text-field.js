@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { FormElementWrapper } from './index'
 import { makeStyles } from '@material-ui/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import moment from 'moment'
 
 const newBorder = {
     borderRadius: '3px',
@@ -30,7 +31,7 @@ const TextFieldComp = ({ name, label, type, value, onChange, showLabel, labelSty
         const key = adornment.position === 'end' ? 'endAdornment' : 'startAdornment';
         inputProps[key] = <InputAdornment>{adornment.value}</InputAdornment>
     }
-
+    value = moment(value).format('YYYY-MM-DD')
     return (
         <FormElementWrapper value={value} label={label} showLabel={showLabel} labelStyle={labelStyle} labelPosition={labelPosition} icon={icon} fullIcon={fullIcon} withGrayScaleIcon={withGrayScaleIcon}>
             <TextField
