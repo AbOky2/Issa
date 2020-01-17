@@ -3,6 +3,8 @@ const User = require('../models/User');
 const { RoleList, Student, isStudent } = require('../utils/user')
 const msg = require('../utils/message')
 const propertieSchema = require('../middleware/schema')
+const userSchema = require('../middleware/schema/user')
+
 const requestMiddleware = require('../middleware/request')
 /**
  * Creates a middleware that tries to execute a function
@@ -31,6 +33,16 @@ const updateCollection = (middleware = defautlMiddleware, listFn) =>
         middleware,
         handleErrors(async (req, res) => res.json(await listFn({ id: req.params.id, data: req.body })))
     ];
+
+const profileCollection = (middleware = defautlMiddleware, listFn) =>
+    [
+        requestMiddleware(userSchema.all.user.reqUser, 'user'),
+        // handleErrors(async (req, res) => res.json({ ok: 'ok' }))
+        middleware,
+
+        handleErrors(async (req, res, next) => res.json(await listFn(req)))
+    ];
+
 
 const deleteCollection = (listFn) =>
     [
@@ -79,5 +91,6 @@ module.exports = {
     listCollection,
     deleteCollection,
     updateCollection,
+    profileCollection,
     authCheck,
 };

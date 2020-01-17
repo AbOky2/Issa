@@ -17,9 +17,10 @@ const App = () => {
     setToken(data)
     setAuthTokens(data);
   }
-  const setAuthUser = (data) => {
+  const setAuthUser = (data, cb) => {
     setUser(data)
     setAuth(data);
+    cb && cb()
   }
   const logOut = (redirect = true) => {
     if (redirect) {
@@ -32,9 +33,7 @@ const App = () => {
   };
   const isAuth = authTokens && authUser ? true : false;
 
-  (async () => {
-    await getCurrentUser()
-  })()
+  (async () => await getCurrentUser())()
 
   return (
     <AuthContext.Provider value={{

@@ -20,6 +20,9 @@
 .auto {
   margin: auto;
 }
+.break-word {
+  overflow-wrap: break-word;
+}
 .no-bg {
   background-color: initial;
 }

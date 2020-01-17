@@ -27,7 +27,7 @@ router.get('/agency-zone', listCollection(async ({ offset, limit }) => {
 }));
 
 router.post('/agency-zone', requestMiddleware(zoneSchema.admin.post), handleErrors(async (req, res) => {
-    const data = await Zone.add(req.body);
+    await Zone.add(req.body);
     const list = await Zone.list();
     res.json(list);
 }));
@@ -105,6 +105,7 @@ sameQueries.forEach(({ name: { singular, plural }, model, schema }) => {
 
     router.delete(`/${singular}/:id`, deleteCollection(async ({ id }) => {
         const elem = await model.get(id);
+
         removeFiles(elem.picture);
         await model.delete(id);
     }));

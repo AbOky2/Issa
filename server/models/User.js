@@ -36,7 +36,7 @@ const { Schema } = mongoose;
 const mongoSchema = new Schema({
     picture: {
         type: String,
-        default: `${process.env.ROOT_URL}/public/img/default-picture.png`
+        default: `${process.env.ROOT_URL}/public/img/users/default-picture.png`
         // required: true,
     },
     firstName: {

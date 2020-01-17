@@ -1,7 +1,15 @@
 import axios from "axios";
 import { API_URL } from '../config'
-import { getRequestConfig, handleHttpErrors } from './index'
+import { toFormData } from '../utils/converAndCheck'
+import { getRequestConfig, handleHttpErrors, getFormDataRequestConfig } from './index'
 
+
+const updateProfile = handleHttpErrors(async (form, cb) => {
+    const query = await axios.put(`${API_URL}/student/user`, toFormData(form), getFormDataRequestConfig());
+    const { data } = query
+
+    return cb ? cb(data) : data
+})
 
 const studentGetData = handleHttpErrors(async (cb) => {
     const query = await axios.get(`${API_URL}/student`, getRequestConfig());
@@ -36,4 +44,7 @@ const getZones = handleHttpErrors(async (cb) => {
 
     return cb ? cb(data) : data
 })
-export { studentGetData, getPartners, getProperties, getZones };
+
+
+
+export { studentGetData, getPartners, getProperties, getZones, updateProfile };
