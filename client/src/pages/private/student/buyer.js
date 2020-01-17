@@ -65,7 +65,7 @@ const Dashboard = () => {
         <AdminContentWrapper className='no-bg no-box-shadow buyer'>
             <Grid><h2 className='student-section-title text-left'>VOTRE DOSSIER</h2></Grid>
 
-            <Grid container direction="row" justify="space-between" alignItems='stretch'>
+            <Grid container direction="row" justify="center" alignItems='stretch'>
                 <Grid item container xs={12} sm={7}>
                     <Grid item xs={12} sm={5} className='steps-container'>
                         <TitleWithImage
@@ -92,10 +92,10 @@ const Dashboard = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={5} className='simulation-container'>
+                {/* <Grid container item xs={12} sm={5} className='simulation-container'>
                     <h2 className='text-center fullwidth'>Simuler mon prêt</h2>
                     <FormSimulation />
-                </Grid>
+                </Grid> */}
             </Grid>
 
             <Grid><h2 className='student-section-title text-left'>NOS OFFRES DE LOGEMENTS</h2></Grid>
