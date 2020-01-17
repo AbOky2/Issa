@@ -65,7 +65,7 @@ const SelectType = ({ name, label, type, value, list, onChange, showLabel, varia
                     value={value ? value : multiple ? [] : ''}
                     onChange={onChange(name)}
                     input={variant ? <OutlinedInput id={name} /> : <Input id={name} />}
-                    disableUnderline={!!!unableUnderline}
+                    // disableUnderline={!!!unableUnderline}
                     required={true}
                     style={fullwidth}
                     className={unableBoxShadow ? classes.select : ''}

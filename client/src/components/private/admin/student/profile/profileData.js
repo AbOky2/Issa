@@ -17,7 +17,8 @@ const Variables = [
     {
         label: "Ecole",
         name: "school",
-        type: 'select'
+        type: 'select',
+        list: []
     },
 
     {

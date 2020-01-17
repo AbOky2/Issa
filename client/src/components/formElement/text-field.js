@@ -19,7 +19,8 @@ const useStyles = makeStyles({
     }
 })
 
-const strinkTypes = ['date', 'datetime', 'time'];
+const dateType = 'date'
+const strinkTypes = [dateType, 'datetime', 'time'];
 
 const TextFieldComp = ({ name, label, type, value, onChange, showLabel, labelStyle, unableUnderline = false, unableBoxShadow = true, error = true, labelPosition = {}, icon, fullIcon, withGrayScaleIcon, ...elemProps }) => {
     const classes = useStyles();
@@ -31,7 +32,9 @@ const TextFieldComp = ({ name, label, type, value, onChange, showLabel, labelSty
         const key = adornment.position === 'end' ? 'endAdornment' : 'startAdornment';
         inputProps[key] = <InputAdornment>{adornment.value}</InputAdornment>
     }
-    value = moment(value).format('YYYY-MM-DD')
+    if (type == dateType)
+        value = moment(value).format('YYYY-MM-DD');
+
     return (
         <FormElementWrapper value={value} label={label} showLabel={showLabel} labelStyle={labelStyle} labelPosition={labelPosition} icon={icon} fullIcon={fullIcon} withGrayScaleIcon={withGrayScaleIcon}>
             <TextField

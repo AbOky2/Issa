@@ -79,106 +79,108 @@ const FormGenerator = ({ children, fields, classes, state, onChange, settings = 
             <FormControl className={classes.container} required={true}>
                 <Grid container item className={classes.root} spacing={spacing} alignItems="center" xs={12}>
                     {fields && fields.map((elem, key) => {
-                        const dimentions = elem.dimension ? elem.dimension : defaultDimension;
-                        const elemProps = elem.props;
+                        const currentElem = { ...elem }
+                        const dimentions = currentElem.dimension ? currentElem.dimension : defaultDimension;
+                        const elemProps = currentElem.props;
                         const inputDefaultProps = elemProps && elemProps.defaultValue ? elemProps.defaultValue : '';
-                        const error = state.errors && state.errors.includes(elem.name);
+                        const error = state.errors && state.errors.includes(currentElem.name);
                         const elemSettings = settings;
-                        const containerStyle = elem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : elem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
-                        const containerClassName = elem.containerClassName || '';
+                        const containerStyle = currentElem.type == 'checkbox' ? { paddingTop: 0, paddingBottom: 0 } : currentElem.type != 'hidden' ? { paddingTop: 10, paddingBottom: 10 } : { padding: 0 }
+                        const containerClassName = currentElem.containerClassName || '';
+                        delete currentElem.containerClassName;
 
                         return (
                             <Grid key={key} item {...dimentions} style={containerStyle} className={`form-element-row no-left-right-padding ${containerClassName}`}>
-                                {textTypes.includes(elem.type) && (
+                                {textTypes.includes(currentElem.type) && (
                                     <TextField
                                         error={error}
                                         onChange={handleChange}
                                         showLabel={showLabel}
-                                        value={state[elem.name] || inputDefaultProps}
-                                        {...{ ...elem, ...elemSettings }}
+                                        value={state[currentElem.name] || inputDefaultProps}
+                                        {...{ ...currentElem, ...elemSettings }}
                                     />
                                 )
-                                    || elem.type == 'dateYear' && (
+                                    || currentElem.type == 'dateYear' && (
                                         <Date
                                             error={error}
-                                            value={state[elem.name]}
+                                            value={state[currentElem.name]}
                                             onChange={onChange}
                                             showLabel={showLabel}
-                                            {...elem}
+                                            {...currentElem}
                                         />
                                     )
-                                    || elem.type == 'phone' && (
+                                    || currentElem.type == 'phone' && (
                                         <Phone
                                             error={error}
-                                            value={state[elem.name]}
+                                            value={state[currentElem.name]}
                                             onChange={onChange}
                                             showLabel={showLabel}
-                                            {...elem}
+                                            {...currentElem}
                                         />
                                     )
-                                    || elem.type == 'wysiwyg' && (
+                                    || currentElem.type == 'wysiwyg' && (
                                         <Wysiwyg
                                             error={error}
-                                            value={state[elem.name]}
+                                            value={state[currentElem.name]}
                                             onChange={onChange}
                                             showLabel={showLabel}
-                                            {...elem}
+                                            {...currentElem}
                                         />
                                     )
-                                    || selectTypes.includes(elem.type) && (
+                                    || selectTypes.includes(currentElem.type) && (
                                         <Select
                                             error={error}
                                             onChange={handleChange}
                                             showLabel={showLabel}
-                                            value={state[elem.name] || inputDefaultProps}
+                                            value={state[currentElem.name] || inputDefaultProps}
                                             elemProps={elemProps}
-                                            list={elem.list}
-                                            {...{ ...elem, ...elemSettings }}
+                                            list={currentElem.list}
+                                            {...{ ...currentElem, ...elemSettings }}
                                         />
                                     )
-                                    || elem.type == 'img' && (
+                                    || currentElem.type == 'img' && (
                                         <Grid container>
-                                            {showLabel && <Grid item {...labelSpacing}>{elem.label}</Grid>}
+                                            {showLabel && <Grid item {...labelSpacing}>{currentElem.label}</Grid>}
 
                                             <Grid item {...labelSpacing}>
 
                                                 <div>
-                                                    <img src={state[elem.name]} {...elemProps} onChange={onChange} />
+                                                    <img src={state[currentElem.name]} {...elemProps} onChange={onChange} />
                                                 </div>
                                             </ Grid>
                                         </ Grid>
                                     )
-                                    || elem.type == 'radio' && (
+                                    || currentElem.type == 'radio' && (
                                         <Radio
 
                                             error={error}
                                             onChange={handleChange}
                                             showLabel={showLabel}
-                                            value={state[elem.name] || inputDefaultProps}
-                                            {...{ ...elem, ...elemSettings }}
-                                        // list={elem.list}
+                                            value={state[currentElem.name] || inputDefaultProps}
+                                            {...{ ...currentElem, ...elemSettings }}
+                                        // list={currentElem.list}
 
-                                        // name={elem.name}
-                                        // label={showLabel ? '' : elem.label}
-                                        // value={state[elem.name]}
-                                        // list={elem.list} onChange={onChange} {...elemProps}
+                                        // name={currentElem.name}
+                                        // label={showLabel ? '' : currentElem.label}
+                                        // value={state[currentElem.name]}
+                                        // list={currentElem.list} onChange={onChange} {...elemProps}
                                         />
-                                        // <Radio name={elem.name} label={showLabel ? '' : elem.label} value={state[elem.name]} list={elem.list} onChange={onChange} {...elemProps} />
+                                        // <Radio name={currentElem.name} label={showLabel ? '' : currentElem.label} value={state[currentElem.name]} list={currentElem.list} onChange={onChange} {...elemProps} />
 
                                     )
-                                    || elem.type == 'checkbox' && (
-                                        <Checkbox name={elem.name} label={elem.label} value={state[elem.name] || []} onChange={onChange} list={elem.list} {...elemProps} />
+                                    || currentElem.type == 'checkbox' && (
+                                        <Checkbox name={currentElem.name} label={currentElem.label} value={state[currentElem.name] || []} onChange={onChange} list={currentElem.list} {...elemProps} />
                                     )
-                                    || elem.type == 'upload' && (
+                                    || currentElem.type == 'upload' && (
                                         <Upload
                                             error={error}
-                                            name={elem.name}
-                                            defaultValue={state[elem.name]}
-                                            label={elem.label}
+                                            name={currentElem.name}
+                                            defaultValue={state[currentElem.name]}
+                                            label={currentElem.label}
                                             showLabel={showLabel}
-                                            value={state[elem.name]}
-                                            onChange={value => onChange(elem.name, value)}
-                                            {...{ ...elem, ...elemSettings }}
+                                            value={state[currentElem.name]}
+                                            onChange={value => onChange(currentElem.name, value)}
+                                            {...{ ...currentElem, ...elemSettings }}
 
                                         />
                                     )
