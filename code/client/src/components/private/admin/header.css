@@ -1,0 +1,86 @@
+header {
+  height: 60px;
+  padding: 0px 50px 0 27px;
+}
+.header .header-icon {
+  margin-right: 17px;
+}
+.dropdownContainer img {
+  display: block;
+  height: 27px;
+}
+.dropdownContainer span {
+  display: block;
+  margin: 0 6px 0 10px;
+  text-transform: initial;
+}
+.notification {
+  margin-right: 20px;
+}
+.notification img {
+  display: block;
+  width: 32px;
+}
+.menu-container {
+  height: 64px;
+}
+header .help > div {
+  padding-left: 36px;
+}
+header .help img {
+  display: inline-block;
+  height: 12px;
+  width: auto;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+header .help span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.student-header {
+  height: 80px;
+  background-color: rgba(229, 230, 235, 0.68);
+  font-family: Rubik;
+  border-bottom: solid 0.5px #c7cfd6;
+  font-size: 15px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #475f7b;
+}
+.student-header > div{
+  height: 100%;
+}
+@media screen and (max-width: 400px) {
+  header.student-header {
+    padding: 0px 16px 0 27px;
+  }
+  .student-header .profile-icon {
+    width: 25px;
+  }
+  .profile-container {
+      padding: 45px 44px 60px;
+      box-sizing: border-box;
+  }
+  .profile-logout-container {
+      padding-top: 45px;
+  }
+  .help {
+    flex-direction: column-reverse;
+  }
+  .help > div {
+    display: block;
+    width: 100%;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+  .help > div img {
+    display: inline-block;
+    width: auto;
+    height: 12px;
+    padding-right: 8px;
+  }
+}
