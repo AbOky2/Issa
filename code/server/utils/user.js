@@ -46,7 +46,7 @@ const levelList = {
     sixYearAndMore: '6em année et +'
 }
 const studiesLevelList = Object.keys(levelList);
-const studiesLevelOBjList = studiesLevelList.map(name => ({ [name]: levelList[name] }));
+// const studiesLevelOBjList = studiesLevelList.map(name => ({ [name]: levelList[name] }));
 
 // Methods
 const isAdmin = (user) => user && user.role === Admin;
@@ -62,9 +62,8 @@ const slugify = (text) => _.kebabCase(text);
 const createUniqueSlug = async (Model, slug, count) => {
     const user = await Model.findOne({ slug: `${slug}-${count}` }, 'id');
 
-    if (!user) {
+    if (!user)
         return `${slug}-${count}`;
-    }
 
     return createUniqueSlug(Model, slug, count + 1);
 }

@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Header from './components/partials/header/header'
-import './App.css';
 import { AuthContext } from './context/auth';
 import { getToken, getUser, setUser, clearUser, setToken, clearToken } from './utils/storage'
 import { getCurrentUser, logout } from './services/authService'
 import { ToastContainer, toast } from 'react-toastify';
+import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-
   const [state, setState] = useState({})
   const [authTokens, setAuthTokens] = useState(getToken());
   const [authUser, setAuth] = useState(getUser());

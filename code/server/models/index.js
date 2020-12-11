@@ -1,10 +1,9 @@
 class DBModel {
+    static name = 'Element';
+
     static publicFields() {
         return ['-__v'];
     }
-    static name = 'Element';
-
-
     static async add(args) {
         try {
             const propertieDoc = await this.create(args);
@@ -15,7 +14,6 @@ class DBModel {
             throw error
         }
     }
-
     static async get(_id) {
         const element = await this.findById(_id);
         if (!element) {
@@ -75,7 +73,6 @@ class DBModel {
             throw 'Error white delete'
         }
     }
-
     static async swapPosition(data) {
         let first = await this.findById(data[0]._id);
         let second = await this.findById(data[1]._id);
