@@ -1,0 +1,16 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/admin": "pages/admin.js",
+  "/admin/partners": "pages/admin/partners.js",
+  "/dashboard/bookmark": "pages/dashboard/bookmark.js",
+  "/dashboard": "pages/dashboard.js",
+  "/dashboard/partners/[id]": "pages/dashboard/partners/[id].js",
+  "/dashboard/property/[id]": "pages/dashboard/property/[id].js",
+  "/dashboard/search": "pages/dashboard/search.js",
+  "/dashboard/sponsorship": "pages/dashboard/sponsorship.js",
+  "/": "pages/index.js",
+  "/public/login": "pages/public/login.js",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+}

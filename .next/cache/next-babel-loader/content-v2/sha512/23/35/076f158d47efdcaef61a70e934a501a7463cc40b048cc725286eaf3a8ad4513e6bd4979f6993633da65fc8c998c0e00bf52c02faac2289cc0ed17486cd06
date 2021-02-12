@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { openSnackbarExported } from '../components/Notifier';\nexport default function notify(obj) {\n  openSnackbarExported({\n    message: obj.message || obj.toString()\n  });\n}","map":null,"metadata":{},"sourceType":"module"}

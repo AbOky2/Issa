@@ -1,121 +1,94 @@
-# kit-le-nid
-- [What is kit le nid](#what-is-kit-le-nid)
-- [stack](#stack)
-- [Form Generator](#form-generator)
-	- [Props](#form-generator-props)
-		- [Fields](#fields)
-	- [Form elements](#form-elements)
-		- [TextField (input, textarea, email, password, number)](#textfield)
-		- [Select](#select)
-		- [Wysiwyg](#wysiwyg)
-		- [Img](#img)
-		- [Radio](#radio)
-		- [Checkbox](#checkbox)
-		- [ColorPicker](#color-picker)
-		- [Upload](#upload)
-- [Packages](#packages)
+## Boilerplate
+Boilerplate with React, Material-UI, Next, Express, Mongoose, MongoDB.
 
-# What is kit le nid
-Kit le nid is a website for property purchase by students.
-# Stack
-The using stack is: [Nodejs](https://nodejs.org/en/), [ExpressJs](http://expressjs.com/), [NextJs](https://github.com/zeit/next.js/), [Material-ui](http://material-ui.com/)
-# Form Generator
-The form generator enable you to generate html form with grid disposition depending of fields properties.
 
-```jsx
-<FormGenerator
-	fields={fields}
-	state={state}
-	errors={errors}
-	settings={settings}
-	onChange={onChange}
-/>
+## Contents
+- [Run locally](#run-locally)
+- [Deploy](#deploy)
+- [Built with](#built-with)
+  - [Core stack](#core-stack)
+  - [Third party APIs](#third-party-apis)
+- [Project structure](#project-structure)
+
+
+## Run locally
+- Clone the project and run `yarn` to add packages.
+- Before you start the app, create a `.env` file at the app's root. This file must have values for env variables specified below.
+  - To get `MONGO_URL_TEST`, we recommend a [free MongoDB at mLab](http://docs.mlab.com/).
+  - Get `Google_clientID` and `Google_clientSecret` by following [official OAuth tutorial](https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin).
+
+    Important: For Google OAuth app, callback URL is: http://localhost:8000/oauth2callback
+    
+    Important: You have to enable Google+ API in your Google Cloud Platform account.
+
+  - Specify your own secret key for Express session `SESSION_SECRET`: https://github.com/expressjs/session#secret.
+
+  `.env` :
+  ```
+  MONGO_URL_TEST="XXXXXX"
+
+  Google_clientID="XXXXXX"
+  Google_clientSecret="XXXXXX"
+
+  SESSION_SECRET="XXXXXX"
+  ```
+  
+- Start the app with `yarn dev`.
+- The _first registered user_ in the app becomes an Admin user (`"isAdmin": true`).
+
+
+## Deploy
+See the [deploy section](https://github.com/builderbook/builderbook#deploy) on our main repository README.
+
+
+## Built with
+
+#### Core stack
+- [React](https://github.com/facebook/react)
+- [Material-UI](https://github.com/mui-org/material-ui)
+- [Next](https://github.com/zeit/next.js)
+- [Express](https://github.com/expressjs/express)
+- [Mongoose](https://github.com/Automattic/mongoose)
+- [MongoDB](https://github.com/mongodb/mongo)
+
+#### Third party APIs
+- Google OAuth
+
+Check out [package.json](https://github.com/builderbook/builderbook/blob/master/boilerplate/package.json).
+
+
+## Project structure
+
 ```
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `fields`                    | array                  | An array of Object containing the form elements types.|
-| `state`                            | object                  | An object which store the form elements values                                                                                                                                                       |
-| `errors?`                          | array | List of errors base on the names of fields
-| `settings?`                          | object | An object for the form settings
-| `onChange?`                          | function | Event to call on elements update 
+.
+├── components                  # React components
+│   ├── Header.js               # Header component
+│   ├── Form.js                 # Form
+│   |   ├── Btn.js              # Btn Component
+│   |   ├── Icon.js             # Icon Component
+│   |   ├── Input.js            # Input Component
+│   |   ├── Modal.js            # Modal Component
+│   |   ├── Select.js           # Select Component
+│   ├── MenuDrop.js             # Dropdown menu
+│   ├── SharedStyles.js         # List of _reusable_ styles
+├── lib                         # Code available on both client and server
+│   ├── context.js              # Context for Material-UI integration
+│   ├── withAuth.js             # HOC that passes user to pages and more
+│   ├── withLayout.js           # HOC for SSR with Material-UI and more
+├── pages                       # Pages
+│   ├── login.js                # Login page
+│   ├── _document.js            # Main Document for Next.js pages
+│   ├── index.js                # Dashboard page
+├── server                      # Server code
+│   ├── models                  # Mongoose models
+│   │   ├── User.js             # User model
+│   ├── app.js                  # Custom Express/Next server
+│   ├── google.js               # Google OAuth API
+├── static                      # Static resources
+├── .babelrc                    # Config for Babel
+├── .eslintrc.js                # Config for Eslint
+├── .gitignore                  # List of ignored files and directories
+├── package.json                # List of packages and scripts
+├── yarn.lock                   # Exact versions of packages. Generated by yarn.
 
-## Form Generator props
-
-
-### Fields
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `label?`                    | name                  | The form element helptext |
-| `name`                            | string                  | The name of the form element. The name is the key that will be use to set the form element.                                                                                              |
-| `type`                          | string | The type of form element to generate 
-| `required?`                          | boolean (default false) | Sets whether the form element is required 
-| `dimension?`                          | object | The material-ui grid dimension ***E.g:  {xs: 12, ms: 6}***
-| `props?`                          | object | The props to pass to the form element
-
-
-### Settings
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `showLabel?`                    | boolean (default false)                | Determines if we need to display form elements labels |
-| `labelPostion?`                    | string                | Position of label e.g('top \| left'). Combine value to put the label on top left position
-| `unableUnderline`                          | boolean (default false)   | Determines the material ui form elements should be underline
-| `unableboxShadow`                          | boolean (default false)   | Determines the material ui form elements bordered with box-shadow
-
-## Form elements
-[TextField](#textfield), [Select](#select), [Wysiwyg](#wysiwyg), [Img](#img), [Radio](#radio), [Checkbox](#checkbox), [ColorPicker](#colorPicker),  [Upload](#upload)
-### TextField
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`                    | string                | The name of the form element. |
-| `label?`                    | string                | The label of the form element. |
-| `type`                            | string                                                                                      | The type of the form element (**input, textarea, email, password, number**). 
-| `value`                    | any                | The value of the form element. |
-| `error`                    | boolean (default false)                | Determinate if there is an error in the form element 
-| `onChange`                            | function                                                                                           | Event to call on element update
-| `dimension?`                    | object                | The material-ui grid dimension ***E.g:  {xs: 12, ms: 6}*** |
-| `showLabel?`                            | boolean (default false)| Show the label aside
-| `disableUnderline?`                    | boolean (default false)                | Disable material ui default form element underline |
-| `elemProps?`                          | object | The props to pass to the form element
-### Select
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`                    | string                | The name of the form element. |
-| `label?`                    | string                | The label of the form element. |
-| `type`                            | string                                                                                      | The type of the form element (**select, select-icon, email, password, number**). 
-| `value`                    | any                | The value of the form element. |
-| `error`                    | boolean (default false)                | Determinate if there is an error in the form element 
-| `multiple?`                            | boolean (default false)| Activate multiple selection
-| `onChange`                            | function                                                                                           | Event to call on element update
-| `dimension?`                    | object                | The material-ui grid dimension ***E.g:  {xs: 12, ms: 6}*** |
-| `showLabel?`                            | boolean (default false)| Show the label aside
-| `disableUnderline?`                    | boolean (default false)                | Disable material ui default form element underline |
-### Wysiwyg
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`                    | string                | The name of the form element. |
-| `value`                    | string                | The label of the form element. |
-| `error`                    | boolean (default false)                | Determinate if there is an error in the form element 
-| `onChange`                            | function                                                                                           | Event to call on element update
-| `showLabel?`                            | boolean (default false)| Show the label aside
-| `label?`                    | string                | The label of the form element.
-| `dimension?`                    | object                | The material-ui grid dimension ***E.g:  {xs: 12, ms: 6}*** |
-
-
-### Img
-### Radio
-### Checkbox
-### ColorPicker
-### Upload
-| Property                           | Type                    | Description                                                                                                                                                                          |
-| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`                    | string                | The name of the form element. |
-| `value?`                    | Img                | The default image to display  |
-| `error`                    | boolean (default false)                | Determinate if there is an error in the form element 
-| `onChange`                            | function                                                                                           | Event to call on element update
-| `showLabel?`                            | boolean (default false)| Show the label aside
-| `label?`                    | string                | The label of the form element.
-| `dimension?`                    | object                | The material-ui grid dimension ***E.g:  {xs: 12, ms: 6}*** |
-
-
-# Packages
-
+```

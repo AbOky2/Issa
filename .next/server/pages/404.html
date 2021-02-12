@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en" style="height:100%"><head><meta charSet="utf-8"/><meta name="google" content="notranslate"/><meta name="theme-color" content="#1976D2"/><link rel="shortcut icon" href="https://storage.googleapis.com/builderbook/favicon32.png"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400:latin"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/><link rel="stylesheet" href="https://storage.googleapis.com/builderbook/nprogress.min.css"/><link rel="stylesheet" href="https://storage.googleapis.com/builderbook/vs.min.css"/><style>
+              html {
+                font-size: 10px;
+              }
+              body {
+                background-color: #F7F8FA!important;
+              }
+              .main-container {
+                max-width: 1280px;
+                margin: auto;
+              }
+              a, a:focus {
+                font-weight: 400;
+                color: #1565C0;
+                text-decoration: none;
+                outline: none
+              }
+              a:hover, button:hover {
+                opacity: 0.75;
+                cursor: pointer
+              }
+              blockquote {
+                padding: 0 1em;
+                color: #555;
+                border-left: 0.25em solid #dfe2e5;
+              }
+              pre {
+                display:block;
+                overflow-x:auto;
+                padding:0.5em;
+                background:#FFF;
+                color: #000;
+                border: 1px solid #ddd;
+                font-size: 14px;
+              }
+              code {
+                font-size: 14px;
+                background: #FFF;
+              }
+              .relative {
+                position: relative;
+              }
+              .no-margin {
+                margin: auto !important;
+              }
+              .fullwidth {
+                width: 100%;
+              }
+              .fullheight {
+                height: 100%;
+              }
+              .text-left {
+                text-align: left;
+              }
+              .text-right {
+                text-align: right;
+              }
+              .text-center {
+                text-align: center;
+              }
+              .inline-block {
+                display: inline-block;
+              }
+              .student-content-wrapper {
+                padding: 0 3rem;
+              }
+              .pointer {
+                cursor: pointer;
+              }
+              // to replace with matterial style
+              .upload {
+                position: relative;
+                display: inline-block;
+              }
+
+              .upload input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                cursor: pointer;
+              }
+              .upload img {
+                max-height: 200px;
+                display: inline-block;
+              }
+
+              .partner-filter {
+                margin: 5px;
+                cursor: pointer;
+                font-size: 1.3rem;
+              }
+              .partner-filter.active {
+                color: #475f7b;
+                text-decoration: underline;
+              }
+              .partner-add p {
+                display: inline-block;
+              }
+              .partner-add .header-icon {
+                margin-right: 5px;
+              }
+              .partner-card-list-container {
+                padding: 2rem 1rem;
+              }
+              .partner-card-list {
+                padding: 1rem;
+              }
+              
+              .modal-content-container {
+                padding: 4rem 6rem;
+              }
+              .modal-title {
+                font-family: &#x27;Nunito&#x27;;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 2.6rem;
+                line-height: 35px;
+                text-align: center;
+                margin-bottom: 4rem;
+                color: #1a2e6c;
+              }
+              .modal-action-container {
+                margin-top: 4rem;
+                border-top: 1px solid #c1cde7;
+              }
+              .modal-action-container &gt; div:first-of-type {
+                margin-right: 1rem;
+              }
+              .modal-action-container &gt; div:last-of-type {
+                margin-left: 1rem;
+              }
+              header-btn {
+                /* width: 41px; */
+                /* height: 17px; */
+                font-family: &#x27;Rubik&#x27;;
+                font-size: 1.44rem;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #475f7b;
+              }
+              
+              div.header {
+                padding-top: 15px;
+                padding-bottom: 15px;
+              }
+              
+              .admin-container {
+                min-height: 100vh;
+              }
+              .student-container.admin-container #sidebar {
+                height: calc(100vh - 202px);
+                /* height: 100%; */
+              }
+              .spacing {
+                padding: 0 24px;
+              }
+              .admin-container #sidebar {
+                padding-top: 5rem;
+              }
+              .admin-container #sidebar h2 {
+                margin-bottom: 0;
+              }
+              .admin-container #sidebar h3 {
+                margin-top: 0;
+                margin-bottom: 5rem;
+              }
+              .admin-container #sidebar ul li {
+                list-style: none;
+              }
+              .admin-container #sidebar ul ul {
+                padding: 0;
+              }
+              .admin-container #sidebar ul ul li {
+                cursor: pointer;
+              }
+              .admin-container #sidebar ul span {
+                display: block;
+              }
+              .custom-upload-conatainer &gt; span {
+                marginBottom: 1rem;
+              }
+            </style><script async="" src="https://www.googletagmanager.com/gtag/js?id=undefined"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'undefined', {
+                page_path: window.location.pathname,
+              });
+            </script><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>404: This page could not be found</title><meta name="next-head-count" content="3"/><link rel="preload" href="/_next/static/css/eb380ff9cde6382280ef.css" as="style"/><link rel="stylesheet" href="/_next/static/css/eb380ff9cde6382280ef.css" data-n-g=""/><noscript data-n-css=""></noscript><link rel="preload" href="/_next/static/chunks/main-ed5d5f3bd0a8b32c2894.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.64c08973ae123710aa81.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.95f0beb4981832aae659.js" as="script"/><link rel="preload" href="/_next/static/chunks/3813ffccdfceaf3d598397f935b81538489087da.11df6041bec42a87ac05.js" as="script"/><link rel="preload" href="/_next/static/chunks/1eb5eae6fe3c52c9ba7d3146d72f7b2f6b76818c.25fb624a8c5ff5ec7369.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-db1db860d33b591a2dfb.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_error-571a26217d10adc9e6d3.js" as="script"/><style id="jss-server-side">html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+strong, b {
+  font-weight: 700;
+}
+body {
+  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  font-size: 1.4rem;
+  font-family: Open Sans;
+  font-weight: 400;
+  line-height: 1.43;
+  background-color: #fafafa;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+body::backdrop {
+  background-color: #fafafa;
+}
+.MuiSnackbar-root {
+  left: 8px;
+  right: 8px;
+  display: flex;
+  z-index: 1400;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+}
+.MuiSnackbar-anchorOriginTopCenter {
+  top: 8px;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginTopCenter {
+    top: 24px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+  .MuiSnackbar-anchorOriginBottomCenter {
+    bottom: 8px;
+  }
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginBottomCenter {
+    left: 50%;
+    right: auto;
+    bottom: 24px;
+    transform: translateX(-50%);
+  }
+}
+  .MuiSnackbar-anchorOriginTopRight {
+    top: 8px;
+    justify-content: flex-end;
+  }
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginTopRight {
+    top: 24px;
+    left: auto;
+    right: 24px;
+  }
+}
+  .MuiSnackbar-anchorOriginBottomRight {
+    bottom: 8px;
+    justify-content: flex-end;
+  }
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginBottomRight {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+  }
+}
+  .MuiSnackbar-anchorOriginTopLeft {
+    top: 8px;
+    justify-content: flex-start;
+  }
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginTopLeft {
+    top: 24px;
+    left: 24px;
+    right: auto;
+  }
+}
+  .MuiSnackbar-anchorOriginBottomLeft {
+    bottom: 8px;
+    justify-content: flex-start;
+  }
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginBottomLeft {
+    left: 24px;
+    right: auto;
+    bottom: 24px;
+  }
+}</style></head><body><div id="__next"><div class="main-container"><div style="color:#000;background:#fff;font-family:-apple-system, BlinkMacSystemFont, Roboto, &quot;Segoe UI&quot;, &quot;Fira Sans&quot;, Avenir, &quot;Helvetica Neue&quot;, &quot;Lucida Grande&quot;, sans-serif;height:100vh;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center"><div><style>body { margin: 0 }</style><h1 style="display:inline-block;border-right:1px solid rgba(0, 0, 0,.3);margin:0;margin-right:20px;padding:10px 23px 10px 0;font-size:24px;font-weight:500;vertical-align:top">404</h1><div style="display:inline-block;text-align:left;line-height:49px;height:49px;vertical-align:middle"><h2 style="font-size:14px;font-weight:normal;line-height:inherit;margin:0;padding:0">This page could not be found<!-- -->.</h2></div></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"statusCode":404}},"page":"/_error","query":{},"buildId":"g_NAhbM5fCTcHIlrACyaT","nextExport":true,"isFallback":false,"gip":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-b7b042dafc30d210a3d4.js"></script><script src="/_next/static/chunks/main-ed5d5f3bd0a8b32c2894.js" async=""></script><script src="/_next/static/chunks/webpack-50bee04d1dc61f8adf5b.js" async=""></script><script src="/_next/static/chunks/framework.64c08973ae123710aa81.js" async=""></script><script src="/_next/static/chunks/commons.95f0beb4981832aae659.js" async=""></script><script src="/_next/static/chunks/3813ffccdfceaf3d598397f935b81538489087da.11df6041bec42a87ac05.js" async=""></script><script src="/_next/static/chunks/1eb5eae6fe3c52c9ba7d3146d72f7b2f6b76818c.25fb624a8c5ff5ec7369.js" async=""></script><script src="/_next/static/chunks/pages/_app-db1db860d33b591a2dfb.js" async=""></script><script src="/_next/static/chunks/pages/_error-571a26217d10adc9e6d3.js" async=""></script><script src="/_next/static/g_NAhbM5fCTcHIlrACyaT/_buildManifest.js" async=""></script><script src="/_next/static/g_NAhbM5fCTcHIlrACyaT/_ssgManifest.js" async=""></script></body></html>
